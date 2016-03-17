@@ -26,11 +26,12 @@ if ($mysql_connection->query($reunion) === TRUE) {
 $mysql_connection = new mysqli($db_hostname, $db_username, $db_password, $db_database);
 
 $students = "CREATE TABLE students(first_name varchar(15) NOT NULL, last_name varchar(20) NOT NULL,
-student_ID int NOT NULL AUTO_INCREMENT, nickname varchar(20), grad_year int(4) NOT NULL, father_name varchar(15),
+student_ID int NOT NULL AUTO_INCREMENT PRIMARY KEY, nickname varchar(20), grad_year int(4) NOT NULL, father_name varchar(15),
 mother_name varchar(15),email varchar(40) NOT NULL, phone varchar(10) primary key, family_details varchar(100),
 work_experience varchar(200),awards varchar(200), street varchar(50), city varchar(20), state varchar(2),
 zip int(5), notes varchar(50))";
 
+// added
 
 if ($mysql_connection->query($students) === TRUE) {
 	echo "Students table created successfully \n";
@@ -39,7 +40,7 @@ if ($mysql_connection->query($students) === TRUE) {
 }
 
 
-$teachers = "CREATE TABLE teachers(first_name varchar(15) NOT NULL, teacher_ID int NOT NULL AUTO_INCREMENT,
+$teachers = "CREATE TABLE teachers(first_name varchar(15) NOT NULL, teacher_ID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
  last_name varchar(20) NOT NULL,nickname varchar(20), start_year int(4) NOT NULL, end_year int(4) NOT NULL,
  father_name varchar(15), mother_name varchar(15),email varchar(40) NOT NULL, phone varchar(10),
  family_details varchar(100), work_experience varchar(200),awards varchar(200), street varchar(50),
