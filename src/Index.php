@@ -8,35 +8,7 @@
 ?>
 <html xmlns:padding="http://www.w3.org/1999/xhtml">
 <head>
-	<style type="text/css">
-		h1 {
-			font-weight: bold;
-			font-size: 50px;
-			color: #0844A4;
-			text-align: center;
-			padding-top: 50px;
-		}
-		#info {
-			margin: auto;
-			width: 500px;
-			background-color: #D4E3FC;
-			text-align: center;
-			border: 1px solid black;
-			margin-bottom: 40px;
-		}
-		#people {
-			margin: auto;
-		}
-		p {
-			text-align: center;
-			font-size: 40px;
-		}
-		textarea {
-			background-color: #FFC3AE;
-			overflow-y: scroll;
-		}
-	</style>
-
+	<link rel="stylesheet" type="text/css" href="style.css"/>
 	<title>Event Details</title>
 </head>
 <body>
