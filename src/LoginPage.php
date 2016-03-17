@@ -6,7 +6,7 @@
 <body>
 <h1 style="text-align: center;"><strong><span style="font-family:trebuchet ms,helvetica,sans-serif;"><span style="color:#0000FF;">Welcome to Village High School Reunion</span></span></strong></h1>
  
-<p style="text-align: center;"><a href="http://www.google.com">View Event Details Here</a></p>
+<p style="text-align: center;"><a href="Index.php">View Event Details Here</a></p>
  
 <p style="text-align: center;">Username:&nbsp;<input maxlength="10" name="usernameText" type="text" /></p>
  
