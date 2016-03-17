@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Teufel Hunden
- * Date: 3/15/2016
- * Time: 6:39 PM
- */
+
 $db_hostname = '127.0.0.1';
 $db_username = 'root';
 $db_password = '';
