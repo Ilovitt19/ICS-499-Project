@@ -4,6 +4,7 @@
   session_start();
   do_html_header("Village High School Reunion","Event Info");
 
+show_event_info();
 
   // if logged in as admin, show add, delete, edit cat links
   if(isset($_SESSION['admin_user'])) {

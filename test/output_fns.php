@@ -62,6 +62,14 @@ function do_html_header($title = '',$section = '') {
   }
 }
 
+function show_event_info() {
+?>
+  <div id="info">
+    <p>Saturday June 1st, 2016<br>Hilton Hotel<br>Minneapolis, Minnesota</p>
+  </div>
+  <?php
+}
+
 function do_html_footer() {
   // print an HTML footer
 ?>
