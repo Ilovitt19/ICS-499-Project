@@ -141,7 +141,7 @@ function display_form_button($image, $alt) {
 function do_student_info_form(){
   ?>
   <div  style="margin:auto;" >
-
+    <form action="submit.php" method="post">
    <table style="margin:auto;border-style:solid;padding: 10px;">
       <tr>
         <td width="150"></td>
@@ -323,8 +323,11 @@ function do_student_info_form(){
        <td align="left"><textarea type="text" name="awards" rows="3" cols="30" maxlength="200" ></textarea></td>
      </tr>
      <tr>
+       <td></td>
+       <td><input type="submit" value="Send"></td>
+     </tr>
     </table>
-
+    </form>
   </div>
 <?php
 }
