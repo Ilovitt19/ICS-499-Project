@@ -6,14 +6,14 @@ function do_html_header($title = '',$section = '') {
   <html>
   <head>
     <title><?php echo $title; ?></title>
-    <link rel="stylesheet" type="text/css" href="../src/style.css"/>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
   </head>
   <body>
   <h1>Village High School Reunion</h1>
   <div id="topnavBar" class="topnavMenu">
     <ul class="navbar">
       <li><a class="nav" title="Welcome" href="../test/Index.php">HOME</a></li>
-      <li><a class="nav" title="Profile" href="../test/UserInfo.php">MY PROFILE</a></li>
+      <li><a class="nav" title="Profile" href="UserInfo.php">MY PROFILE</a></li>
       <li><a class="nav" title="Find People" href="Search.php">FIND PEOPLE</a></li>
       <?php
       if(isset($_SESSION['admin_user'])) {
