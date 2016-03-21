@@ -17,7 +17,7 @@ function do_html_header($title = '',$section = '') {
       <li><a class="nav" title="Find People" href="Search.php">FIND PEOPLE</a></li>
       <?php
       if(isset($_SESSION['admin_user'])) {
-        echo "<li><a class = 'nav-right' title='Admin' href='AdminPage.php'>ADMIN</a></li>";
+        echo "<li><a class = 'nav-right' title='Admin' href='admin.php'>ADMIN</a></li>";
       } else {
 
       }
@@ -95,9 +95,9 @@ function do_html_URL($url, $name) {
 
 
 function display_login_form() {
-  // dispaly form asking for name and password
+  // display form asking for name and password
 ?>
- <form method="post" action="AdminPage.php">
+ <form method="post" action="admin.php">
  <table bgcolor="#cccccc" align="center">
    <tr>
      <td>Username:</td>
