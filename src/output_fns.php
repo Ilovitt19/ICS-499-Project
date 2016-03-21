@@ -12,17 +12,17 @@ function do_html_header($title = '',$section = '') {
   <h1>Village High School Reunion</h1>
   <div id="topnavBar" class="topnavMenu">
     <ul class="navbar">
-      <li><a class="nav" title="Welcome" href="../test/Index.php">HOME</a></li>
+      <li><a class="nav" title="Welcome" href="index.php">HOME</a></li>
       <li><a class="nav" title="Profile" href="UserInfo.php">MY PROFILE</a></li>
       <li><a class="nav" title="Find People" href="Search.php">FIND PEOPLE</a></li>
       <?php
       if(isset($_SESSION['admin_user'])) {
-        echo "<li><a class = 'nav-right' title='Admin' href='admin.php'>ADMIN</a></li>";
+        echo "<li><a class = 'nav-right' title='Admin' href='AdminPage.php'>ADMIN</a></li>";
       } else {
 
       }
       ?>
-      <li><a class="nav-right" title="Login" href="Login.php">LOGIN</a></li>
+      <li><a class="nav-right" title="Login" href="login.php">LOGIN</a></li>
     </ul>
   </div>
   <tr>
@@ -97,7 +97,7 @@ function do_html_URL($url, $name) {
 function display_login_form() {
   // dispaly form asking for name and password
 ?>
- <form method="post" action="admin.php">
+ <form method="post" action="AdminPage.php">
  <table bgcolor="#cccccc" align="center">
    <tr>
      <td>Username:</td>
