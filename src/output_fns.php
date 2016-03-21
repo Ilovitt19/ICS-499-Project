@@ -123,25 +123,19 @@ function display_admin_menu() {
 <?php
 }
 
-function display_button($target, $image, $alt) {
-  echo "<div align=\"center\"><a href=\"".$target."\">
-          <img src=\"images/".$image.".gif\"
-           alt=\"".$alt."\" border=\"0\" height=\"50\"
-           width=\"135\"/></a></div>";
+
+function initialize_database() {
+  ?>
+    <button onclick="create_database()" type="button">Create Database</button>
+  <?php
 }
-
-function display_form_button($image, $alt) {
-  echo "<div align=\"center\"><input type=\"image\"
-           src=\"images/".$image.".gif\"
-           alt=\"".$alt."\" border=\"0\" height=\"50\"
-           width=\"135\"/></div>";
+function create_database() {
+  include_once('../src/CreateDatabase.php');
 }
-
-
-function do_student_info_form(){
+function do_info_form(){
   ?>
   <div  style="margin:auto;" >
-    <form action="submit.php" method="post">
+    <form action="submit.php" method="get">
    <table style="margin:auto;border-style:solid;padding: 10px;">
       <tr>
         <td width="150"></td>
@@ -264,7 +258,7 @@ function do_student_info_form(){
      <tr>
        <td>Graduation Year:</td>
        <td align="left">
-       <select name="state">
+       <select name="grad_year">
          <option>Grad Year</option>
          <optgroup label = "Year">
            <option value="2015">2015</option>
@@ -321,6 +315,10 @@ function do_student_info_form(){
      <tr>
        <td>Awards:</td>
        <td align="left"><textarea type="text" name="awards" rows="3" cols="30" maxlength="200" ></textarea></td>
+     </tr>
+     <tr>
+       <td>Notes:</td>
+       <td align="left"><textarea type="text" name="notes" rows="3" cols="30" maxlength="200" ></textarea></td>
      </tr>
      <tr>
        <td></td>
