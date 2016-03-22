@@ -2,8 +2,18 @@ h1 {
     font-weight: bold;
     font-size: 50px;
     color: #0844A4;
+	text-shadow:1px 1px 3px #080808;
     text-align: center;
     padding-top: 15px;
+}
+h2 {
+	font-weight: bold;
+    font-size: 50px;
+    color: #0844A4;
+	text-shadow:1px 1px 3px #080808;
+    text-align: center;
+    padding-top: 15px;
+	
 }
 #info {
     margin: auto;
@@ -11,6 +21,7 @@ h1 {
     background-color: #D4E3FC;
     text-align: center;
     border: 1px solid black;
+	text-shadow:1px 1px 3px #080808;
     margin-bottom: 40px;
     margin-top: 10px;
 }
