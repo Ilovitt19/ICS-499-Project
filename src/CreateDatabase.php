@@ -89,15 +89,36 @@ if ($mysql_connection->query($user) === TRUE) {
 } else {
 	echo "Table not created: " . $mysql_connection->error . "\n";
 }
-$passwd = sha1("admin");
+$admin_passwd = sha1("admin");
 
 $admin = "INSERT INTO user(username, password, admin, user_type)
-	VALUES ('admin', '$passwd', 'yes', 'student')";
+	VALUES ('admin', '$admin_passwd', 'yes', 'student')";
 
 if ($mysql_connection->query($admin) === TRUE) {
-	echo "New record created successfully";
+	echo "New record created successfully" . "\n";
 } else {
-	echo "Error: " . $mysql_connection . "<br>" . $conn->error;
+	echo "Error: " . $mysql_connection . "<br>" . $conn->error . "\n";
 }
+$student_passwd = sha1("student");
+
+$student_user = "INSERT INTO user(username, password, admin, user_type)
+	VALUES ('student', '$student_passwd', 'no', 'student')";
+
+if ($mysql_connection->query($student_user) === TRUE) {
+	echo "New record created successfully" . "\n";
+} else {
+	echo "Error: " . $mysql_connection . "<br>" . $conn->error . "\n";
+}
+
+$teacher_passwd = sha1("teacher");
+
+$teacher_user = "INSERT INTO user(username, password, admin, user_type)
+	VALUES ('teacher', '$teacher_passwd', 'no', 'teacher')";
+
+	if ($mysql_connection->query($teacher_user) === TRUE) {
+		echo "New record created successfully" . "\n";
+	} else {
+		echo "Error: " . $mysql_connection . "<br>" . $conn->error . "\n";
+	}
 
 $mysql_connection->close();
