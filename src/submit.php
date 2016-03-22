@@ -1,5 +1,5 @@
 <?php
-require_once ('reunion_fns.php');
+require_once ('output_fns.ph');
 
 $select = $_GET["select"];
 $first_name = $_GET["first_name"];

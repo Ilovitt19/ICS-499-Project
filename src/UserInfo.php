@@ -1,6 +1,6 @@
 <?php
 
-include ('reunion_fns.php');
+include ('output_fns.php');
 
 session_start();
 
