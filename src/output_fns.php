@@ -192,7 +192,7 @@ function do_info_form(){
            <option value="CA">California (CA)</option>
            <option value="CO">Colorado (CO)</option>
            <option value="CT">Connecticut (CT)</option>
-           <option value="DE"> (DE)</option>
+           <option value="DE">Delaware (DE)</option>
            <option value="FL">Florida (FL)</option>
            <option value="GA">Georgia (GA)</option>
            <option value="HI">Hawaii (HI)</option>
@@ -256,7 +256,7 @@ function do_info_form(){
        <td align="left"><input type="text" name="zip" size="5" maxlength="5" /></td>
      </tr>
      <tr>
-       <td>Graduation Year:</td>
+       <td>Graduation Year (Student):</td>
        <td align="left">
        <select name="grad_year">
          <option>Grad Year</option>
@@ -291,7 +291,7 @@ function do_info_form(){
        </td>
      </tr>
      <tr>
-       <td>Years Taught:</td>
+       <td>Years Taught (Teacher):</td>
        <td align="left"><input type="text" name="start_year" size="4" maxlength="4" width="4"/> to
          <input type="text" name="end_year" size="4" maxlength="4" width="4"/></td>
      </tr>
