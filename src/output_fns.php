@@ -1,8 +1,9 @@
 <?php
 
-function do_html_header($title = '',$section = '') {
+function do_html_header($title = '',$section = '')
+{
 //Title of the page being cra
-?>
+  ?>
   <html>
   <head>
     <title><?php echo $title; ?></title>
@@ -11,20 +12,22 @@ function do_html_header($title = '',$section = '') {
   <body>
   <h1>Village High School Reunion</h1>
   <div id="topnavBar" class="topnavMenu">
-    <ul class="navbar">
-      <li><a class="nav" title="Welcome" href="index.php">HOME</a></li>
-      <li><a class="nav" title="Profile" href="UserInfo.php">MY PROFILE</a></li>
-      <li><a class="nav" title="Find People" href="Search.php">FIND PEOPLE</a></li>
-      <?php
-      if(isset($_SESSION['admin_user'])) {
-        echo "<li><a class = 'nav-right' title='Admin' href='admin.php'>ADMIN</a></li>";
-      }
+  <ul class="navbar">
+  <li><a class="nav" title="Welcome" href="index.php">HOME</a></li>
+  <li><a class="nav" title="Profile" href="UserInfo.php">MY PROFILE</a></li>
+  <li><a class="nav" title="Find People" href="Search.php">FIND PEOPLE</a></li>
+  <?php
+  if (isset($_SESSION['admin_user'])) {
+    echo "<li><a class = 'nav-right' title='Admin' href='admin.php'>ADMIN</a></li>";
+  }
 
-      if(isset($_SESSION['admin_user'])) {
-        echo "<li><a class = 'nav-right' title='Logout' href='logout.php'>LOGOUT</a></li>";
-      }else {
-        echo "<li><a class = 'nav-right' title='Login' href='login.php'>LOGIN</a></li>";
-      }
+  if (isset($_SESSION['admin_user'])) {
+    echo "<li><a class = 'nav-right' title='Logout' href='logout.php'>LOGOUT</a></li>";
+  } elseif (isset($_SESSION['user'])){
+    echo "<li><a class = 'nav-right' title='Logout' href='logout.php'>LOGOUT</a></li>";
+  }else {
+    echo "<li><a class = 'nav-right' title='Login' href='login.php'>LOGIN</a></li>";
+  }
       ?>
     </ul>
   </div>
@@ -71,7 +74,7 @@ function do_html_heading($heading) {
 function display_login_form() {
   // display form asking for name and password
 ?>
- <form method="post" action="admin.php">
+ <form method="get" action="welcome.php">
  <table bgcolor="#cccccc" align="center">
    <tr>
      <td>Username:</td>
