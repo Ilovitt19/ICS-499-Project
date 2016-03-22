@@ -51,4 +51,10 @@ if ($mysql_connection->query($teachers) === TRUE) {
 $user = "CREATE TABLE user( user_id int NOT NULL AUTO_INCREMENT = 1000 FOREIGN KEY, username varchar(15) PRIMARY KEY,
 password varchar 40, admin varchar(3), user_type varchar(7))";
 
+if ($mysql_connection->query($user) === TRUE) {
+	echo "User table created successfully \n";
+} else {
+	echo "Table not created: " . $mysql_connection->error;
+}
+
 $mysql_connection->close();
