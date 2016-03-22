@@ -64,5 +64,17 @@ function change_password($username, $old_password, $new_password) {
   }
 }
 
+function login_check() {
+  if (isset($_SESSION['admin_user'])) {
+    return true;
+  } elseif (isset($_SESSION['user'])){
+    return true;
+  }else {
+    return false;
+  }
+}
+
+
+
 
 ?>

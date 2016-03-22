@@ -44,9 +44,10 @@ if (($_GET['username']) && ($_GET['passwd'])) {
 
 do_html_header("Village High School Reunion","Welcome");
 
-if (check_admin_user()) {
+if (login_check() == 'true') {
+	// add functions for logged in users
 } else {
-	echo "<p>You are not authorized to enter the administration area.</p>";
+	echo "<p>You must be logged in to visit this page.</p>";
 }
 
 do_html_footer();

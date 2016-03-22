@@ -1,12 +1,16 @@
 <?php
 
 include ('reunion_fns.php');
-
+require_once ('user_auth_fns.php');
 session_start();
 
 do_html_header("Find People","Enter Search");
-do_findpeople_form();
-do_query_results();
+if (login_check() == 'true') {
+  do_findpeople_form();
+  do_query_results();
+} else {
+  echo "<p>You must be logged in to visit this page.</p>";
+}
 
 function do_findpeople_form(){
 ?>
