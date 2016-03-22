@@ -1,6 +1,8 @@
 <?php
 
-include ('output_fns.php');
+include ('reunion_fns.php');
+
+session_start();
 
 do_html_header("Find People","Enter Search");
 do_findpeople_form();
@@ -121,6 +123,7 @@ function do_query_results(){
 
 <?php
 }
+
 
 do_html_footer();
 ?>

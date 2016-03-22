@@ -18,44 +18,17 @@ function do_html_header($title = '',$section = '') {
       <?php
       if(isset($_SESSION['admin_user'])) {
         echo "<li><a class = 'nav-right' title='Admin' href='admin.php'>ADMIN</a></li>";
-      } else {
+      }
 
+      if(isset($_SESSION['admin_user'])) {
+        echo "<li><a class = 'nav-right' title='Logout' href='logout.php'>LOGOUT</a></li>";
+      }else {
+        echo "<li><a class = 'nav-right' title='Login' href='login.php'>LOGIN</a></li>";
       }
       ?>
-      <li><a class="nav-right" title="Login" href="login.php">LOGIN</a></li>
     </ul>
   </div>
-  <tr>
-  <td align="right" valign="bottom">
-  <?php
-     if(isset($_SESSION['admin_user'])) {
-       echo "&nbsp;";
-     } else {
 
-     }
-  ?>
-  </td>
-  <td align="right" rowspan="2" width="135">
-  <?php
-     if(isset($_SESSION['admin_user'])) {
-       display_button('logout.php', 'log-out', 'Log Out');
-     } else {
-
-     }
-  ?>
-  </tr>
-  <tr>
-  <td align="right" valign="top">
-  <?php
-     if(isset($_SESSION['admin_user'])) {
-       echo "&nbsp;";
-     } else {
-
-     }
-  ?>
-  </td>
-  </tr>
-  </table>
 <?php
   if($section) {
     do_html_heading($section);
@@ -78,6 +51,13 @@ function do_html_footer() {
 <?php
 }
 
+function do_html_URL($url, $name) {
+  // output URL as link and br
+  ?>
+  <a href="<?php echo $url; ?>"><?php echo $name; ?></a><br />
+  <?php
+}
+
 
 function do_html_heading($heading) {
   // print heading
@@ -86,12 +66,6 @@ function do_html_heading($heading) {
 <?php
 }
 
-function do_html_URL($url, $name) {
-  // output URL as link and br
-?>
-  <a href="<?php echo $url; ?>"><?php echo $name; ?></a><br />
-<?php
-}
 
 
 function display_login_form() {
