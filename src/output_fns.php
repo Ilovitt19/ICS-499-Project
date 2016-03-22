@@ -13,10 +13,19 @@ function do_html_header($title = '',$section = '')
   <h1>Village High School Reunion</h1>
   <div id="topnavBar" class="topnavMenu">
   <ul class="navbar">
-  <li><a class="nav" title="Welcome" href="index.php">HOME</a></li>
-  <li><a class="nav" title="Profile" href="UserInfo.php">MY PROFILE</a></li>
-  <li><a class="nav" title="Find People" href="Search.php">FIND PEOPLE</a></li>
-  <?php
+    <li><a class="nav" title="Home" href="index.php">HOME</a></li>
+    <li><a class="nav" title="Profile" href="UserInfo.php">MY PROFILE</a></li>
+    <li><a class="nav" title="Find People" href="Search.php">FIND PEOPLE</a></li>
+    <?php
+    /*
+     * To hide navbar buttons if user is not logged in
+     *
+     *
+     *if (login_check() == 'true') {
+     *  echo "<li><a class='nav' title='Profile' href='UserInfo.php'>MY PROFILE</a></li>";
+     *  echo "<li><a class='nav' title='Find People' href='Search.php'>FIND PEOPLE</a></li>";
+     *}
+     */
   if (isset($_SESSION['admin_user'])) {
     echo "<li><a class = 'nav-right' title='Admin' href='admin.php'>ADMIN</a></li>";
   }
