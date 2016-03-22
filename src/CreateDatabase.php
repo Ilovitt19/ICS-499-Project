@@ -24,7 +24,7 @@ $students = "CREATE TABLE students(user_id int(6) PRIMARY KEY, first_name varcha
 last_name varchar(20) NOT NULL, nickname varchar(20), grad_year int(4) NOT NULL, father_name varchar(15),
 mother_name varchar(15),email varchar(40) NOT NULL, phone varchar(10), family_details varchar(100),
 work_experience varchar(200),awards varchar(200), street varchar(50), city varchar(20), state varchar(2),
-zip int(5), notes varchar(50))";
+zip int(5), notes varchar(50), photo varchar (30)";
 
 //
 
@@ -39,7 +39,7 @@ $teachers = "CREATE TABLE teachers(user_id int(6) PRIMARY KEY, first_name varcha
  last_name varchar(20) NOT NULL,nickname varchar(20), start_year int(4) NOT NULL, end_year int(4) NOT NULL,
  father_name varchar(15), mother_name varchar(15),email varchar(40) NOT NULL, phone varchar(10),
  family_details varchar(100), work_experience varchar(200),awards varchar(200), street varchar(50),
- city varchar(20), state varchar(2), zip int(5), notes varchar(50))";
+ city varchar(20), state varchar(2), zip int(5), notes varchar(50), photo varchar(30))";
 
 
 if ($mysql_connection->query($teachers) === TRUE) {
