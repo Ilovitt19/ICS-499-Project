@@ -110,9 +110,6 @@ function do_query_results(){
         <td width="200"></td>
       </tr>
      
-      
-     
-     
      <tr>
        <!--<td>People Found:</td>-->
        <td align="left"><textarea type="text" name="people_found" rows="10" cols="100" maxlength="200" ></textarea></td>
