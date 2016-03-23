@@ -13,7 +13,13 @@ function do_html_header($title = '',$section = '')
   <h1>Village High School Reunion</h1>
   <div id="topnavBar" class="topnavMenu">
   <ul class="navbar">
-  <li><a class="nav" title="Home" href="index.php">HOME</a></li>
+    <?php
+    if (isset($_SESSION['admin_user']) || isset($_SESSION['user'])) {
+    echo "<li><a class = 'nav' title='Welcome' href='welcome.php'>HOME</a></li>";
+    } else {
+    echo "<li><a class = 'nav' title='Home' href='index.php'>HOME</a></li>";
+    }
+    ?>
   <li><a class="nav" title="Profile" href="UserInfo.php">MY PROFILE</a></li>
   <li><a class="nav" title="Find People" href="Search.php">FIND PEOPLE</a></li>
   <?php
@@ -81,7 +87,7 @@ function do_html_heading($heading) {
 function display_login_form() {
   // display form asking for name and password
 ?>
- <form method="get" action="welcome.php">
+ <form method="get" action="login_action.php">
  <table bgcolor="#cccccc" align="center">
    <tr>
      <td>Username:</td>
