@@ -1,7 +1,6 @@
 <?php
 
 include ('reunion_fns.php');
-require_once ('user_auth_fns.php');
 session_start();
 
 do_html_header("Find People","Enter Search");

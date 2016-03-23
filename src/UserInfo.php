@@ -1,6 +1,6 @@
 <?php
 
-include ('output_fns.php');
+include ('reunion_fns.php');
 require_once ('user_auth_fns.php');
 session_start();
 
@@ -11,3 +11,5 @@ if (login_check() == 'true') {
 } else {
 	echo "<p>You must be logged in to visit this page.</p>";
 }
+
+do_html_footer();

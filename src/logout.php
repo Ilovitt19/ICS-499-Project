@@ -1,7 +1,7 @@
 <?php
 
 // include function files for this application
-require_once('output_fns.php');
+require_once('reunion_fns.php');
 session_start();
 if (isset($_SESSION['admin_user'])) {
   $old_user = $_SESSION['admin_user'];  // store  to test if they *were* logged in
