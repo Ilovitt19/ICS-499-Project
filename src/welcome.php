@@ -1,4 +1,7 @@
 <?php
+/*
+ * Welcome.php acts as Home page while user is logged in
+ */
 include ('reunion_fns.php');
 
 session_start();
@@ -6,9 +9,8 @@ session_start();
 do_html_header("Village High School Reunion","Welcome");
 
 if (login_check() == 'true') {
-	// add functions for logged in users - isn't a function already called from UserInfo.php?
-	// route them to information display page after they log in
-    do_info_form(); // Might be redundant
+	show_event_info();
+	// add functions for logged in users
 } else {
 	echo "<p>You must be logged in to visit this page.</p>";
 }
