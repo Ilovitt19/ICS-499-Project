@@ -2,6 +2,8 @@
 require_once ('reunion_fns.php');
 session_start();
 $conn = db_connect();
+
+do_html_header("Error"," Error");
 if (($_GET['username']) && ($_GET['passwd'])) {
 	// they have just tried logging in
 
@@ -30,10 +32,17 @@ if (($_GET['username']) && ($_GET['passwd'])) {
 
 	} else {
 		// unsuccessful login
-		echo "<p>You could not be logged in.<br/>
-            You must be logged in to view this page.</p>";
-		do_html_url('login.php', 'Login');
+
+		echo "<p>You could not be logged in.<br/>You must be logged in to view this page.</p>";
+		display_login_form();
 		exit;
 	}
 
+} else {
+	// unsuccessful login
+
+	echo "<p>You could not be logged in.<br/>You must be logged in to view this page.</p>";
+	display_login_form();
+	exit;
 }
+
