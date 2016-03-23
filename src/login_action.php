@@ -4,15 +4,15 @@ session_start();
 $conn = db_connect();
 
 do_html_header("Error"," Error");
-if (($_GET['username']) && ($_GET['passwd'])) {
+if (($_POST['username']) && ($_POST['passwd'])) {
 	// they have just tried logging in
 
 
 
-	if (login($_GET['username'], $_GET['passwd'])) {
+	if (login($_POST['username'], $_POST['passwd'])) {
 		// if they are in the database register the user id
-		$username = $_GET['username'];
-		$passwd = $_GET['passwd'];
+		$username = $_POST['username'];
+		$passwd = $_POST['passwd'];
 
 		$sql = "SELECT admin FROM user WHERE username = '$username'";
 		$result = $conn->query($sql);

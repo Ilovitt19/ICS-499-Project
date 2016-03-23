@@ -87,7 +87,7 @@ function do_html_heading($heading) {
 function display_login_form() {
   // display form asking for name and password
 ?>
- <form method="get" action="login_action.php">
+ <form method="post" action="login_action.php">
  <table bgcolor="#cccccc" align="center">
    <tr>
      <td>Username:</td>
