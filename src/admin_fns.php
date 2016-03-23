@@ -4,15 +4,14 @@
  * This file contains functions and code for:
  *  - Downloading database into an excel
  *  - Generating reports
- *
- * Modifications to the code made by Alligators group, ICS 499
  */
 
 include (db_fns.php);
 
+//Store database array into an excel file
 function arrayToExcel() {
 
-    $array = db_result_to_array();
+    $array = db_result_to_array(db_connect());
 
     header("Content-Disposition: attachment; filename=\"VillageHighSchoolReunionData.xls\"");
     header("Content-Type: application/vnd.ms-excel;");
@@ -25,6 +24,8 @@ function arrayToExcel() {
     }
     fclose($out);
 }
+
+
 
 
 //BELOW IS CODE TO EXPORT DATABASE DIRECTLY TO EXCEL FILE
