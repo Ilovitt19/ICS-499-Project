@@ -11,12 +11,10 @@
  * Modifications to the code made by Alligators group, ICS 499
  */
 
-
 /**
  * Triggering a download
  * @param $str
  */
-
 function cleanData(&$str)
 {
     $str = preg_replace("/\t/", "\\t", $str);
