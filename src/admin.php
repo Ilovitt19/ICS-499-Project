@@ -6,12 +6,13 @@ session_start();
 require_once('user_auth_fns.php');
 
 do_html_header("Admin","Admin");
-
+// add functions for logged in admin user
+echo "<a href='CreateDatabase.php'>Crreate Database</a>";
 
 if (login_check() == 'true') {
 	if (check_admin_user()) {
 		// add functions for logged in admin user
-		echo "<a href='CreateDatabase.php'>Crreate Database</a>";
+
 	} else {
 		echo "<p>You are not authorized to enter the administration area.</p>";
 	}
