@@ -1,7 +1,6 @@
 <?php
 
 include ('reunion_fns.php');
-session_start();
 
 do_html_header("Find People","Enter Search");
 if (login_check() == 'true') {

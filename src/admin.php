@@ -1,6 +1,5 @@
 <?php
 include ('reunion_fns.php');
-session_start();
 
 // include function files for this application
 require_once('user_auth_fns.php');
