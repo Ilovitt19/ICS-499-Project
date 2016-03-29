@@ -122,7 +122,9 @@ function initialize_database() {
 function create_database() {
   include_once('../src/CreateDatabase.php');
 }
+
 function do_info_form(){
+
   ?>
   <div  style="margin:auto;" >
     <form action="submit.php" method="get">
@@ -131,17 +133,6 @@ function do_info_form(){
         <td width="150"></td>
         <td width="200"></td>
       </tr>
-     <tr>
-       <td>Student or Teacher:</td>
-       <td align="left">
-         <select name="select">
-           <optgroup label = "">
-             <option value="student">Student</option>
-             <option value="teacher">Teacher</option>
-           </optgroup>
-         </select>
-       </td>
-     </tr>
       <tr>
         <td>First Name:</td>
         <td align="left"><input type="text" name="first_name" size="40" maxlength="40" required/></td>
@@ -245,7 +236,63 @@ function do_info_form(){
        <td>Zip Code:</td>
        <td align="left"><input type="text" name="zip" size="5" maxlength="5" /></td>
      </tr>
+     <?php
+        student_or_teacher();
+     ?>
+
      <tr>
+       <td>Father's Name:</td>
+       <td align="left"><input type="text" name="father_name" size="40" maxlength="40" /></td>
+     </tr>
+     <tr>
+       <td>Mother's Name:</td>
+       <td align="left"><input type="text" name="mother_name" size="40" maxlength="40" /></td>
+     </tr>
+     <tr>
+     <tr>
+       <td>Family Details:</td>
+       <td align="left"><input type="text" name="family_details" size="40" maxlength="40" /></td>
+     </tr>
+     <tr>
+       <td>Work Experience:</td>
+       <td align="left"><textarea type="text" name="work_experience" rows="3" cols="30" maxlength="200" ></textarea></td>
+     </tr>
+     <tr>
+       <td>Awards:</td>
+       <td align="left"><textarea type="text" name="awards" rows="3" cols="30" maxlength="200" ></textarea></td>
+     </tr>
+     <tr>
+       <td>Notes:</td>
+       <td align="left"><textarea type="text" name="notes" rows="3" cols="30" maxlength="200" ></textarea></td>
+     </tr>
+     <tr>
+       <td></td>
+       <td><input type="submit" value="Send"></td>
+     </tr>
+    </table>
+    </form>
+  </div>
+<?php
+}
+
+function student_or_teacher() {
+  $sql = get_user_type();
+  if ($sql == 'student') {
+    student_year();
+  } else {
+    teacher_year();
+  }
+}
+
+
+function student_year () {
+  ?>
+    <tr>
+      <td>Type:</td>
+      <td align="left"><input type="text" name="user_type" size="40" maxlength="40" value="Student" readonly /></td>
+
+    </tr>
+  <tr>
        <td>Graduation Year (Student):</td>
        <td align="left">
        <select name="grad_year">
@@ -280,42 +327,15 @@ function do_info_form(){
          </select>
        </td>
      </tr>
-     <tr>
-       <td>Years Taught (Teacher):</td>
-       <td align="left"><input type="text" name="start_year" size="4" maxlength="4" width="4"/> to
-         <input type="text" name="end_year" size="4" maxlength="4" width="4"/></td>
-     </tr>
-     <tr>
-       <td>Father's Name:</td>
-       <td align="left"><input type="text" name="father_name" size="40" maxlength="40" /></td>
-     </tr>
-     <tr>
-       <td>Mother's Name:</td>
-       <td align="left"><input type="text" name="mother_name" size="40" maxlength="40" /></td>
-     </tr>
-     <tr>
-     <tr>
-       <td>Family Details:</td>
-       <td align="left"><input type="text" name="family_details" size="40" maxlength="40" /></td>
-     </tr>
-     <tr>
-       <td>Work Experience:</td>
-       <td align="left"><textarea type="text" name="work_experience" rows="3" cols="30" maxlength="200" ></textarea></td>
-     </tr>
-     <tr>
-       <td>Awards:</td>
-       <td align="left"><textarea type="text" name="awards" rows="3" cols="30" maxlength="200" ></textarea></td>
-     </tr>
-     <tr>
-       <td>Notes:</td>
-       <td align="left"><textarea type="text" name="notes" rows="3" cols="30" maxlength="200" ></textarea></td>
-     </tr>
-     <tr>
-       <td></td>
-       <td><input type="submit" value="Send"></td>
-     </tr>
-    </table>
-    </form>
-  </div>
+<?php
+}
+
+function teacher_year() {
+  ?>
+  <tr>
+    <td>Years Taught (Teacher):</td>
+    <td align="left"><input type="text" name="start_year" size="4" maxlength="4" width="4"/> to
+      <input type="text" name="end_year" size="4" maxlength="4" width="4"/></td>
+  </tr>
 <?php
 }

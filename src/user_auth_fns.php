@@ -1,6 +1,7 @@
 <?php
 
 require_once('db_fns.php');
+session_start();
 
 function login($username, $password) {
 // check username and password with db
@@ -35,6 +36,40 @@ function check_admin_user() {
     return true;
   } else {
     return false;
+  }
+}
+
+function get_user_type() {
+  $conn = db_connect();
+  if (isset($_SESSION['user'])) {
+    $current_user = $_SESSION['user'];
+    $sql = $conn->query("select user_type from user where username = '$current_user'");
+    $sql_result = $sql->fetch_assoc();
+    $user_type = $sql_result['user_type'];
+    return $user_type;
+  } else {
+    $current_user = $_SESSION['admin_user'];
+    $sql = $conn->query("select user_type from user where username = '$current_user'");
+    $sql_result = $sql->fetch_assoc();
+    $user_type = $sql_result['user_type'];
+    return $user_type;
+  }
+}
+
+function get_user_id() {
+  $conn = db_connect();
+  if (isset($_SESSION['user'])) {
+    $current_user = $_SESSION['user'];
+    $sql = $conn->query("select user_id from user where username = '$current_user'");
+    $sql_result = $sql->fetch_assoc();
+    $user_id = $sql_result['user_id'];
+    return $user_id;
+  } else {
+    $current_user = $_SESSION['admin_user'];
+    $sql = $conn->query("select user_id from user where username = '$current_user'");
+    $sql_result = $sql->fetch_assoc();
+    $user_id = $sql_result['user_id'];
+    return $user_id;
   }
 }
 
