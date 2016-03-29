@@ -1,13 +1,11 @@
 <?php
-require_once ('output_fns.ph');
+require_once ('reunion_fns.php');
 
-$select = $_GET["select"];
+$select = $_GET['user_type'];
+$user_id = get_user_id();
 $first_name = $_GET["first_name"];
 $last_name = $_GET["last_name"];
 $nickname = $_GET["nickname"];
-$grad_year = $_GET["grad_year"];
-$start_year = $_GET["start_year"];
-$end_year = $_GET["end_year"];
 $father_name = $_GET["father_name"];
 $mother_name = $_GET["mother_name"];
 $email = $_GET["email"];
@@ -23,22 +21,26 @@ $notes = $_GET["notes"];
 
 $conn = db_connect();
 
+//need to add a check if data exists for this user
+//if user has an entry in db already do update else do insert
 
-if ($select==="student") {
-	$sql = "INSERT INTO students(first_name, last_name, nickname, grad_year, father_name, mother_name,
+if ($select == "Student") {
+	$grad_year = $_GET["grad_year"];
+	$sql = "INSERT INTO students(user_id, first_name, last_name, nickname, grad_year, father_name, mother_name,
 		email, phone, family_details, work_experience, awards, street, city, state, zip, notes) VALUES
-	('$first_name', '$last_name', '$nickname' ,'$grad_year' ,'$father_name' ,'$mother_name', '$email', '$phone', '$family_details',
+	('$user_id', '$first_name', '$last_name', '$nickname' ,'$grad_year' ,'$father_name' ,'$mother_name', '$email', '$phone', '$family_details',
 		'$work_experience', '$awards', '$street', '$city', '$state', '$zip', '$notes')";
-}
-else {
-	$sql = "INSERT INTO teachers(first_name, last_name, nickname, start_year, end_year, father_name, mother_name,
+} else {
+	$start_year = $_GET["start_year"];
+	$end_year = $_GET["end_year"];
+	$sql = "INSERT INTO teachers(user_id, first_name, last_name, nickname, start_year, end_year, father_name, mother_name,
 		email, phone, family_details, work_experience, awards, street, city, state, zip, notes) VALUES
-	('$first_name', '$last_name', '$nickname' , '$start_year', '$end_year','$father_name' ,'$mother_name', '$email',
+	('$user_id', '$first_name', '$last_name', '$nickname' , '$start_year', '$end_year','$father_name' ,'$mother_name', '$email',
 	'$phone', '$family_details','$work_experience', '$awards', '$street', '$city', '$state', '$zip', '$notes')";
 }
 
 if ($conn->query($sql) === TRUE) {
-	echo "New record created successfully";
+	echo "New" . $select . " record created successfully";
 } else {
 	echo "Error: " . $sql . "<br>" . $conn->error;
 }
