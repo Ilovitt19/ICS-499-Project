@@ -7,7 +7,7 @@ require_once('user_auth_fns.php');
 
 do_html_header("Admin","Admin");
 // add functions for logged in admin user
-echo "<a href='CreateDatabase.php'>Crreate Database</a>";
+echo "<a href='CreateDatabase.php'>Create Database</a>";
 
 if (login_check() == 'true') {
 	if (check_admin_user()) {

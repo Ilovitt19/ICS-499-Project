@@ -1,15 +1,16 @@
 <?php
 
-$db_hostname = '127.0.0.1';
-$db_username = 'root';
-$db_password = '';
-$db_database = 'reunion';
+require_once('reunion_fns.php');
 
+$db_hostname = 'SP-CFSICS.METROSTATE.EDU';
+$db_username = 'ics499sp160102';
+$db_password = '299436';
+$db_database = 'Alligators';
+
+/*
 $mysql_connection = new mysqli($db_hostname, $db_username, $db_password);
 
-if ($mysql_connection->connect_errno) {
-	printf("Failed to connect to the MySQL database server: %s<br>", $mysql_connection->connect_error);
-}
+
 
 $reunion = "CREATE DATABASE reunion";
 if ($mysql_connection->query($reunion) === TRUE) {
@@ -17,8 +18,12 @@ if ($mysql_connection->query($reunion) === TRUE) {
 } else {
 	echo "Error creating database: " . $mysql_connection->error . "<br>";
 }
+*/
+$mysql_connection = db_connect();
 
-$mysql_connection = new mysqli($db_hostname, $db_username, $db_password, $db_database);
+if ($mysql_connection->connect_errno) {
+	printf("Failed to connect to the MySQL database server: %s<br>", $mysql_connection->connect_error);
+}
 
 $students = "CREATE TABLE students(
 	user_id int(6) PRIMARY KEY,
@@ -92,7 +97,7 @@ if ($mysql_connection->query($user) === TRUE) {
 $admin_passwd = sha1("admin");
 
 $admin = "INSERT INTO user(username, password, admin, user_type)
-	VALUES ('admin', '$admin_passwd', 'yes', 'student')";
+	VALUES ('admin', sha1('admin'), 'yes', 'student')";
 
 if ($mysql_connection->query($admin) === TRUE) {
 	echo "New record created successfully" . "<br>";
@@ -102,7 +107,7 @@ if ($mysql_connection->query($admin) === TRUE) {
 $student_passwd = sha1("student");
 
 $student_user = "INSERT INTO user(username, password, admin, user_type)
-	VALUES ('student', '$student_passwd', 'no', 'student')";
+	VALUES ('student', sha1('student'), 'no', 'student')";
 
 if ($mysql_connection->query($student_user) === TRUE) {
 	echo "New record created successfully" . "<br>";
@@ -113,7 +118,7 @@ if ($mysql_connection->query($student_user) === TRUE) {
 $teacher_passwd = sha1("teacher");
 
 $teacher_user = "INSERT INTO user(username, password, admin, user_type)
-	VALUES ('teacher', '$teacher_passwd', 'no', 'teacher')";
+	VALUES ('teacher', sha1('teacher'), 'no', 'teacher')";
 
 	if ($mysql_connection->query($teacher_user) === TRUE) {
 		echo "New record created successfully" . "<br>";

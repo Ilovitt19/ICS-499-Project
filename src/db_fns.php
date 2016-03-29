@@ -1,7 +1,7 @@
 <?php
 
 function db_connect() {
-   $result = new mysqli('127.0.0.1', 'root', '', 'reunion');
+   $result = mysqli_connect('localhost', 'ics499sp160102', '299436', 'ics499sp160102');
    if (!$result) {
       return false;
    }
