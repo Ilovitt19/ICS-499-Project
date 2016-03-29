@@ -7,8 +7,6 @@ do_html_header("My Profile","My Profile");
 
 if (login_check() == 'true') {
 
-	echo get_user_id();
-	echo get_user_type();
 	do_info_form();
 } else {
 	echo "<p>You must be logged in to visit this page.</p>";
