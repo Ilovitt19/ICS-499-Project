@@ -107,7 +107,65 @@ function login_check() {
   }
 }
 
+function get_user_data() {
+  $conn = db_connect();
+  $user_type = get_user_type();
+  $user_id = get_user_id();
+  if ($user_type == 'student') {
+    $sql = $conn->query("select * from students where user_id = '$user_id'");
+    $row = $sql->fetch_assoc();
+    $_SESSION['user_id'] = $row['user_id'];
+    $_SESSION['first_name'] = $row['first_name'];
+    $_SESSION['last_name'] = $row['last_name'];
+    $_SESSION['nickname'] = $row['nickname'];
+    $_SESSION['father_name'] = $row['father_name'];
+    $_SESSION['mother_name'] = $row['mother_name'];
+    $_SESSION['email'] = $row['email'];
+    $_SESSION['phone'] = $row['phone'];
+    $_SESSION['family_details'] = $row['family_details'];
+    $_SESSION['work_experience'] = $row['work_experience'];
+    $_SESSION['awards'] = $row['awards'];
+    $_SESSION['street'] = $row['street'];
+    $_SESSION['city'] = $row['city'];
+    $_SESSION['state'] = $row['state'];
+    $_SESSION['zip'] = $row['zip'];
+    $_SESSION['notes'] = $row['notes'];
+    $_SESSION['grad_year'] = $row['grad_year'];
+    session_commit();
+  } else {
+    $sql = $conn->query("select * from teachers  where user_id = '$user_id'");
+    $row = $sql->fetch_assoc();
+    $_SESSION['user_id'] = $row['user_id'];
+    $_SESSION['first_name'] = $row['first_name'];
+    $_SESSION['last_name'] = $row['last_name'];
+    $_SESSION['nickname'] = $row['nickname'];
+    $_SESSION['father_name'] = $row['father_name'];
+    $_SESSION['mother_name'] = $row['mother_name'];
+    $_SESSION['email'] = $row['email'];
+    $_SESSION['phone'] = $row['phone'];
+    $_SESSION['family_details'] = $row['family_details'];
+    $_SESSION['work_experience'] = $row['work_experience'];
+    $_SESSION['awards'] = $row['awards'];
+    $_SESSION['street'] = $row['street'];
+    $_SESSION['city'] = $row['city'];
+    $_SESSION['state'] = $row['state'];
+    $_SESSION['zip'] = $row['zip'];
+    $_SESSION['notes'] = $row['notes'];
+    $_SESSION['start_year'] = $row['start_year'];
+    $_SESSION['end_year'] = $row['end_year'];
+    session_commit();
+  }
+}
 
+function clear_user_session_data() {
+  foreach ($_SESSION as $key => $value) {
+    unset($_SESSION[$key]);
+  }
+  // Tell PHP to delete all data associated with the current PHP session.
+   session_destroy();
+  // Immediately save the session data.
+  session_commit();
+}
 
 
 ?>
