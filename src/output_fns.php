@@ -290,7 +290,6 @@ function student_year () {
     <tr>
       <td>Type:</td>
       <td align="left"><input type="text" name="user_type" size="40" maxlength="40" value="Student" readonly /></td>
-
     </tr>
   <tr>
        <td>Graduation Year (Student):</td>
@@ -333,11 +332,14 @@ function student_year () {
 }
 
 function teacher_year() {
-  ?>
+  ?><tr>
+    <td>Type:</td>
+    <td align="left"><input type="text" name="user_type" size="40" maxlength="40" value="Teacher" readonly /></td>
+  </tr>
   <tr>
     <td>Years Taught (Teacher):</td>
-    <td align="left"><input type="text" name="start_year" size="4" maxlength="4" width="4" value="<?php echo $_SESSION['start_year']; ?>"/> to
-      <input type="text" name="end_year" size="4" maxlength="4" width="4" value="<?php echo $_SESSION['end_year']; ?>"/></td>
+    <td align="left"><input type="text" name="start_year" size="4" maxlength="4" width="4" value="<?php echo $_SESSION['start_year']; ?>" required/> to
+      <input type="text" name="end_year" size="4" maxlength="4" width="4" value="<?php echo $_SESSION['end_year']; ?>" required/></td>
   </tr>
 <?php
 }
