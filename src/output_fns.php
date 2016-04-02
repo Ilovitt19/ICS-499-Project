@@ -124,7 +124,6 @@ function create_database() {
 }
 
 function do_info_form(){
-
   ?>
   <div  style="margin:auto;" >
     <form action="submit.php" method="get">
@@ -135,37 +134,38 @@ function do_info_form(){
       </tr>
       <tr>
         <td>First Name:</td>
-        <td align="left"><input type="text" name="first_name" size="40" maxlength="40" required/></td>
+        <td align="left"><input type="text" name="first_name" size="40" maxlength="40" value="<?php echo $_SESSION['first_name']; ?>" required/></td>
       </tr>
       <tr>
         <td>Last Name:</td>
-        <td align="left"><input type="text" name="last_name" size="40" maxlength="40" required/></td>
+        <td align="left"><input type="text" name="last_name" size="40" maxlength="40" value="<?php echo $_SESSION['last_name']; ?>" required/></td>
       </tr>
       <tr>
         <td>Nickname:</td>
-        <td align="left"><input type="text" name="nickname" size="40" maxlength="40" /></td>
+        <td align="left"><input type="text" name="nickname" size="40" maxlength="40" value="<?php echo $_SESSION['nickname']; ?>" /></td>
       </tr>
        <td>Email:</td>
-       <td align="left"><input type="text" name="email" size="40" maxlength="40" required/></td>
+       <td align="left"><input type="text" name="email" size="40" maxlength="40" value="<?php echo $_SESSION['email']; ?>" required/></td>
      </tr>
      <tr>
        <td>Phone:</td>
-       <td align="left"><input type="text" name="phone" size="40" maxlength="40" /></td>
+       <td align="left"><input type="text" name="phone" size="40" maxlength="40" value="<?php echo $_SESSION['phone']; ?>" /></td>
      </tr>
      <tr>
        <td>Street Address:</td>
-       <td align="left"><input type="text" name="street" size="40" maxlength="40" /></td>
+       <td align="left"><input type="text" name="street" size="40" maxlength="40" value="<?php echo $_SESSION['street']; ?>" /></td>
      </tr>
      <tr>
        <td>City:</td>
-       <td align="left"><input type="text" name="city" size="40" maxlength="40" /></td>
+       <td align="left"><input type="text" name="city" size="40" maxlength="40" value="<?php echo $_SESSION['city']; ?>" /></td>
      </tr>
      <tr>
        <td>State:</td>
        <td align="left">
          <select name="state">
-         <option>Choose State</option>
+           <option></option>
          <optgroup label = "USA">
+           <option selected><?php echo $_SESSION['state']; ?></option>
            <option value="AL">Alabama (AL)</option>
            <option value="AK">Alaska (AK)</option>
            <option value="AZ">Arizona (AZ)</option>
@@ -234,7 +234,7 @@ function do_info_form(){
      </tr>
      <tr>
        <td>Zip Code:</td>
-       <td align="left"><input type="text" name="zip" size="5" maxlength="5" /></td>
+       <td align="left"><input type="text" name="zip" size="5" maxlength="5" value="<?php echo $_SESSION['zip']; ?>"/></td>
      </tr>
      <?php
         student_or_teacher();
@@ -242,28 +242,28 @@ function do_info_form(){
 
      <tr>
        <td>Father's Name:</td>
-       <td align="left"><input type="text" name="father_name" size="40" maxlength="40" /></td>
+       <td align="left"><input type="text" name="father_name" size="40" maxlength="40" value="<?php echo $_SESSION['father_name']; ?>"/></td>
      </tr>
      <tr>
        <td>Mother's Name:</td>
-       <td align="left"><input type="text" name="mother_name" size="40" maxlength="40" /></td>
+       <td align="left"><input type="text" name="mother_name" size="40" maxlength="40" value="<?php echo $_SESSION['mother_name']; ?>"/></td>
      </tr>
      <tr>
      <tr>
        <td>Family Details:</td>
-       <td align="left"><input type="text" name="family_details" size="40" maxlength="40" /></td>
+       <td align="left"><input type="text" name="family_details" size="40" maxlength="40" value="<?php echo $_SESSION['family_details']; ?>"/></td>
      </tr>
      <tr>
        <td>Work Experience:</td>
-       <td align="left"><textarea type="text" name="work_experience" rows="3" cols="30" maxlength="200" ></textarea></td>
+       <td align="left"><textarea type="text" name="work_experience" rows="3" cols="30" maxlength="200"><?php echo $_SESSION['work_experience']; ?></textarea></td>
      </tr>
      <tr>
        <td>Awards:</td>
-       <td align="left"><textarea type="text" name="awards" rows="3" cols="30" maxlength="200" ></textarea></td>
+       <td align="left"><textarea type="text" name="awards" rows="3" cols="30" maxlength="200"><?php echo $_SESSION['awards']; ?></textarea></td>
      </tr>
      <tr>
        <td>Notes:</td>
-       <td align="left"><textarea type="text" name="notes" rows="3" cols="30" maxlength="200" ></textarea></td>
+       <td align="left"><textarea type="text" name="notes" rows="3" cols="30" maxlength="200" ><?php echo $_SESSION['notes']; ?></textarea></td>
      </tr>
      <tr>
        <td></td>
@@ -295,7 +295,8 @@ function student_year () {
   <tr>
        <td>Graduation Year (Student):</td>
        <td align="left">
-       <select name="grad_year">
+       <select name="grad_year" required>
+          <option></option>
          <option>Grad Year</option>
          <optgroup label = "Year">
            <option value="2015">2015</option>
@@ -323,6 +324,7 @@ function student_year () {
            <option value="1993">1993</option>
            <option value="1992">1992</option>
            <option value="1991">1991</option>
+           <option selected><?php echo $_SESSION['grad_year']; ?></option>
            </optgroup>
          </select>
        </td>
@@ -334,8 +336,8 @@ function teacher_year() {
   ?>
   <tr>
     <td>Years Taught (Teacher):</td>
-    <td align="left"><input type="text" name="start_year" size="4" maxlength="4" width="4"/> to
-      <input type="text" name="end_year" size="4" maxlength="4" width="4"/></td>
+    <td align="left"><input type="text" name="start_year" size="4" maxlength="4" width="4" value="<?php echo $_SESSION['start_year']; ?>"/> to
+      <input type="text" name="end_year" size="4" maxlength="4" width="4" value="<?php echo $_SESSION['end_year']; ?>"/></td>
   </tr>
 <?php
 }

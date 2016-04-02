@@ -45,3 +45,18 @@ if ($conn->query($sql) === TRUE) {
 	echo "Error: " . $sql . "<br>" . $conn->error;
 }
 $conn->close();
+
+
+/*
+ * IF EXISTS (SELECT * FROM Table1 WHERE Column1=’SomeValue’)
+    UPDATE Table1 SET (…) WHERE Column1=’SomeValue’
+ELSE
+    INSERT INTO Table1 VALUES (…)
+ */
+
+/*
+ * IF EXISTS (SELECT * FROM Table1 WHERE Column1=’SomeValue’)
+    UPDATE Table1 SET (…) WHERE Column1=’SomeValue’
+ELSE
+    INSERT INTO Table1 VALUES (…)
+ */
