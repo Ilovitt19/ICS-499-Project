@@ -161,7 +161,7 @@ function get_user_data() {
 
 function clear_user_session_data() {
   foreach ($_SESSION as $key => $value) {
-    echo $_SESSION[$key];
+    //echo $_SESSION[$key];
     unset($_SESSION[$key]);
   }
   // Tell PHP to delete all data associated with the current PHP session.
