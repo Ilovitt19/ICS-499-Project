@@ -267,7 +267,7 @@ function do_info_form(){
      </tr>
      <tr>
        <td></td>
-       <td><input type="submit" value="Send"></td>
+       <td><input type="submit" value="Save"></td>
      </tr>
     </table>
     </form>

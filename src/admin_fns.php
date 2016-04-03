@@ -5,7 +5,7 @@
  *  - Generating reports
  */
 
-include (db_fns.php);
+include ('db_fns.php');
 
 //Store database array into an excel file
 function arrayToExcel() {
@@ -179,7 +179,7 @@ function create_database() {
     if ($mysql_connection->query($admin) === TRUE) {
         echo "New record created successfully" . "\n";
     } else {
-        echo "Error: " . $mysql_connection . "<br>" . $conn->error . "\n";
+        echo "Error: " . $mysql_connection . "<br>" . $mysql_connection->error . "\n";
     }
     $student_passwd = sha1("student");
 
@@ -189,7 +189,7 @@ function create_database() {
     if ($mysql_connection->query($student_user) === TRUE) {
         echo "New record created successfully" . "\n";
     } else {
-        echo "Error: " . $mysql_connection . "<br>" . $conn->error . "\n";
+        echo "Error: " . $mysql_connection . "<br>" . $mysql_connection->error . "\n";
     }
 
     $teacher_passwd = sha1("teacher");
@@ -200,7 +200,7 @@ function create_database() {
     if ($mysql_connection->query($teacher_user) === TRUE) {
         echo "New record created successfully" . "\n";
     } else {
-        echo "Error: " . $mysql_connection . "<br>" . $conn->error . "\n";
+        echo "Error: " . $mysql_connection . "<br>" . $mysql_connection->error . "\n";
     }
 
     $mysql_connection->close();
