@@ -2,7 +2,6 @@
 
 /**
  * This file contains functions and code for:
- *  - Downloading database into an excel
  *  - Generating reports
  */
 
@@ -26,7 +25,32 @@ function arrayToExcel() {
 }
 
 
+/*
+ * This function takes in the year and displays total number of students in
+ * the reunion of that year.
+ */
+function numberOfStudents ($year) {
+    $numberOfStudentsSQL= "SELECT * FROM students WHERE grad_year = $year";
+    $result = db_result_to_Array($numberOfStudentsSQL);
+    $numberOfRows = len($result);
+    echo "There are " + $numberOfRows + "students of year " + $year;
+    while($row = $result) { // displaying the actual rows
+        echo $row[first_name] + " " + $row[last_name]; // display the student names
+    }
+}
 
+/*
+ * This function displays the numbers of teachers in the database
+ */
+function numberOfTeachers () {
+    $numberOfTeachersSQL= "SELECT * FROM teachers";
+    $result = db_result_to_Array($numberOfTeachersSQL);
+    $numberOfRows = len($result);
+    echo "There are " + $numberOfRows + "teachers of year";
+    while($row = $result) { // displaying the actual rows
+        echo $row[first_name] + " " + $row[last_name]; // display the student names
+    }
+}
 
 //BELOW IS CODE TO EXPORT DATABASE DIRECTLY TO EXCEL FILE
 
