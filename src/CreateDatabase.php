@@ -43,7 +43,8 @@ $students = "CREATE TABLE students(
 	state varchar(2),
 	zip int(5),
 	notes varchar(50),
-	photo varchar (30))";
+	photo varchar (30),
+	image_url varchar(50))";
 
 //
 
@@ -73,7 +74,8 @@ $teachers = "CREATE TABLE teachers(
 	state varchar(2),
 	zip int(5),
 	notes varchar(50),
-	photo varchar(30))";
+	photo varchar(30),
+	image_url varchar(50))";
 
 
 if ($mysql_connection->query($teachers) === TRUE) {
