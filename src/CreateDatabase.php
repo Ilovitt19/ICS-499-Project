@@ -7,23 +7,21 @@ $db_username = 'ics499sp160102';
 $db_password = '299436';
 $db_database = 'Alligators';
 
-/*
-$mysql_connection = new mysqli($db_hostname, $db_username, $db_password);
 
-
-
-$reunion = "CREATE DATABASE reunion";
-if ($mysql_connection->query($reunion) === TRUE) {
-	echo "Database created successfully<br>";
-} else {
-	echo "Error creating database: " . $mysql_connection->error . "<br>";
-}
-*/
-$mysql_connection = db_connect();
+$mysql_connection = new mysqli('localhost', 'root', '');
 
 if ($mysql_connection->connect_errno) {
 	printf("Failed to connect to the MySQL database server: %s<br>", $mysql_connection->connect_error);
 }
+
+$reunion = "CREATE DATABASE reunion";
+if ($mysql_connection->query($reunion) === TRUE) {
+	echo "Database created successfully\n";
+} else {
+	echo "Error creating database: " . $mysql_connection->error . "\n";
+}
+
+$mysql_connection = new mysqli('localhost', 'root', '', 'reunion');
 
 $students = "CREATE TABLE students(
 	user_id int(6) PRIMARY KEY,
