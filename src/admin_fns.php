@@ -48,7 +48,7 @@ function numberOfTeachers () {
     $numberOfRows = len($result);
     echo "There are " + $numberOfRows + "teachers of year";
     while($row = $result) { // displaying the actual rows
-        echo $row[first_name] + " " + $row[last_name]; // display the student names
+        echo $row[first_name] + " " + $row[last_name]; // display the teacher names
     }
 }
 
