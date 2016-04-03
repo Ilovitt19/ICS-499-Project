@@ -343,3 +343,19 @@ function teacher_year() {
   </tr>
 <?php
 }
+
+function upload_photo(){
+	?>
+	<form action="upload.php" method="post" enctype="multipart/form-data">
+		Select image to upload:
+		<input type="file" name="fileToUpload" id="fileToUpload">
+		<input type="submit" value="Upload Image" name="submit">
+	</form>
+	<?php
+}
+
+function display_photo() {
+	?>
+	<img src="<?php echo $_SESSION['image_url']; ?>" align="middle">
+<?php
+}
