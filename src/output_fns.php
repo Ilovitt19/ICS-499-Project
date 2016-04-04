@@ -11,6 +11,11 @@ function do_html_header($title = '',$section = '')
   </head>
   <body>
   <h1>Village High School Reunion</h1>
+  <?php
+  if ((isset($_SESSION['admin_user']) || isset($_SESSION['user'])) && isset($_SESSION['first_name'])){
+    echo "<h1>" . $_SESSION['first_name'] . "<h1>";
+  }
+  ?>
   <div id="topnavBar" class="topnavMenu">
   <ul class="navbar">
     <?php
@@ -120,7 +125,7 @@ function initialize_database() {
   <?php
 }
 function create_database() {
-  include_once('../src/CreateDatabase.php');
+  include_once('CreateDatabase.php');
 }
 
 function do_info_form(){

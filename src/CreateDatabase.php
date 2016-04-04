@@ -20,18 +20,18 @@ if ($mysql_connection->query($reunion) === TRUE) {
 } else {
 	echo "Error creating database: " . $mysql_connection->error . "\n";
 }
-
-$mysql_connection = new mysqli('localhost', 'root', '', 'reunion');
+$mysql_connection->close();
+$mysql_connection = db_connect();
 
 $students = "CREATE TABLE students(
 	user_id int(6) PRIMARY KEY,
-	first_name varchar(15) NOT NULL,
-	last_name varchar(20) NOT NULL,
+	first_name varchar(15),
+	last_name varchar(20),
 	nickname varchar(20),
-	grad_year int(4) NOT NULL,
+	grad_year int(4),
 	father_name varchar(15),
 	mother_name varchar(15),
-	email varchar(40) NOT NULL,
+	email varchar(40),
 	phone varchar(10),
 	family_details varchar(100),
 	work_experience varchar(200),
@@ -55,14 +55,14 @@ if ($mysql_connection->query($students) === TRUE) {
 
 $teachers = "CREATE TABLE teachers(
  	user_id int(6) PRIMARY KEY,
-	first_name varchar(15) NOT NULL,
-	last_name varchar(20) NOT NULL,
+	first_name varchar(15),
+	last_name varchar(20),
 	nickname varchar(20),
-	start_year int(4) NOT NULL,
-	end_year int(4) NOT NULL,
+	start_year int(4),
+	end_year int(4),
 	father_name varchar(15),
 	mother_name varchar(15),
-	email varchar(40) NOT NULL,
+	email varchar(40),
 	phone varchar(10),
 	family_details varchar(100),
 	work_experience varchar(200),
@@ -94,37 +94,24 @@ if ($mysql_connection->query($user) === TRUE) {
 } else {
 	echo "Table not created: " . $mysql_connection->error . "<br>";
 }
-$admin_passwd = sha1("admin");
 
-$admin = "INSERT INTO user(username, password, admin, user_type)
-	VALUES ('admin', sha1('admin'), 'yes', 'student')";
-
-if ($mysql_connection->query($admin) === TRUE) {
-	echo "New record created successfully" . "<br>";
+if (create_user($mysql_connection, 'admin', 'admin', 'yes', 'student')) {
+	echo "New record \"admin\" created successfully" . "<br>";
 } else {
-	echo "Error: " . $mysql_connection . "<br>" . $conn->error . "<br>";
-}
-$student_passwd = sha1("student");
-
-$student_user = "INSERT INTO user(username, password, admin, user_type)
-	VALUES ('student', sha1('student'), 'no', 'student')";
-
-if ($mysql_connection->query($student_user) === TRUE) {
-	echo "New record created successfully" . "<br>";
-} else {
-	echo "Error: " . $mysql_connection . "<br>" . $conn->error . "<br>";
+	echo "Error: " . $mysql_connection->error . "<br>";
 }
 
-$teacher_passwd = sha1("teacher");
+if (create_user($mysql_connection, 'student', 'student', 'no', 'student')) {
+	echo "New record \"student\" created successfully" . "<br>";
+} else {
+	echo "Error: " . $mysql_connection->error . "<br>";
+}
 
-$teacher_user = "INSERT INTO user(username, password, admin, user_type)
-	VALUES ('teacher', sha1('teacher'), 'no', 'teacher')";
-
-	if ($mysql_connection->query($teacher_user) === TRUE) {
-		echo "New record created successfully" . "<br>";
-	} else {
-		echo "Error: " . $mysql_connection . "<br>" . $conn->error . "<br>";
-	}
+if (create_user($mysql_connection, 'teacher', 'teacher', 'no', 'teacher')) {
+	echo "New record \"teacher\" created successfully" . "<br>";
+} else {
+	echo "Error: " . $mysql_connection->error . "<br>";
+}
 
 echo "<br>";
     echo "<a href='admin.php'>Return to Admin</a>";
