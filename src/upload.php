@@ -1,5 +1,6 @@
 <?php
 require ('reunion_fns.php');
+
 get_user_data();
 $last_name = $_SESSION['last_name'];
 $user_id = $_SESSION['user_id'];
@@ -34,11 +35,15 @@ if ($uploadOk == 0) {
 	$target_file = "images/photos/" . $last_name . "_" . $user_id . "." . $imageFileType;
 	if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
 		save_to_database($target_file);
+		unset($_SESSION['photo']);
+		session_commit();
 		echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been renamed to " . $last_name . $user_id . " and uploaded.";
 	} else {
 		echo "Sorry, there was an error uploading your file.";
 	}
 }
+
+header('Location: UserInfo.php');
 
 function save_to_database($target_file) {
 	$conn = db_connect();
@@ -49,14 +54,14 @@ function save_to_database($target_file) {
 		$result = mysqli_query($conn, $query);
 
 		if (mysqli_num_rows($result)== 0) {
-			$sql = "INSERT INTO students(image_url) VALUES ('$target_file')";
+			$sql = "INSERT INTO students(photo) VALUES ('$target_file')";
 			if ($conn->query($sql) === TRUE) {
 				echo "Your photo has been uploaded successfully";
 			} else {
 				echo "Error: " . $sql . "<br>" . $conn->error;
 			}
 		} elseif (mysqli_num_rows($result)== 1) {
-			$sql = "UPDATE students SET image_url = '$target_file'";
+			$sql = "UPDATE students SET photo = '$target_file'";
 			if ($conn->query($sql) === TRUE) {
 				echo "Your photo has been updated successfully";
 			} else {
@@ -68,14 +73,14 @@ function save_to_database($target_file) {
 		$result = mysqli_query($conn, $query);
 
 		if (mysqli_num_rows($result) == 0) {
-			$sql = "INSERT INTO teachers(image_url) VALUES ('$target_file')";
+			$sql = "INSERT INTO teachers(photo) VALUES ('$target_file')";
 			if ($conn->query($sql) === TRUE) {
 				echo "Your photo has been uploaded successfully";
 			} else {
 				echo "Error: " . $sql . "<br>" . $conn->error;
 			}
 		} elseif (mysqli_num_rows($result) == 1) {
-			$sql = "UPDATE teachers SET image_url = '$target_file'";
+			$sql = "UPDATE teachers SET photo = '$target_file'";
 			if ($conn->query($sql) === TRUE) {
 				echo "Your photo has been updated successfully";
 			} else {
@@ -86,4 +91,3 @@ function save_to_database($target_file) {
 
 }
 
-//header('Location: UserInfo.php');

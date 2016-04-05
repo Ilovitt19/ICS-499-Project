@@ -10,12 +10,7 @@ function do_html_header($title = '',$section = '')
     <link rel="stylesheet" type="text/css" href="style.css"/>
   </head>
   <body>
-  <h1>Village High School Reunion</h1>
-  <?php
-  if ((isset($_SESSION['admin_user']) || isset($_SESSION['user'])) && isset($_SESSION['first_name'])){
-    echo "<h1>" . $_SESSION['first_name'] . "<h1>";
-  }
-  ?>
+	<h1><img src="images/wildcat-logo-small.png" class="imgFlipped" height="80px" width="80px">Village High School Reunion<img src="images/wildcat-logo-small.png" height="80px" width="80px"></h1>
   <div id="topnavBar" class="topnavMenu">
   <ul class="navbar">
     <?php
@@ -24,8 +19,13 @@ function do_html_header($title = '',$section = '')
     } else {
     echo "<li><a class = 'nav' title='Home' href='index.php'>HOME</a></li>";
     }
-    ?>
-  <li><a class="nav" title="Profile" href="UserInfo.php">MY PROFILE</a></li>
+
+    if ((isset($_SESSION['admin_user']) || isset($_SESSION['user'])) && isset($_SESSION['first_name'])){
+		  echo "<li><a class = 'nav' title='Welcome' href='UserInfo.php'>" . strtoupper ($_SESSION['first_name']) . " " . strtoupper ($_SESSION['last_name']) . "</a></li>";
+    } else {
+		  echo "<li><a class = 'nav' title='Welcome' href='UserInfo.php'>MY PROFILE</a></li>";
+    }
+	  ?>
   <li><a class="nav" title="Find People" href="Search.php">FIND PEOPLE</a></li>
   <?php
   /*
@@ -51,9 +51,10 @@ function do_html_header($title = '',$section = '')
   </div>
 
 <?php
-  if($section) {
-    do_html_heading($section);
-  }
+	if($section) {
+		do_html_heading($section);
+	}
+
 }
 
 function show_event_info() {
@@ -130,8 +131,8 @@ function create_database() {
 
 function do_info_form(){
   ?>
-  <div  style="margin:auto;" >
-    <form action="submit.php" method="get">
+  <div  >
+    <form id="infoForm" action="submit.php" method="get">
    <table style="margin:auto;border-style:solid;padding: 10px;">
       <tr>
         <td width="150"></td>
@@ -351,16 +352,20 @@ function teacher_year() {
 
 function upload_photo(){
 	?>
-	<form action="upload.php" method="post" enctype="multipart/form-data">
-		Select image to upload:
-		<input type="file" name="fileToUpload" id="fileToUpload">
-		<input type="submit" value="Upload Image" name="submit">
+	<form style="align='center'" action="upload.php" method="post" enctype="multipart/form-data">
+		Select image to upload:<br>
+		<input type="file" name="fileToUpload" id="fileToUpload"><br>
+		<input type="submit" value="Upload Image" name="submit"><br>
 	</form>
 	<?php
 }
 
 function display_photo() {
 	?>
-	<img src="<?php echo $_SESSION['image_url']; ?>" align="middle">
+	<div id="photo">
+	<img class="photo" src="<?php echo $_SESSION['photo']; ?>" align="middle"><br>
+		<?php upload_photo(); ?>
+	</div>
 <?php
 }
+

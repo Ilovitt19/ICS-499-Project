@@ -131,7 +131,7 @@ function get_user_data() {
     $_SESSION['zip'] = $row['zip'];
     $_SESSION['notes'] = $row['notes'];
     $_SESSION['grad_year'] = $row['grad_year'];
-    $_SESSION['image_url'] = $row['image_url'];
+    $_SESSION['photo'] = $row['photo'];
     session_commit();
   } else {
     $sql = $conn->query("select * from teachers  where user_id = '$user_id'");
@@ -154,7 +154,7 @@ function get_user_data() {
     $_SESSION['notes'] = $row['notes'];
     $_SESSION['start_year'] = $row['start_year'];
     $_SESSION['end_year'] = $row['end_year'];
-    $_SESSION['image_url'] = $row['image_url'];
+    $_SESSION['photo'] = $row['photo'];
     session_commit();
   }
 }
