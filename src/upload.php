@@ -4,8 +4,10 @@ require ('reunion_fns.php');
 get_user_data();
 $last_name = $_SESSION['last_name'];
 $user_id = $_SESSION['user_id'];
-
-$target_dir = "images/photos/";
+echo "NOTE TO Jasthi... I have tried several ways to upload to the server but it seems there is<br>";
+echo "a lack of permission on the Linux server to allow php to read/write<br>";
+create_folder();
+$target_dir = "images/Photos/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
 $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
@@ -32,7 +34,7 @@ if ($uploadOk == 0) {
 	echo "Sorry, your file was not uploaded.";
 // if everything is ok, try to upload file
 } else {
-	$target_file = "images/photos/" . $last_name . "_" . $user_id . "." . $imageFileType;
+	$target_file = "images/Photos/" . $last_name . "_" . $user_id . "." . $imageFileType;
 	if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
 		save_to_database($target_file);
 		unset($_SESSION['photo']);
@@ -43,7 +45,6 @@ if ($uploadOk == 0) {
 	}
 }
 
-header('Location: UserInfo.php');
 
 function save_to_database($target_file) {
 	$conn = db_connect();
@@ -89,5 +90,12 @@ function save_to_database($target_file) {
 		}
 	}
 
+}
+function create_folder() {
+	$dir = 'images/Photos';
+
+	if (!file_exists($dir)) {
+		mkdir($dir,0755);
+	}
 }
 

@@ -131,9 +131,15 @@ function create_database() {
 
 function do_info_form(){
   ?>
-  <div  >
-    <form id="infoForm" action="submit.php" method="post">
-   <table style="margin:auto;border-style:solid;padding: 10px;">
+	<div id="ProfilePage">
+	<div id="LeftCol">
+		<div id="Photo">
+			<?php display_photo(); ?>
+		</div>
+	</div>
+  <div id="infoForm">
+    <form action="submit.php" method="post">
+   <table>
       <tr>
         <td width="150"></td>
         <td width="200"></td>
@@ -279,6 +285,8 @@ function do_info_form(){
     </table>
     </form>
   </div>
+	<div style="clear:both"></div>
+	</div>
 <?php
 }
 
@@ -353,7 +361,7 @@ function teacher_year() {
 
 function upload_photo(){
 	?>
-	<form style="align='center'" action="upload.php" method="post" enctype="multipart/form-data">
+	<form action="upload.php" method="post" enctype="multipart/form-data">
 		Select profile picture to upload:<br>
 		<input type="file" name="fileToUpload" id="fileToUpload"><br>
 		<input type="submit" value="Upload Image" name="submit"><br>
@@ -363,10 +371,9 @@ function upload_photo(){
 
 function display_photo() {
 	?>
-	<div id="photo">
+
 	<img class="photo" src="<?php echo $_SESSION['photo']; ?>" align="middle"><br>
 		<?php upload_photo(); ?>
-	</div>
 <?php
 }
 
