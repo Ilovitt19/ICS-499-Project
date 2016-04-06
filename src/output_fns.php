@@ -50,6 +50,7 @@ function do_html_header($title = '',$section = '')
       ?>
     </ul>
   </div>
+	</div>
 
 <?php
 	if($section) {
@@ -286,7 +287,7 @@ function do_info_form(){
     </form>
   </div>
 	<div style="clear:both"></div>
-	</div>
+
 <?php
 }
 
@@ -376,4 +377,24 @@ function display_photo() {
 		<?php upload_photo(); ?>
 <?php
 }
+
+	function scroll ()
+{
+	?>
+	<div>
+     <h1 >Students and Teachers (Incomplete) for Demo only</h1 >
+
+    <!--Each image is 350px by 233px-->
+    <div class="photobanner" >
+     <img class="first" src = "images/scroll/image-1.png" alt = "" />
+     <img class="photo" src = "images/scroll/image-2.png" alt = "" />
+     <img class="photo" src = "images/scroll/image-3.png" alt = "" />
+     <img class="photo" src = "images/scroll/image-4.png" alt = "" />
+     <img class="photo" src = "images/scroll/image-5.png" alt = "" />
+     <img class="photo" src = "images/scroll/image-6.png" alt = "" />
+    </div >
+	</div >
+	<?php
+	}
+
 
