@@ -41,17 +41,13 @@ $students = "CREATE TABLE students(
 	state varchar(2),
 	zip int(5),
 	notes varchar(50),
-	photo varchar (30),
-	image_url varchar(50))";
-
-//
+	photo varchar (30))";
 
 if ($mysql_connection->query($students) === TRUE) {
 	echo "Students table created successfully <br>";
 } else {
 	echo "Table not created: " . $mysql_connection->error . "<br>";
 }
-
 
 $teachers = "CREATE TABLE teachers(
  	user_id int(6) PRIMARY KEY,
@@ -72,8 +68,7 @@ $teachers = "CREATE TABLE teachers(
 	state varchar(2),
 	zip int(5),
 	notes varchar(50),
-	photo varchar(30),
-	image_url varchar(50))";
+	photo varchar(30))";
 
 
 if ($mysql_connection->query($teachers) === TRUE) {
