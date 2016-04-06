@@ -15,6 +15,7 @@ function do_html_header($title = '',$section = '')
   <ul class="navbar">
     <?php
     if (isset($_SESSION['admin_user']) || isset($_SESSION['user'])) {
+	    get_user_data();
     echo "<li><a class = 'nav' title='Welcome' href='welcome.php'>HOME</a></li>";
     } else {
     echo "<li><a class = 'nav' title='Home' href='index.php'>HOME</a></li>";
@@ -54,7 +55,6 @@ function do_html_header($title = '',$section = '')
 	if($section) {
 		do_html_heading($section);
 	}
-
 }
 
 function show_event_info() {
@@ -132,7 +132,7 @@ function create_database() {
 function do_info_form(){
   ?>
   <div  >
-    <form id="infoForm" action="submit.php" method="get">
+    <form id="infoForm" action="submit.php" method="post">
    <table style="margin:auto;border-style:solid;padding: 10px;">
       <tr>
         <td width="150"></td>

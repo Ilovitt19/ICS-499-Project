@@ -3,21 +3,21 @@ require_once ('reunion_fns.php');
 
 $select = get_user_type();
 $user_id = get_user_id();
-$first_name = $_GET["first_name"];
-$last_name = $_GET["last_name"];
-$nickname = $_GET["nickname"];
-$father_name = $_GET["father_name"];
-$mother_name = $_GET["mother_name"];
-$email = $_GET["email"];
-$phone = $_GET["phone"];
-$family_details = $_GET["family_details"];
-$work_experience = $_GET["work_experience"];
-$awards = $_GET["awards"];
-$street = $_GET["street"];
-$city = $_GET["city"];
-$state = $_GET["state"];
-$zip = $_GET["zip"];
-$notes = $_GET["notes"];
+$first_name = $_POST["first_name"];
+$last_name = $_POST["last_name"];
+$nickname = $_POST["nickname"];
+$father_name = $_POST["father_name"];
+$mother_name = $_POST["mother_name"];
+$email = $_POST["email"];
+$phone = $_POST["phone"];
+$family_details = $_POST["family_details"];
+$work_experience = $_POST["work_experience"];
+$awards = $_POST["awards"];
+$street = $_POST["street"];
+$city = $_POST["city"];
+$state = $_POST["state"];
+$zip = $_POST["zip"];
+$notes = $_POST["notes"];
 
 $conn = db_connect();
 
@@ -28,7 +28,7 @@ if ($select == "student") {
 	$query = "SELECT * FROM students WHERE user_id = '$user_id'";
 	$result = mysqli_query($conn, $query);
 
-	$grad_year = $_GET["grad_year"];
+	$grad_year = $_POST["grad_year"];
 	if (mysqli_num_rows($result)== 0) {
 		$sql = "INSERT INTO students(user_id, first_name, last_name, nickname, grad_year, father_name, mother_name,
 		email, phone, family_details, work_experience, awards, street, city, state, zip, notes) VALUES
@@ -54,8 +54,8 @@ if ($select == "student") {
 	$query = "SELECT * FROM teachers WHERE user_id = '$user_id'";
 	$result = mysqli_query($conn, $query);
 
-	$start_year = $_GET["start_year"];
-	$end_year = $_GET["end_year"];
+	$start_year = $_POST["start_year"];
+	$end_year = $_POST["end_year"];
 	if (mysqli_num_rows($result) == 0) {
 		$sql = "INSERT INTO teachers(user_id, first_name, last_name, nickname, start_year, end_year, father_name, mother_name,
 		email, phone, family_details, work_experience, awards, street, city, state, zip, notes) VALUES
