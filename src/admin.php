@@ -10,6 +10,7 @@ do_html_header("Admin","Admin");
 
 if (login_check() == 'true') {
 	if (check_admin_user()) {
+		get_user_data();
 		// add functions for logged in admin user
 
 	} else {

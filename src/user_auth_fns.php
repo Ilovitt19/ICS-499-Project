@@ -1,6 +1,6 @@
 <?php
 
-require_once('db_fns.php');
+require_once('reunion_fns.php');
 session_start();
 
 function login($username, $password) {

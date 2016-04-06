@@ -73,8 +73,8 @@ function create_user($conn, $username, $password, $is_admin, $user_type) {
  */
 function create_student($conn, $user_id) {
    $query = "INSERT INTO students(user_id, first_name, last_name, nickname, grad_year, father_name, mother_name,
-		email, phone, family_details, work_experience, awards, street, city, state, zip, notes)
-		VALUES('$user_id', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)";
+		email, phone, family_details, work_experience, awards, street, city, state, zip, notes, photo)
+		VALUES('$user_id', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)";
 
    return $conn->query($query) === TRUE;
 }
@@ -88,8 +88,8 @@ function create_student($conn, $user_id) {
  */
 function create_teacher($conn, $user_id) {
    $query = "INSERT INTO teachers(user_id, first_name, last_name, nickname, start_year, end_year, father_name, mother_name,
-		email, phone, family_details, work_experience, awards, street, city, state, zip, notes)
-		VALUES('$user_id', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)";
+		email, phone, family_details, work_experience, awards, street, city, state, zip, notes,photo)
+		VALUES('$user_id', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)";
 
    return $conn->query($query) === TRUE;
 }
