@@ -1,5 +1,6 @@
 <?php
 include ('reunion_fns.php');
+include ('LoggedInUser.php');
 
 // include function files for this application
 require_once('user_auth_fns.php');
@@ -8,9 +9,9 @@ do_html_header("Admin","Admin");
 // add functions for logged in admin user
 
 
-if (login_check() == 'true') {
-	if (check_admin_user()) {
-		get_user_data();
+if (isset($_SESSION['current_user'])) {
+	$current_user = unserialize($_SESSION['current_user']);
+	if ($current_user->admin == 'yes') {
 		// add functions for logged in admin user
 
 	} else {

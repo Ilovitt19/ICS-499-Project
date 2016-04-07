@@ -2,15 +2,10 @@
 
 // include function files for this application
 require_once('reunion_fns.php');
-if (isset($_SESSION['admin_user'])) {
-  $old_user = $_SESSION['admin_user'];  // store  to test if they *were* logged in
-  unset($_SESSION['admin_user']);
+if (isset($_SESSION['current_user'])) {
+  $old_user = $_SESSION['current_user'];  // store  to test if they *were* logged in
   clear_user_session_data();
-
-} elseif (isset($_SESSION['user'])) {
-  $old_user = $_SESSION['user'];  // store  to test if they *were* logged in
-  unset($_SESSION['user']);
-  clear_user_session_data();
+  session_start();
 }
 
 // start output html

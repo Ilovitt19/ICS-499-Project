@@ -2,7 +2,7 @@
 
 function do_html_header($title = '',$section = '')
 {
-//Title of the page being cra
+//Title of the page being created
   ?>
   <html>
   <head>
@@ -14,35 +14,27 @@ function do_html_header($title = '',$section = '')
   <div id="topnavBar" class="topnavMenu">
   <ul class="navbar">
     <?php
-    if (isset($_SESSION['admin_user']) || isset($_SESSION['user'])) {
-
-    echo "<li><a class = 'nav' title='Welcome' href='welcome.php'>HOME</a></li>";
+    if (isset($_SESSION['current_user'])) {
+      $current_user = unserialize($_SESSION['current_user']);
+      echo "<li><a class = 'nav' title='Welcome' href='welcome.php'>HOME</a></li>";
     } else {
-    echo "<li><a class = 'nav' title='Home' href='index.php'>HOME</a></li>";
+      echo "<li><a class = 'nav' title='Home' href='index.php'>HOME</a></li>";
     }
 
-    if ((isset($_SESSION['admin_user']) || isset($_SESSION['user'])) && isset($_SESSION['first_name'])){
-		  echo "<li><a class = 'nav' title='Welcome' href='UserInfo.php'>" . strtoupper ($_SESSION['first_name']) . " " . strtoupper ($_SESSION['last_name']) . "</a></li>";
+    if (isset($current_user) && isset($current_user->first_name)){
+		  echo "<li><a class = 'nav' title='Welcome' href='UserInfo.php'>" . strtoupper ($current_user->first_name) . " " . strtoupper ($current_user->last_name) . "</a></li>";
     } else {
 		  echo "<li><a class = 'nav' title='Welcome' href='UserInfo.php'>MY PROFILE</a></li>";
     }
 	  ?>
   <li><a class="nav" title="Find People" href="Search.php">FIND PEOPLE</a></li>
   <?php
-  /*
-   * To hide navbar buttons if user is not logged in
-   *
-   *
-   *if (login_check() == 'true') {
-   *  echo "<li><a class='nav' title='Profile' href='UserInfo.php'>MY PROFILE</a></li>";
-   *  echo "<li><a class='nav' title='Find People' href='Search.php'>FIND PEOPLE</a></li>";
-   *}
-   */
-  if (isset($_SESSION['admin_user'])) {
+
+  if (isset($current_user) && $current_user->admin == 'yes') {
     echo "<li><a class = 'nav-right' title='Admin' href='admin.php'>ADMIN</a></li>";
   }
 
-  if (isset($_SESSION['admin_user']) || isset($_SESSION['user'])) {
+  if (isset($current_user)) {
     echo "<li><a class = 'nav-right' title='Logout' href='logout.php'>LOGOUT</a></li>";
   } else {
     echo "<li><a class = 'nav-right' title='Login' href='login.php'>LOGIN</a></li>";
@@ -110,32 +102,20 @@ function display_login_form() {
 <?php
 }
 
-function display_admin_menu() {
-?>
-<br />
-<a href="index.php">Go to main site</a><br />
-<a href="insert_category_form.php">Add a new category</a><br />
-<a href="insert_book_form.php">Add a new book</a><br />
-<a href="change_password_form.php">Change admin password</a><br />
-<?php
-}
-
-
-function initialize_database() {
-  ?>
-    <button onclick="create_database()" type="button">Create Database</button>
-  <?php
-}
 function create_database() {
   include_once('CreateDatabase.php');
 }
 
 function do_info_form(){
+  $current_user = unserialize($_SESSION['current_user']);
   ?>
+  <div>
+    <form id="infoForm" action="submit.php" method="post">
+   <table style="margin:auto;border-style:solid;padding: 10px;">
 	<div id="ProfilePage">
 	<div id="LeftCol">
 		<div id="Photo">
-			<?php display_photo(); ?>
+			<?php display_photo($current_user); ?>
 		</div>
 	</div>
   <div id="infoForm">
@@ -147,31 +127,31 @@ function do_info_form(){
       </tr>
       <tr>
         <td><label for="first_name">First Name:</label></td>
-        <td align="left"><input type="text" name="first_name"  title="First Name" size="30" maxlength="40" value="<?php echo $_SESSION['first_name']; ?>" required/></td>
+        <td align="left"><input type="text" name="first_name"  title="First Name" size="30" maxlength="40" value="<?php echo $current_user->first_name; ?>" required/></td>
       </tr>
       <tr>
         <td><label for="last_name">Last Name:</label></td>
-        <td align="left"><input type="text" name="last_name" title="Last Name" size="30" maxlength="40" value="<?php echo $_SESSION['last_name']; ?>" required/></td>
+        <td align="left"><input type="text" name="last_name" title="Last Name" size="30" maxlength="40" value="<?php echo $current_user->last_name; ?>" required/></td>
       </tr>
       <tr>
         <td><label for="nickname">Nickname:</label></td>
-        <td align="left"><input type="text" name="nickname" title=" Nickname" size="30" maxlength="40" value="<?php echo $_SESSION['nickname']; ?>" /></td>
+        <td align="left"><input type="text" name="nickname" title=" Nickname" size="30" maxlength="40" value="<?php echo$current_user->nickname; ?>" /></td>
       </tr>
 	   <tr>
        <td><label for="email">Email:</label></td>
-       <td align="left"><input type="text" name="email" title="Email" size="30" maxlength="40" value="<?php echo $_SESSION['email']; ?>" required/></td>
+       <td align="left"><input type="text" name="email" title="Email" size="30" maxlength="40" value="<?php echo$current_user->email; ?>" required/></td>
      </tr>
      <tr>
        <td><label for="phone">Phone:</label></td>
-       <td align="left"><input type="text" name="phone" title="phone" size="30" maxlength="40" value="<?php echo $_SESSION['phone']; ?>" /></td>
+       <td align="left"><input type="text" name="phone" title="phone" size="30" maxlength="40" value="<?php echo $current_user->phone; ?>" /></td>
      </tr>
      <tr>
        <td><label for="street">Street Address:</label></td>
-       <td align="left"><input type="text" name="street" title="Title" size="30" maxlength="40" value="<?php echo $_SESSION['street']; ?>" /></td>
+       <td align="left"><input type="text" name="street" title="Title" size="30" maxlength="40" value="<?php echo $current_user->street; ?>" /></td>
      </tr>
      <tr>
        <td><label for="city">City:</label></td>
-       <td align="left"><input type="text" name="city" title="City" size="30" maxlength="40" value="<?php echo $_SESSION['city']; ?>" /></td>
+       <td align="left"><input type="text" name="city" title="City" size="30" maxlength="40" value="<?php echo $current_user->city; ?>" /></td>
      </tr>
      <tr>
        <td><label for="state">State:</label></td>
@@ -179,7 +159,7 @@ function do_info_form(){
          <select name="state" title="State">
            <option></option>
          <optgroup label = "USA">
-           <option selected><?php echo $_SESSION['state']; ?></option>
+           <option selected><?php echo  $current_user->state; ?></option>
            <option value="AL">Alabama (AL)</option>
            <option value="AK">Alaska (AK)</option>
            <option value="AZ">Arizona (AZ)</option>
@@ -248,36 +228,37 @@ function do_info_form(){
      </tr>
      <tr>
        <td><label for="zip">Zip Code:</label></td>
-       <td align="left"><input type="text" name="zip" title="Zip" size="5" maxlength="5" value="<?php echo $_SESSION['zip']; ?>"/></td>
+       <td align="left"><input type="text" name="zip" title="Zip" size="5" maxlength="5" value="<?php echo $current_user->zip; ?>"/></td>
      </tr>
      <?php
-        student_or_teacher();
+        $current_user->user_type == 'student' ? student_year($current_user->grad_year)
+          : teacher_year($current_user->start_year, $current_user->end_year);
      ?>
 
      <tr>
        <td><label for="father_name">Father's Name:</label></td>
-       <td align="left"><input type="text" name="father_name" title="Fathers Name" size="30" maxlength="40" value="<?php echo $_SESSION['father_name']; ?>"/></td>
+       <td align="left"><input type="text" name="father_name" title="Fathers Name" size="30" maxlength="40" value="<?php echo $current_user->father_name; ?>"/></td>
      </tr>
      <tr>
        <td><label for="mother_name">Mother's Name:</label></td>
-       <td align="left"><input type="text" name="mother_name" title="Mothers Name" size="30" maxlength="40" value="<?php echo $_SESSION['mother_name']; ?>"/></td>
+       <td align="left"><input type="text" name="mother_name" title="Mothers Name" size="30" maxlength="40" value="<?php echo$current_user->mother_name; ?>"/></td>
      </tr>
      <tr>
      <tr>
        <td><label for="family_details">Family Details:</label></td>
-       <td align="left"><input type="text" name="family_details" title="Family Details" size="30" maxlength="40" value="<?php echo $_SESSION['family_details']; ?>"/></td>
+       <td align="left"><input type="text" name="family_details" title="Family Details" size="30" maxlength="40" value="<?php echo $current_user->family_details; ?>"/></td>
      </tr>
      <tr>
        <td><label for="work_experience">Work Experience:</label></td>
-       <td align="left"><textarea name="work_experience" title="Work Experience" rows="3" cols="30" maxlength="200"><?php echo $_SESSION['work_experience']; ?></textarea></td>
+       <td align="left"><textarea name="work_experience" title="Work Experience" rows="3" cols="30" maxlength="200"><?php echo $current_user->work_experience; ?></textarea></td>
      </tr>
      <tr>
        <td><label for="awards">Awards:</label></td>
-       <td align="left"><textarea name="awards" title="Awards" rows="3" cols="30" maxlength="200"><?php echo $_SESSION['awards']; ?></textarea></td>
+       <td align="left"><textarea name="awards" title="Awards" rows="3" cols="30" maxlength="200"><?php echo $current_user->awards; ?></textarea></td>
      </tr>
      <tr>
        <td><label for="notes">Notes:</label></td>
-       <td align="left"><textarea name="notes" title="Notes" rows="3" cols="30" maxlength="200" ><?php echo $_SESSION['notes']; ?></textarea></td>
+       <td align="left"><textarea name="notes" title="Notes" rows="3" cols="30" maxlength="200" ><?php echo $current_user->notes; ?></textarea></td>
      </tr>
      <tr>
        <td></td>
@@ -291,17 +272,7 @@ function do_info_form(){
 <?php
 }
 
-function student_or_teacher() {
-  $sql = get_user_type();
-  if ($sql == 'student') {
-    student_year();
-  } else {
-    teacher_year();
-  }
-}
-
-
-function student_year () {
+function student_year ($grad_year) {
   ?>
     <tr>
       <td><label for="user_type">Type:</label></td>
@@ -339,7 +310,7 @@ function student_year () {
            <option value="1993">1993</option>
            <option value="1992">1992</option>
            <option value="1991">1991</option>
-           <option selected><?php echo $_SESSION['grad_year']; ?></option>
+           <option selected><?php echo $grad_year; ?></option>
            </optgroup>
          </select>
        </td>
@@ -347,15 +318,15 @@ function student_year () {
 <?php
 }
 
-function teacher_year() {
+function teacher_year($start_year, $end_year) {
   ?><tr>
     <td><label for="user_type">Type:</label></td>
     <td align="left"><input type="text" name="user_type" title="Usrr Type" size="30" maxlength="40" value="Teacher" readonly /></td>
   </tr>
   <tr>
     <td>Years Taught (Teacher):</td>
-    <td align="left"><input type="text" name="start_year" title="Start Year" size="4" maxlength="4" width="4" value="<?php echo $_SESSION['start_year']; ?>" required/> to
-      <input type="text" name="end_year" title="End Year" size="4" maxlength="4" width="4" value="<?php echo $_SESSION['end_year']; ?>" required/></td>
+    <td align="left"><input type="text" name="start_year" title="Start Year" size="4" maxlength="4" width="4" value="<?php echo $start_year; ?>" required/> to
+      <input type="text" name="end_year" title="End Year" size="4" maxlength="4" width="4" value="<?php echo $end_year; ?>" required/></td>
   </tr>
 <?php
 }
@@ -370,10 +341,10 @@ function upload_photo(){
 	<?php
 }
 
-function display_photo() {
+function display_photo($current_user) {
 	?>
 
-	<img class="photo" src="<?php echo $_SESSION['photo']; ?>" align="middle"><br>
+	<img class="photo" src="<?php echo $current_user->photo; ?>" align="middle"><br>
 		<?php upload_photo(); ?>
 <?php
 }
