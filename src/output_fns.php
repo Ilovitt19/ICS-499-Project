@@ -86,6 +86,33 @@ function do_html_heading($heading) {
 function display_login_form() {
   // display form asking for name and password
 ?>
+<head>
+	<title>Log In</title>
+	<link rel="stylesheet" href="forms.css">
+<head>
+	<div id="wrapper">
+		<aside id="left_side">
+			<img src="images/loginbanner.png"/>
+		</aside>
+		<section id="rigt_side">
+			<form id="generalform" class="container" method="POST" action="login_action.php">
+				<h3>Log In</h3>
+				<?php //echo @$error_message; ?>
+				<div class="field">
+					<label for="username">Username:</label>
+					<input type="text" class="input" id="username" name="username" maxlength="20"/>
+				</div>
+				<div class="field">
+					<label for="password">Password:</label>
+					<input type="password" class="input" id="password" name="passwd" maxlength="20"/>
+				</div>
+				<input type="submit" name="submit" id="submit" class="button" value="Submit"/>
+			</form>
+		</section>
+	</div>
+</body>
+</html>
+<!--
  <form method="post" action="login_action.php">
  <table bgcolor="#cccccc" align="center">
    <tr>
@@ -98,7 +125,7 @@ function display_login_form() {
      <td colspan="2" align="center">
      <input type="submit" value="Log in"/></td></tr>
    <tr>
- </table></form>
+ </table></form> -->
 <?php
 }
 
