@@ -69,7 +69,7 @@ if (login_check()) {
  * @param $conn mysqli - The DB connection
  * @return mixed
  */
-function search_for_students($conn) {;
+function search_for_students($conn) {
   try {
     $sql = 'SELECT first_name, last_name, grad_year
 					FROM students
@@ -79,14 +79,18 @@ function search_for_students($conn) {;
     $stmt = $conn->stmt_init();
     if (!$stmt->prepare($sql)) {
       echo $stmt->error;
+      return false;
     } else
+      $rows = array();
       $first_name = $_POST['first_name'];
       $last_name = $_POST['last_name'];
       $grad_year = $_POST['grad_year'];
       $stmt->bind_param('sss', $first_name, $last_name, $grad_year);
       $stmt->execute();
-      $result = $stmt->get_result();
-      $rows = $result->fetch_all(MYSQLI_ASSOC);
+      $stmt->bind_result($f, $l, $g);
+      while ($stmt->fetch()) {
+        array_push($rows, array('first_name'=>$f, 'last_name'=>$l, 'grad_year'=>$g));
+      }
   } catch (Exception $e) {
     echo $e->getMessage();
   }

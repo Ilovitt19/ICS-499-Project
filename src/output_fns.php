@@ -89,7 +89,8 @@ function display_login_form() {
 <head>
 	<title>Log In</title>
 	<link rel="stylesheet" href="forms.css">
-<head>
+</head>
+<body>
 	<div id="wrapper">
 		<aside id="left_side">
 			<img src="images/loginbanner.png"/>

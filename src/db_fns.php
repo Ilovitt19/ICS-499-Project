@@ -105,8 +105,9 @@ function get_user_fields($conn, $username) {
    if ($stmt->prepare($query)) {
       $stmt->bind_param("s", $username);
       $stmt->execute();
-      $result = $stmt->get_result();
-      return $result->fetch_assoc();
+      $stmt->bind_result($u, $a, $t, $i);
+      $stmt->fetch();
+      return array('username'=>$u, 'admin'=>$a, 'user_type'=>$t, 'user_id'=>$i);
    }
    return false;
 }
@@ -132,29 +133,21 @@ function get_other_fields($conn, $user_id, $user_type) {
  * @return bool
  */
 function get_student_fields($conn, $user_id) {
-   $query = "SELECT * FROM students WHERE user_id = ?";
-   $stmt = $conn->stmt_init();
-   if ($stmt->prepare($query)) {
-      $stmt->bind_param("i", $user_id);
-      $stmt->execute();
-      $result = $stmt->get_result();
+   $query = "SELECT * FROM students WHERE user_id = '$user_id'";
+   if ($result = $conn->query($query)) {
       return $result->fetch_assoc();
    }
    return false;
 }
 
 /**
- * @param $conn
+ * @param $conn mysqli - The DB connection
  * @param $user_id
  * @return bool
  */
 function get_teacher_fields($conn, $user_id) {
-   $query = "SELECT * FROM teachers WHERE user_id = ?";
-   $stmt = $conn->stmt_init();
-   if ($stmt->prepare($query)) {
-      $stmt->bind_param("i", $user_id);
-      $stmt->execute();
-      $result = $stmt->get_result();
+   $query = "SELECT * FROM teachers WHERE user_id = '$user_id'";
+   if ($result = $conn->query($query)) {
       return $result->fetch_assoc();
    }
    return false;
