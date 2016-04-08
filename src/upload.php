@@ -38,6 +38,10 @@ if ($uploadOk == 0) {
 	$target_file = "images/Photos/" . $last_name . "_" . $user_id . "." . $imageFileType;
 	if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
 		save_to_database($target_file, $current_user->user_type, $user_id);
+			/*
+			 * add/change  $targetfile to User object $currentuser->photo
+			 * make sure displayed photo is updated
+			 */
 		echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been renamed to " . $last_name . $user_id . " and uploaded.";
 	} else {
 		echo "Sorry, there was an error uploading your file.";
