@@ -23,7 +23,7 @@ if(isset($_POST["submit"])) {
 	if(!empty($temp_file) && getimagesize($temp_file)) {
 		$uploadOk = 1;
 	} else {
-		echo "File is not a valid image.";
+		echo "File is not a valid image.<br>";
 		$uploadOk = 0;
 	}
 }
@@ -32,12 +32,12 @@ if(isset($_POST["submit"])) {
 // Allow certain file formats
 if(strcasecmp($imageFileType, "jpg") != 0 && strcasecmp($imageFileType, "png") != 0 &&
 	strcasecmp($imageFileType, "jpeg") != 0 && strcasecmp($imageFileType, "gif") != 0 ) {
-	echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+	echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.<br>";
 	$uploadOk = 0;
 }
 // Check if $uploadOk is set to 0 by an error
 if ($uploadOk == 0) {
-	echo "Sorry, your file was not uploaded.";
+	echo "Sorry, your file was not uploaded.<br>";
 // if everything is ok, try to upload file
 } else {
 	$target_file = "images/Photos/" . $last_name . "_" . $user_id . "." . $imageFileType;
@@ -60,7 +60,8 @@ if ($uploadOk == 0) {
 			unset($_SESSION['current_user']);
 			$updated_user = new LoggedInUser($username);
 			$_SESSION['current_user'] = serialize($updated_user);
-			header('Location: UserInfo.php');
+			session_commit();
+			header('Location: UserInfo.php',"Refresh:0");
 			exit();
 		}
 	} else {

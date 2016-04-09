@@ -24,7 +24,7 @@ $admin = unserialize($_SESSION['current_user'])->admin;
         <label for="last_name">Last Name: </label>
         <input type="text" name="last_name" id="last_name">
         <label for="grad_year">Grad Year: </label>
-        <input type="number" name="grad_year" id="grad_year">
+        <input type="number" name="grad_year" id="grad_year" min = "1991" max="2015">
         <input type="hidden" name="search_performed" value="yes">
 
         <input type="submit" name="search" value="Search">

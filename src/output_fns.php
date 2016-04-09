@@ -22,23 +22,22 @@ function do_html_header($title = '',$section = '')
       echo "<li><a class = 'nav' title='Home' href='index.php'>HOME</a></li>";
     }
 
-    if (isset($current_user) && isset($current_user->first_name)){
-		  echo "<li><a class = 'nav' title='Welcome' href='UserInfo.php'>" . strtoupper ($current_user->first_name) . " " . strtoupper ($current_user->last_name) . "</a></li>";
-    } else {
-		  echo "<li><a class = 'nav' title='Welcome' href='UserInfo.php'>MY PROFILE</a></li>";
-    }
 	  ?>
-  <li><a class="nav" title="Find People" href="Search.php">FIND PEOPLE</a></li>
-  <?php
-
-  if (isset($current_user) && $current_user->admin == 'yes') {
-    echo "<li><a class = 'nav-right' title='Admin' href='admin.php'>ADMIN</a></li>";
-  }
+    <?php
 
   if (isset($current_user)) {
+	echo "<li><a class='nav' title='Find People' href='Search.php'>FIND PEOPLE</a></li>";
     echo "<li><a class = 'nav-right' title='Logout' href='logout.php'>LOGOUT</a></li>";
+	  if (isset($current_user) && isset($current_user->first_name)){
+		  echo "<li><a class = 'nav-right' title='Welcome' href='UserInfo.php'>" . strtoupper ($current_user->first_name) . " " . strtoupper ($current_user->last_name) . "</a></li>";
+	  } else {
+		  echo "<li><a class = 'nav-right' title='Welcome' href='UserInfo.php'>MY PROFILE</a></li>";
+	  }
   } else {
     echo "<li><a class = 'nav-right' title='Login' href='login.php'>LOGIN</a></li>";
+  }
+  if (isset($current_user) && $current_user->admin == 'yes') {
+	  echo "<li><a class = 'nav-right' title='Admin' href='admin.php'>ADMIN</a></li>";
   }
       ?>
     </ul>
@@ -383,23 +382,46 @@ function display_photo($current_user) {
 <?php
 }
 
-	function scroll ()
-{
-	?>
-	<div>
-     <h1 >Students and Teachers (Incomplete) for Demo only</h1 >
 
-    <!--Each image is 350px by 233px-->
-    <div class="photobanner" >
-     <img class="first" src = "images/scroll/image-1.png" alt = "" />
-     <img class="photo" src = "images/scroll/image-2.png" alt = "" />
-     <img class="photo" src = "images/scroll/image-3.png" alt = "" />
-     <img class="photo" src = "images/scroll/image-4.png" alt = "" />
-     <img class="photo" src = "images/scroll/image-5.png" alt = "" />
-     <img class="photo" src = "images/scroll/image-6.png" alt = "" />
-    </div >
+function scroll (){
+
+	?>
+	<h2>Students and Teachers</h2 >
+	<div id="container">
+		<?php
+		//gets list of photos from folder  alphabetically
+		$dir = scandir("images/Photos");
+		//build the html output
+		$html = '<div class="photobanner">';
+		$counter = 0;
+		//remove directory markers '.' and '..' which are the first two elements in the array
+		unset($dir[0]);
+		unset($dir[1]);
+		//randomize photos
+		shuffle($dir);
+		//the 'first' photo below starts the animation the rest follow
+		$html .= '<img class="first" src = "images/Photos/' . $dir[0] . '" alt = "" />';
+		foreach ($dir as $photo) {
+			if ($counter++ >= 1) {
+				$html .= '<img class="photo" src = "images/Photos/' . $photo . '" alt = "" />';
+			}
+		}
+		//reset counter
+		$counter = 0;
+		//another loop needed to add 6 photos to the end so there is no gap in the scroll
+		foreach ($dir as $photo) {
+			if ($counter++ <= 5) {
+				$html .= '<img class="photo" src = "images/Photos/' . $photo . '" alt = "" />';
+			}
+		}
+		$html .= '</div>';
+		echo $html;
+		?>
 	</div >
 	<?php
-	}
+}
+
+
+
 
 
