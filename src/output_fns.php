@@ -112,21 +112,7 @@ function display_login_form() {
 		</section>
 	</div>
 </body>
-</html>
-<!--
- <form method="post" action="login_action.php">
- <table bgcolor="#cccccc" align="center">
-   <tr>
-     <td>Username:</td>
-     <td><input type="text" name="username"/></td></tr>
-   <tr>
-     <td>Password:</td>
-     <td><input type="password" name="passwd"/></td></tr>
-   <tr>
-     <td colspan="2" align="center">
-     <input type="submit" value="Log in"/></td></tr>
-   <tr>
- </table></form> -->
+
 <?php
 }
 
@@ -137,9 +123,6 @@ function create_database() {
 function do_info_form(){
   $current_user = unserialize($_SESSION['current_user']);
   ?>
-  <div>
-    <form id="infoForm" action="submit.php" method="post">
-   <table style="margin:auto;border-style:solid;padding: 10px;">
 	<div id="ProfilePage">
 	<div id="LeftCol">
 		<div id="Photo">
@@ -296,6 +279,7 @@ function do_info_form(){
     </form>
   </div>
 	<div style="clear:both"></div>
+	</div>
 
 <?php
 }

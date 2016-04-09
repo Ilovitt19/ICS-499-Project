@@ -28,6 +28,7 @@ if (isset($_POST['username']) && isset($_POST['passwd'])) {
 		echo "<p>You could not be logged in.<br/>You must be logged in to view this page.</p>";
 		session_destroy();
 		display_login_form();
+		do_html_footer();
 		exit();
 	}
 
@@ -37,6 +38,7 @@ if (isset($_POST['username']) && isset($_POST['passwd'])) {
 	echo "<p>You could not be logged in.<br/>You must be logged in to view this page.</p>";
 	session_destroy();
 	display_login_form();
+	do_html_footer();
 	exit();
 }
 

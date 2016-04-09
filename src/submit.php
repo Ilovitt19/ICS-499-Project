@@ -52,20 +52,7 @@ if (isset($_POST['first_name'])) {
       echo "Error: " . $sql . "<br>" . $conn->error;
     }
   }
-} else {
-	$photo = $current_user->photo;
-	if ($user_type == 'student') {
-		$sql = "UPDATE students SET photo = '$photo' WHERE user_id = '$user_id'";
-	} else {
-		$sql = "UPDATE teachers SET photo = '$photo' WHERE user_id = '$user_id'";
-	}
-	if ($conn->query($sql) === TRUE) {
-		echo "Your record has been updated successfully";
-	} else {
-		echo "Error: " . $sql . "<br>" . $conn->error;
-	}
 }
-
 $conn->close();
 unset($_SESSION['current_user']);
 $updated_user = new LoggedInUser($username);
