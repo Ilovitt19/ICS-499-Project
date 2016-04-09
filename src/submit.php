@@ -3,7 +3,12 @@ require_once ('reunion_fns.php');
 include ('LoggedInUser.php');
 
 $conn = db_connect();
-$current_user = unserialize($_SESSION['current_user']);
+if (isset($_POST['admin_edit'])) {
+  $username = get_username_by_id($_POST['user_id']);
+  $current_user = new LoggedInUser($username);
+} else {
+  $current_user = unserialize($_SESSION['current_user']);
+}
 $user_type = $current_user->user_type;
 $user_id = $current_user->user_id;
 $username = $current_user->username;
@@ -54,9 +59,11 @@ if (isset($_POST['first_name'])) {
   }
 }
 $conn->close();
-unset($_SESSION['current_user']);
-$updated_user = new LoggedInUser($username);
-$_SESSION['current_user'] = serialize($updated_user);
+if (!isset($_POST['admin_edit'])) {
+  unset($_SESSION['current_user']);
+  $updated_user = new LoggedInUser($username);
+  $_SESSION['current_user'] = serialize($updated_user);
+}
 
 //Change this file to edit_info... create new UserInfo file to display info only
 //header('Location: UserInfo.php');

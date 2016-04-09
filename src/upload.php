@@ -2,7 +2,12 @@
 require ('reunion_fns.php');
 include ('LoggedInUser.php');
 
-$current_user = unserialize($_SESSION['current_user']);
+if (isset($_POST['admin_edit'])) {
+	$username = get_username_by_id($_POST['user_id']);
+	$current_user = new LoggedInUser($username);
+} else {
+	$current_user = unserialize($_SESSION['current_user']);
+}
 $last_name = $current_user->last_name;
 $user_id = $current_user->user_id;
 //echo "NOTE TO Jasthi... I have tried several ways to upload to the server but it seems there is<br>";
@@ -38,12 +43,26 @@ if ($uploadOk == 0) {
 	$target_file = "images/Photos/" . $last_name . "_" . $user_id . "." . $imageFileType;
 	if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file) &&
 		save_to_database($target_file, $current_user->user_type, $user_id)) {
-		$username = $current_user->username;
-		unset($_SESSION['current_user']);
-		$updated_user = new LoggedInUser($username);
-		$_SESSION['current_user'] = serialize($updated_user);
-		header('Location: UserInfo.php');
-		exit();
+		if (isset($_POST['admin_edit'])) {
+			?>
+			<div style="display:none;">
+				<form id="edit_form" method="POST" action="UserInfo.php">
+					<input type="hidden" name="user_id" value=" <?php echo $_POST['user_id'] ?>" />
+					<input type="hidden" name="admin_edit" value="yes" />
+				</form>
+				<script>
+					document.getElementById("edit_form").submit();
+				</script>
+			</div>
+			<?php
+		} else {
+			$username = $current_user->username;
+			unset($_SESSION['current_user']);
+			$updated_user = new LoggedInUser($username);
+			$_SESSION['current_user'] = serialize($updated_user);
+			header('Location: UserInfo.php');
+			exit();
+		}
 	} else {
 		echo "Sorry, there was an error uploading your file.";
 	}

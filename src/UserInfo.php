@@ -3,8 +3,8 @@
 include ('reunion_fns.php');
 require_once ('user_auth_fns.php');
 include ('LoggedInUser.php');
-
-do_html_header("My Profile","My Profile");
+$title = isset($_POST['admin_edit']) ? "Admin: Edit User" : "My Profile";
+do_html_header($title, $title);
 
 if (login_check()) {
 	do_info_form();

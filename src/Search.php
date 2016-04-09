@@ -3,8 +3,9 @@
 include ('reunion_fns.php');
 include ('LoggedInUser.php');
 $conn = db_connect();
-do_html_header("Find People","Enter Search");
+do_html_header("Find People","Student Search");
 if (login_check()) {
+$admin = unserialize($_SESSION['current_user'])->admin;
 ?>
   <html>
   <link rel="stylesheet" href="styles.css">
@@ -13,9 +14,10 @@ if (login_check()) {
     echo "<p>$error</p>";
   }
   ?>
+  <br>
+  <br>
   <form method="post" action="Search.php">
     <fieldset>
-      <legend>Search For Students</legend>
       <p>
         <label for="first_name">First Name: </label>
         <input type="text" name="first_name" id="first_name">
@@ -43,11 +45,39 @@ if (login_check()) {
               <th>Last Name </th>
               <th>First Name </th>
               <th>Grad Year</th>
+              <th></th>
+              <?php
+              if ($admin == 'yes') echo "<th></th><th></th>"
+              ?>
             </tr>
             <tr>
               <td><?php echo $a_row['last_name']; ?></td>
               <td><?php echo $a_row['first_name']; ?></td>
               <td><?php echo $a_row['grad_year']; ?></td>
+              <td>
+                <form action="view_user.php" method="post">
+                  <input type="hidden" name="user_id" value="<?php echo $a_row['user_id']?>">
+                  <input type="submit" name="view_user" value="View">
+                </form>
+              </td>
+              <?php
+              if ($admin == 'yes') {
+                ?>
+                <td>
+                  <form action="UserInfo.php" method="post">
+                    <input type="hidden" name="user_id" value="<?php echo $a_row['user_id']?>">
+                    <input type="submit" name="admin_edit" value="Edit">
+                  </form>
+                </td>
+                <td>
+                  <form action="delete_action.php" method="post">
+                    <input type="hidden" name="user_id" value="<?php echo $a_row['user_id']?>">
+                    <input type="submit" name="delete_user" value="Delete">
+                  </form>
+                </td>
+              <?php
+              }
+              ?>
             </tr>
           </table>
         <?php
@@ -71,7 +101,7 @@ if (login_check()) {
  */
 function search_for_students($conn) {
   try {
-    $sql = 'SELECT first_name, last_name, grad_year
+    $sql = 'SELECT first_name, last_name, grad_year, user_id
 					FROM students
 					WHERE (first_name = ? AND first_name IS NOT NULL)
 					OR (last_name = ? AND last_name IS NOT NULL)
@@ -87,9 +117,9 @@ function search_for_students($conn) {
       $grad_year = $_POST['grad_year'];
       $stmt->bind_param('sss', $first_name, $last_name, $grad_year);
       $stmt->execute();
-      $stmt->bind_result($f, $l, $g);
+      $stmt->bind_result($f, $l, $g, $i);
       while ($stmt->fetch()) {
-        array_push($rows, array('first_name'=>$f, 'last_name'=>$l, 'grad_year'=>$g));
+        array_push($rows, array('first_name'=>$f, 'last_name'=>$l, 'grad_year'=>$g, 'user_id'=>$i));
       }
   } catch (Exception $e) {
     echo $e->getMessage();

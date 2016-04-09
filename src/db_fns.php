@@ -153,4 +153,11 @@ function get_teacher_fields($conn, $user_id) {
    return false;
 }
 
+function get_username_by_id($user_id) {
+   $conn = db_connect();
+   $query = "SELECT username FROM user WHERE user_id = '$user_id'";
+   $result =  $conn->query($query)->fetch_assoc();
+   return $result['username'];
+}
+
 ?>

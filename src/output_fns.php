@@ -1,4 +1,5 @@
 <?php
+require_once ('db_fns.php');
 
 function do_html_header($title = '',$section = '')
 {
@@ -124,7 +125,13 @@ function create_database() {
 }
 
 function do_info_form(){
-  $current_user = unserialize($_SESSION['current_user']);
+  if (isset($_POST['admin_edit'])) {
+      $username = get_username_by_id($_POST['user_id']);
+      $current_user = new LoggedInUser($username);
+    } else {
+      $current_user = unserialize($_SESSION['current_user']);
+    }
+
   ?>
 	<div id="ProfilePage">
 	<div id="LeftCol">
@@ -134,6 +141,12 @@ function do_info_form(){
 	</div>
   <div id="infoForm">
     <form action="submit.php" method="post">
+<?php
+if (isset($_POST['admin_edit'])) {
+  echo "<input type = \"hidden\" name='admin_edit' value='yes'>";
+  echo "<input type = \"hidden\" name='user_id' value='" . $_POST['user_id'] . "'>";
+}
+ ?>
    <table>
       <tr>
         <td width="150"></td>
@@ -353,13 +366,18 @@ function upload_photo(){
 		Select profile picture to upload:<br>
 		<input type="file" name="fileToUpload" id="fileToUpload"><br>
 		<input type="submit" value="Upload Image" name="submit"><br>
+	<?php
+if (isset($_POST['admin_edit'])) {
+  echo "<input type = \"hidden\" name='admin_edit' value='yes'>";
+  echo "<input type = \"hidden\" name='user_id' value='" . $_POST['user_id'] . "'>";
+}
+ ?>
 	</form>
 	<?php
 }
 
 function display_photo($current_user) {
 	?>
-
 	<img class="photo" src="<?php echo $current_user->photo; ?>" align="middle"><br>
 		<?php upload_photo(); ?>
 <?php
