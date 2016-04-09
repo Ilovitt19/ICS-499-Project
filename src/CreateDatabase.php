@@ -23,6 +23,9 @@ if ($mysql_connection->query($reunion) === TRUE) {
 $mysql_connection->close();
 $mysql_connection = db_connect();
 
+reset_database();
+
+
 $students = "CREATE TABLE students(
 	user_id int(6) PRIMARY KEY,
 	first_name varchar(15),
@@ -107,8 +110,101 @@ if (create_user($mysql_connection, 'teacher', 'teacher', 'no', 'teacher')) {
 } else {
 	echo "Error: " . $mysql_connection->error . "<br>";
 }
+$x = 1;
+while($x <= 247) {
+	if (create_user($mysql_connection, 'student', 'student', 'no', 'student')) {
+		echo "New record \"student\" created successfully" . "<br>";
+	} else {
+		echo "Error: " . $mysql_connection->error . "<br>";
+	}
+	$x++;
+}
+$x = 1;
+while($x <= 50) {
+	if (create_user($mysql_connection, 'teacher', 'teacher', 'no', 'teacher')) {
+		echo "New record \"teacher\" created successfully" . "<br>";
+	} else {
+		echo "Error: " . $mysql_connection->error . "<br>";
+	}
+	$x++;
+}
+load_students_data();
+load_teachers_data();
 
 echo "<br>";
     echo "<a href='admin.php'>Return to Admin</a>";
 
 $mysql_connection->close();
+
+function reset_database(){
+	$mysql_connection = db_connect();
+	$drop_table = "DELETE FROM students";
+
+	if ($mysql_connection->query($drop_table) === TRUE) {
+		echo "Students table cleared <br>";
+	} else {
+		echo "Table not cleared: " . $mysql_connection->error . "<br>";
+	}
+	$drop_table = "DELETE FROM teachers";
+
+	if ($mysql_connection->query($drop_table) === TRUE) {
+		echo "Teachers table cleared <br>";
+	} else {
+		echo "Table not cleared: " . $mysql_connection->error . "<br>";
+	}
+	$drop_table = "DELETE FROM user";
+
+	if ($mysql_connection->query($drop_table) === TRUE) {
+		echo "User table cleared <br>";
+	} else {
+		echo "Table not cleared: " . $mysql_connection->error . "<br>";
+	}
+	$drop_table = "DROP TABLE students";
+
+	if ($mysql_connection->query($drop_table) === TRUE) {
+		echo "Students dropped <br>";
+	} else {
+		echo "Table not dropped: " . $mysql_connection->error . "<br>";
+	}
+	$drop_table = "DROP TABLE teachers";
+
+	if ($mysql_connection->query($drop_table) === TRUE) {
+		echo "Teachers dropped <br>";
+	} else {
+		echo "Table not dropped: " . $mysql_connection->error . "<br>";
+	}
+	$drop_table = "DROP TABLE user";
+
+	if ($mysql_connection->query($drop_table) === TRUE) {
+		echo "User dropped <br>";
+	} else {
+		echo "Table not dropped: " . $mysql_connection->error . "<br>";
+	}
+}
+
+function load_students_data() {
+	$conn = db_connect();
+	$delete_table = "DELETE FROM students";
+
+	if ($conn->query($delete_table) === TRUE) {
+		echo "Students table cleared <br>";
+	} else {
+		echo "Table not cleared: " . $conn->error . "<br>";
+	}
+
+	$sqlDump = file_get_contents('students.sql');
+	mysqli_multi_query($conn,$sqlDump);
+}
+function load_teachers_data() {
+	$conn = db_connect();
+	$delete_table = "DELETE FROM teachers";
+
+	if ($conn->query($delete_table) === TRUE) {
+		echo "Teachers table cleared <br>";
+	} else {
+		echo "Table not cleared: " . $conn->error . "<br>";
+	}
+
+	$sqlDump = file_get_contents('teachers.sql');
+	mysqli_multi_query($conn,$sqlDump);
+}
