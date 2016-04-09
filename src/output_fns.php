@@ -53,7 +53,10 @@ function do_html_header($title = '',$section = '')
 function show_event_info() {
 ?>
   <div id="info">
-    <p>Saturday June 1st, 2016<br>Hilton Hotel<br>Minneapolis, Minnesota</p>
+    <img src="images/Hilton.jpg">
+    <p>Saturday June 1st, 2016<br>Hilton Hotel<br>Minneapolis, Minnesota</p><br>
+    <p><a href="https://www.google.com/maps/place/Hilton+Minneapolis/@44.9725457,-93.27
+    50422,17z/data=!3m1!4b1!4m2!3m1!1s0x52b3329636a6b7f5:0x4f9e989c1a078a2" target="_blank">Map & Directions</a></p>
   </div>
   <?php
 }
