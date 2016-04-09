@@ -242,7 +242,8 @@ function do_info_form(){
      </tr>
      <tr>
        <td><label for="zip">Zip Code:</label></td>
-       <td align="left"><input type="text" name="zip" title="Zip" size="5" maxlength="5" value="<?php echo $current_user->zip; ?>"/></td>
+       <td align="left"><input type="text" name="zip" title="Zip" size="5" maxlength="5"
+        value="<?php echo !empty($current_user->zip) ? $current_user->zip : "" ?>"/></td>
      </tr>
      <?php
         $current_user->user_type == 'student' ? student_year($current_user->grad_year)
@@ -297,8 +298,9 @@ function student_year ($grad_year) {
        <td><label for="grad_year">Graduation Year (Student):</label></td>
        <td align="left">
        <select name="grad_year" title="Grad Year" required>
-          <option></option>
-         <option>Grad Year</option>
+         <?php
+           if (!empty($grad_year)) echo "<option selected>" . $grad_year . "</option>";
+           ?>
          <optgroup label = "Year">
            <option value="2015">2015</option>
            <option value="2014">2014</option>
@@ -325,7 +327,6 @@ function student_year ($grad_year) {
            <option value="1993">1993</option>
            <option value="1992">1992</option>
            <option value="1991">1991</option>
-           <option selected><?php echo $grad_year; ?></option>
            </optgroup>
          </select>
        </td>
