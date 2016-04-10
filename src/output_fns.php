@@ -376,10 +376,12 @@ if (isset($_POST['admin_edit'])) {
 }
 
 function display_photo($current_user) {
-	?>
-	<img class="photo" src="<?php echo $current_user->photo; ?>" align="middle"><br>
-		<?php upload_photo(); ?>
-<?php
+	if ($current_user->photo == !NULL) {
+		echo "<img class='photo' src='$current_user->photo' align='middle'><br>";
+	} else {
+		echo "<img class='photo' src='images/Profile_0.jpg' align='middle'><br>";
+	}
+		upload_photo();
 }
 
 
