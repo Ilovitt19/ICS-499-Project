@@ -26,7 +26,7 @@ function do_html_header($title = '',$section = '')
     <?php
 
   if (isset($current_user)) {
-	echo "<li><a class='nav' title='Find People' href='Search.php'>FIND PEOPLE</a></li>";
+	echo "<li><a class='nav' title='Find People' href='search_select.php'>FIND PEOPLE</a></li>";
     echo "<li><a class = 'nav-right' title='Logout' href='logout.php'>LOGOUT</a></li>";
 	  if (isset($current_user) && isset($current_user->first_name)){
 		  echo "<li><a class = 'nav-right' title='Welcome' href='UserInfo.php'>" . strtoupper ($current_user->first_name) . " " . strtoupper ($current_user->last_name) . "</a></li>";
