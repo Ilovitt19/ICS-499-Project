@@ -151,6 +151,19 @@ if (isset($_POST['admin_edit'])) {
         <td width="150"></td>
         <td width="200"></td>
       </tr>
+	  <tr>
+		<td><label for="attending">First Name:</label></td>
+		  <?php
+		  if ($current_user->attending === "yes") {
+			  echo "<td align='left'><input type='radio' name='attending'  title='Attending' value='no'/>No";
+			  echo "<input type='radio' name='attending' value='yes' checked/>Yes";
+		  } else {
+			  echo "<td align='left'><input type='radio' name='attending'  title='Attending' value='no' checked/>No";
+			  echo "<input type='radio' name='attending' value='yes'/>Yes";
+		  }
+		  ?>
+		</td>
+	  </tr>
       <tr>
         <td><label for="first_name">First Name:</label></td>
         <td align="left"><input type="text" name="first_name"  title="First Name" size="30" maxlength="40" value="<?php echo $current_user->first_name; ?>" required/></td>

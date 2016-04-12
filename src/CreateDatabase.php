@@ -16,9 +16,9 @@ if ($mysql_connection->connect_errno) {
 
 $reunion = "CREATE DATABASE reunion";
 if ($mysql_connection->query($reunion) === TRUE) {
-	echo "Database created successfully\n";
+	echo "Database created successfully<br>";
 } else {
-	echo "Error creating database: " . $mysql_connection->error . "\n";
+	echo "Error creating database: " . $mysql_connection->error . "<br>";
 }
 $mysql_connection->close();
 $mysql_connection = db_connect();
@@ -44,7 +44,9 @@ $students = "CREATE TABLE students(
 	state varchar(2),
 	zip int(5),
 	notes varchar(50),
-	photo varchar (30))";
+	photo varchar (30),
+	donation double(10),
+	attending varchar(4) DEFAULT 'no')";
 
 if ($mysql_connection->query($students) === TRUE) {
 	echo "Students table created successfully <br>";
@@ -71,7 +73,9 @@ $teachers = "CREATE TABLE teachers(
 	state varchar(2),
 	zip int(5),
 	notes varchar(50),
-	photo varchar(30))";
+	photo varchar(30),
+	donation double(10),
+	attending varchar(4) DEFAULT 'no')";
 
 
 if ($mysql_connection->query($teachers) === TRUE) {
@@ -92,7 +96,7 @@ if ($mysql_connection->query($user) === TRUE) {
 } else {
 	echo "Table not created: " . $mysql_connection->error . "<br>";
 }
-
+/*
 if (create_user($mysql_connection, 'admin', 'admin', 'yes', 'student')) {
 	echo "New record \"admin\" created successfully" . "<br>";
 } else {
@@ -110,24 +114,8 @@ if (create_user($mysql_connection, 'teacher', 'teacher', 'no', 'teacher')) {
 } else {
 	echo "Error: " . $mysql_connection->error . "<br>";
 }
-$x = 1;
-while($x <= 247) {
-	if (create_user($mysql_connection, 'student', 'student', 'no', 'student')) {
-		echo "New record \"student\" created successfully" . "<br>";
-	} else {
-		echo "Error: " . $mysql_connection->error . "<br>";
-	}
-	$x++;
-}
-$x = 1;
-while($x <= 50) {
-	if (create_user($mysql_connection, 'teacher', 'teacher', 'no', 'teacher')) {
-		echo "New record \"teacher\" created successfully" . "<br>";
-	} else {
-		echo "Error: " . $mysql_connection->error . "<br>";
-	}
-	$x++;
-}
+*/
+load_user_data();
 load_students_data();
 load_teachers_data();
 
@@ -184,27 +172,29 @@ function reset_database(){
 
 function load_students_data() {
 	$conn = db_connect();
-	$delete_table = "DELETE FROM students";
-
-	if ($conn->query($delete_table) === TRUE) {
-		echo "Students table cleared <br>";
-	} else {
-		echo "Table not cleared: " . $conn->error . "<br>";
-	}
-
 	$sqlDump = file_get_contents('students.sql');
-	mysqli_multi_query($conn,$sqlDump);
+	if (mysqli_multi_query($conn,$sqlDump) === TRUE) {
+		echo "Student data entered successfully <br>";
+	} else {
+		echo "Student data not entered: " . $conn->error . "<br>";
+	}
 }
 function load_teachers_data() {
 	$conn = db_connect();
-	$delete_table = "DELETE FROM teachers";
-
-	if ($conn->query($delete_table) === TRUE) {
-		echo "Teachers table cleared <br>";
-	} else {
-		echo "Table not cleared: " . $conn->error . "<br>";
-	}
-
 	$sqlDump = file_get_contents('teachers.sql');
-	mysqli_multi_query($conn,$sqlDump);
+	if (mysqli_multi_query($conn,$sqlDump) === TRUE) {
+		echo "Teacher data entered successfully <br>";
+	} else {
+		echo "Teacher data not entered: " . $conn->error . "<br>";
+	}
+}
+function load_user_data() {
+	$conn = db_connect();
+	$sqlDump = file_get_contents('user.sql');
+
+	if (mysqli_multi_query($conn,$sqlDump) === TRUE) {
+		echo "User data entered successfully <br>";
+	} else {
+		echo "User data not entered: " . $conn->error . "<br>";
+	}
 }

@@ -28,6 +28,7 @@ if (isset($_POST['first_name'])) {
 	$state = $_POST["state"];
 	$zip = $_POST["zip"];
 	$notes = $_POST["notes"];
+	$attending = $_POST["attending"];
 
 
 //need to add a check if data exists for this user
@@ -38,7 +39,7 @@ if (isset($_POST['first_name'])) {
     $sql = "UPDATE students SET first_name = '$first_name', last_name = '$last_name', nickname = '$nickname',
      grad_year = '$grad_year', father_name = '$father_name', mother_name = '$mother_name', email = '$email',
       phone = '$phone', family_details = '$family_details', work_experience ='$work_experience', awards ='$awards',
-       street ='$street', city ='$city', state ='$state', zip ='$zip', notes ='$notes' WHERE user_id = '$user_id'";
+       street ='$street', city ='$city', state ='$state', zip ='$zip', notes ='$notes', attending='$attending' WHERE user_id = '$user_id'";
     if ($conn->query($sql) === TRUE) {
       echo "Your record has been updated successfully";
     } else {
@@ -50,7 +51,7 @@ if (isset($_POST['first_name'])) {
     $sql = "UPDATE teachers SET first_name = '$first_name', last_name = '$last_name', nickname = '$nickname',
        start_year = '$start_year', end_year = '$end_year', father_name = '$father_name', mother_name = '$mother_name', email = '$email',
         phone = '$phone', family_details = '$family_details', work_experience ='$work_experience', awards ='$awards',
-       street ='$street', city ='$city', state ='$state', zip ='$zip', notes ='$notes' WHERE user_id = '$user_id'";
+       street ='$street', city ='$city', state ='$state', zip ='$zip', notes ='$notes', attending-'$attending' WHERE user_id = '$user_id'";
     if ($conn->query($sql) === TRUE) {
       echo "Your record has been updated successfully";
     } else {

@@ -31,6 +31,7 @@ class LoggedInUser {
   var $zip;
   var $notes;
   var $photo;
+  var $attending;
 
   public function __construct($username) {
     $conn = db_connect();
