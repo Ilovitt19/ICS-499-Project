@@ -34,7 +34,7 @@ $admin = unserialize($_SESSION['current_user'])->admin;
 
 <?php
 if (isset($_POST['search_performed']) && !search_empty()) {
-  $result_list = search_for_students($conn);
+  $result_list = search_for_teachers($conn);
   if (!isset($result_list)) {
     echo '<p>No results found.</p>';
   } else {
@@ -44,7 +44,8 @@ if (isset($_POST['search_performed']) && !search_empty()) {
         <tr>
           <th>Last Name </th>
           <th>First Name </th>
-          <th>Grad Year</th>
+          <th>Start Year</th>
+          <th>End Year</th>
           <th></th>
           <?php
           if ($admin == 'yes') echo "<th></th><th></th>"
@@ -53,7 +54,8 @@ if (isset($_POST['search_performed']) && !search_empty()) {
         <tr>
           <td><?php echo $a_row['last_name']; ?></td>
           <td><?php echo $a_row['first_name']; ?></td>
-          <td><?php echo $a_row['grad_year']; ?></td>
+          <td><?php echo $a_row['start_year']; ?></td>
+          <td><?php echo $a_row['end_year']; ?></td>
           <td>
             <form action="view_user.php" method="post">
               <input type="hidden" name="user_id" value="<?php echo $a_row['user_id']?>">
@@ -72,7 +74,7 @@ if (isset($_POST['search_performed']) && !search_empty()) {
             <td>
               <form action="delete_action.php" method="post">
                 <input type="hidden" name="user_id" value="<?php echo $a_row['user_id']?>">
-                <input type="submit" name="delete_user" value="Delete">
+                <input type="submit" name="delete_user" value="Delete" onclick="return confirm('Are you sure you want to delete this user?');">
               </form>
             </td>
             <?php
@@ -99,13 +101,13 @@ if (isset($conn)) {
  * @param $conn mysqli - The DB connection
  * @return mixed
  */
-function search_for_students($conn) {
+function search_for_teachers($conn) {
   try {
-    $sql = 'SELECT first_name, last_name, grad_year, user_id
-					FROM students
+    $sql = 'SELECT first_name, last_name, start_year, end_year, user_id
+					FROM teachers
 					WHERE (first_name = ? AND first_name IS NOT NULL)
 					OR (last_name = ? AND last_name IS NOT NULL)
-					OR (grad_year = ? AND grad_year != 0)';
+					OR (start_year <= ? AND end_year >= ? AND start_year != 0)';
     $stmt = $conn->stmt_init();
     if (!$stmt->prepare($sql)) {
       echo $stmt->error;
@@ -114,12 +116,12 @@ function search_for_students($conn) {
       $rows = array();
     $first_name = $_POST['first_name'];
     $last_name = $_POST['last_name'];
-    $grad_year = $_POST['grad_year'];
-    $stmt->bind_param('sss', $first_name, $last_name, $grad_year);
+    $teach_year = $_POST['teach_year'];
+    $stmt->bind_param('ssii', $first_name, $last_name, $teach_year, $teach_year);
     $stmt->execute();
-    $stmt->bind_result($f, $l, $g, $i);
+    $stmt->bind_result($f, $l, $s, $e, $i);
     while ($stmt->fetch()) {
-      array_push($rows, array('first_name'=>$f, 'last_name'=>$l, 'grad_year'=>$g, 'user_id'=>$i));
+      array_push($rows, array('first_name'=>$f, 'last_name'=>$l, 'start_year'=>$s, 'end_year'=>$e, 'user_id'=>$i));
     }
   } catch (Exception $e) {
     echo $e->getMessage();
@@ -131,6 +133,6 @@ function search_for_students($conn) {
  * @return bool
  */
 function search_empty() {
-  return empty($_POST['first_name']) && empty($_POST['last_name']) && empty($_POST['grad_year']);
+  return empty($_POST['first_name']) && empty($_POST['last_name']) && empty($_POST['teach_year']);
 }
 ?>

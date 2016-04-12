@@ -72,7 +72,7 @@ $admin = unserialize($_SESSION['current_user'])->admin;
                 <td>
                   <form action="delete_action.php" method="post">
                     <input type="hidden" name="user_id" value="<?php echo $a_row['user_id']?>">
-                    <input type="submit" name="delete_user" value="Delete">
+                    <input type="submit" name="delete_user" value="Delete" onclick="return confirm('Are you sure you want to delete this user?');">
                   </form>
                 </td>
               <?php

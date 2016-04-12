@@ -14,7 +14,7 @@ if (login_check()) {
   <form action="student_search.php" method="post">
     <input type="submit" name="search_student" value="Search For Students">
   </form>
-  <form action="teacher_search" method="post">
+  <form action="teacher_search.php" method="post">
     <input type="submit" name="admin_search" value="Search For Teachers">
   </form>
 

@@ -349,7 +349,7 @@ function student_year ($grad_year) {
 function teacher_year($start_year, $end_year) {
   ?><tr>
     <td><label for="user_type">Type:</label></td>
-    <td align="left"><input type="text" name="user_type" title="Usrr Type" size="30" maxlength="40" value="Teacher" readonly /></td>
+    <td align="left"><input type="text" name="user_type" title="User Type" size="30" maxlength="40" value="Teacher" readonly /></td>
   </tr>
   <tr>
     <td>Years Taught (Teacher):</td>
