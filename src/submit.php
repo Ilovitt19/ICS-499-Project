@@ -64,6 +64,15 @@ if (!isset($_POST['admin_edit'])) {
   unset($_SESSION['current_user']);
   $updated_user = new LoggedInUser($username);
   $_SESSION['current_user'] = serialize($updated_user);
+  do_back_button("UserInfo.php");
+} else {
+  ?>
+  <form action="UserInfo.php" method="post">
+    <input type="hidden" name="admin_edit" value="yes">
+    <input type="hidden" name="user_id" value="<?php echo $user_id?>">
+    <input type="submit" name="back_button" value="Back">
+  </form>
+<?php
 }
 
 //Change this file to edit_info... create new UserInfo file to display info only

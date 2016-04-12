@@ -26,7 +26,7 @@ function do_html_header($title = '',$section = '')
     <?php
 
   if (isset($current_user)) {
-	echo "<li><a class='nav' title='Find People' href='Search.php'>FIND PEOPLE</a></li>";
+	echo "<li><a class='nav' title='Find People' href='search_select.php'>FIND PEOPLE</a></li>";
     echo "<li><a class = 'nav-right' title='Logout' href='logout.php'>LOGOUT</a></li>";
 	  if (isset($current_user) && isset($current_user->first_name)){
 		  echo "<li><a class = 'nav-right' title='Welcome' href='UserInfo.php'>" . strtoupper ($current_user->first_name) . " " . strtoupper ($current_user->last_name) . "</a></li>";
@@ -362,7 +362,7 @@ function student_year ($grad_year) {
 function teacher_year($start_year, $end_year) {
   ?><tr>
     <td><label for="user_type">Type:</label></td>
-    <td align="left"><input type="text" name="user_type" title="Usrr Type" size="30" maxlength="40" value="Teacher" readonly /></td>
+    <td align="left"><input type="text" name="user_type" title="User Type" size="30" maxlength="40" value="Teacher" readonly /></td>
   </tr>
   <tr>
     <td>Years Taught (Teacher):</td>
@@ -436,6 +436,15 @@ function scroll (){
 	<?php
 }
 
+function do_back_button($destination_page) {
+  ?>
+  <form action="<?php echo $destination_page?>" method="post">
+  <input type="submit" name="back_button" value="Back">
+  </form>
+
+  <?php
+}
+?>
 
 
 
