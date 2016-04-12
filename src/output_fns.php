@@ -152,7 +152,7 @@ if (isset($_POST['admin_edit'])) {
         <td width="200"></td>
       </tr>
 	  <tr>
-		<td><label for="attending">First Name:</label></td>
+		<td><label for="attending">Attending Reunion:</label></td>
 		  <?php
 		  if ($current_user->attending === "yes") {
 			  echo "<td align='left'><input type='radio' name='attending'  title='Attending' value='no'/>No";
