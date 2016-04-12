@@ -74,6 +74,7 @@ if (isset($_POST['search_performed']) && !search_empty()) {
             <td>
               <form action="delete_action.php" method="post">
                 <input type="hidden" name="user_id" value="<?php echo $a_row['user_id']?>">
+                <input type="hidden" name="delete_type" value="teacher">
                 <input type="submit" name="delete_user" value="Delete" onclick="return confirm('Are you sure you want to delete this user?');">
               </form>
             </td>

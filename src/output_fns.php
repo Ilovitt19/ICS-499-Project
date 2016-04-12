@@ -423,6 +423,15 @@ function scroll (){
 	<?php
 }
 
+function do_back_button($destination_page) {
+  ?>
+  <form action="<?php echo $destination_page?>" method="post">
+  <input type="submit" name="back_button" value="Back">
+  </form>
+
+  <?php
+}
+?>
 
 
 
