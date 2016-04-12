@@ -45,7 +45,6 @@ $students = "CREATE TABLE students(
 	zip int(5),
 	notes varchar(50),
 	photo varchar (30),
-	donation double(10),
 	attending varchar(4) DEFAULT 'no')";
 
 if ($mysql_connection->query($students) === TRUE) {
@@ -74,7 +73,6 @@ $teachers = "CREATE TABLE teachers(
 	zip int(5),
 	notes varchar(50),
 	photo varchar(30),
-	donation double(10),
 	attending varchar(4) DEFAULT 'no')";
 
 
