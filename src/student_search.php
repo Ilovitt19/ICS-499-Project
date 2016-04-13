@@ -9,28 +9,40 @@ $admin = unserialize($_SESSION['current_user'])->admin;
 ?>
   <html>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="forms.css">
   <body>
   <?php if (isset($error)) {
     echo "<p>$error</p>";
   }
   ?>
-  <br>
-  <br>
-  <form method="post" action="student_search.php">
-    <fieldset>
-      <p>
-        <label for="first_name">First Name: </label>
-        <input type="text" name="first_name" id="first_name">
-        <label for="last_name">Last Name: </label>
-        <input type="text" name="last_name" id="last_name">
-        <label for="grad_year">Grad Year: </label>
-        <input type="number" name="grad_year" id="grad_year" min = "1991" max="2015">
-        <input type="hidden" name="search_performed" value="yes">
-
-        <input type="submit" name="search" value="Search">
-      </p>
-    </fieldset>
-  </form>
+	<div id="wrapper">
+		<section id="right_side">
+			<form id="generalform" class="container" method="post" action="student_search.php">
+				<h3>Enter in Criteria</h3>
+				<div class="field">
+					<label for="first_name">First Name:</label>
+					<input type="text" class="input" id="first_name" name="first_name" maxlength="20"/>
+				</div>
+				<div class="field">
+					<label for="last_name">Last Name:</label>
+  					<input type="text" class="input" id="last_name" name="last_name" maxlength="20"/>
+				</div>
+				<div class="field">
+					<label for="grad_year">Grad Year:</label>
+  					<input type="number" class="input" name="grad_year" id="grad_year" min="1991" max="2015">
+  					<input type="hidden" name="search_performed" value="yes">
+				</div>
+				<input type="submit" name="search" id="search" class="button" value="Search"/>
+			</form>
+			</br>
+			<form id="generalform" class="container" method="" action="">
+				<h3>Modify Member Here</h3>
+				<div class="field">
+					<input type="submit" name="modify" id="modify" class="button" value="Modify"/>
+				</div>
+			</form>
+		</section>
+	</div>
 
   <?php
   if (isset($_POST['search_performed']) && !search_empty()) {
@@ -57,7 +69,7 @@ $admin = unserialize($_SESSION['current_user'])->admin;
               <td>
                 <form action="view_user.php" method="post">
                   <input type="hidden" name="user_id" value="<?php echo $a_row['user_id']?>">
-                  <input type="submit" name="view_user" value="View">
+                  <input type="submit" name="view_user" class="button" value="View">
                 </form>
               </td>
               <?php
@@ -66,14 +78,14 @@ $admin = unserialize($_SESSION['current_user'])->admin;
                 <td>
                   <form action="UserInfo.php" method="post">
                     <input type="hidden" name="user_id" value="<?php echo $a_row['user_id']?>">
-                    <input type="submit" name="admin_edit" value="Edit">
+                    <input type="submit" name="admin_edit" class="button" value="Edit">
                   </form>
                 </td>
                 <td>
                   <form action="delete_action.php" method="post">
                     <input type="hidden" name="user_id" value="<?php echo $a_row['user_id']?>">
                     <input type="hidden" name="delete_type" value="student">
-                    <input type="submit" name="delete_user" value="Delete" onclick="return confirm('Are you sure you want to delete this user?');">
+                    <input type="submit" name="delete_user" class="button" value="Delete" onclick="return confirm('Are you sure you want to delete this user?');">
                   </form>
                 </td>
               <?php
