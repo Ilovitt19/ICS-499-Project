@@ -17,7 +17,7 @@ $admin = unserialize($_SESSION['current_user'])->admin;
 ?>
 	<div id="wrapper">
 		<section id="right_side">
-			<form id="generalform" class="container" method="post" action="student_search_page.php">
+			<form id="generalform" class="container" method="post" action="teacher_search_page.php">
 				<h3>Enter in Criteria</h3>
 				<div class="field">
 					<label for="first_name">First Name:</label>
@@ -43,24 +43,6 @@ $admin = unserialize($_SESSION['current_user'])->admin;
 			</form>
 		</section>
 	</div>
-
-<!--<br>
-<br>
-<form method="post" action="teacher_search.php">
-  <fieldset>
-    <p>
-      <label for="first_name">First Name: </label>
-      <input type="text" name="first_name" id="first_name">
-      <label for="last_name">Last Name: </label>
-      <input type="text" name="last_name" id="last_name">
-      <label for="teach_year">Taught During Year: </label>
-      <input type="number" name="teach_year" id="teach_year" min = "1991" max="2015">
-      <input type="hidden" name="search_performed" value="yes">
-
-      <input type="submit" name="search" value="Search">
-    </p>
-  </fieldset>
-</form>-->
 
 <?php
 if (isset($_POST['search_performed']) && !search_empty()) {
