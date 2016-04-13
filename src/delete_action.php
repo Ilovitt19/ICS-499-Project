@@ -16,9 +16,9 @@ if (isset($_SERVER['HTTP_REFERER'])) {
     echo "There was an error in deleting the user.";
   }
   if ($_POST['delete_type'] == 'student') {
-    do_back_button("student_search.php", "Back To Search");
+    do_back_button("student_search_page.php", "Back To Search");
   } else {
-    do_back_button('teacher_search.php', "Back To Search");
+    do_back_button('teacher_search_page.php', "Back To Search");
   }
   $conn->close();
 } else {

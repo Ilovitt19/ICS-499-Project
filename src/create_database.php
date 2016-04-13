@@ -120,7 +120,7 @@ load_students_data();
 load_teachers_data();
 
 echo "<br>";
-    echo "<a href='admin.php'>Return to Admin</a>";
+    echo "<a href='admin_page.php'>Return to Admin</a>";
 
 $mysql_connection->close();
 

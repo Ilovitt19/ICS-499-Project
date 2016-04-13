@@ -1,7 +1,7 @@
 <?php
 
 include ('reunion_fns.php');
-include ('LoggedInUser.php');
+include('logged_in_user_class.php');
 do_html_header("Find People","Select Search Type");
 if (login_check()) {
 ?>
@@ -17,8 +17,8 @@ if (login_check()) {
 			<form id="generalform" class="container">
 			<h3>Choose Search</h3>
 				<ul>
-					<li><a class="a" href="student_search.php">Students</a><li>
-					<li><a class="a" href="teacher_search.php">Teachers</a><li>
+					<li><a class="a" href="student_search_page.php">Students</a><li>
+					<li><a class="a" href="teacher_search_page.php">Teachers</a><li>
 				<ul>
 			</form>
 		<section>	

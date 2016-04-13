@@ -1,6 +1,6 @@
 <?php
 require_once ('reunion_fns.php');
-include ('LoggedInUser.php');
+include('logged_in_user_class.php');
 $conn = db_connect();
 
 do_html_header("Error"," Error");
@@ -15,10 +15,10 @@ if (isset($_POST['username']) && isset($_POST['passwd'])) {
 		$_SESSION['current_user'] = serialize($current_user);
 		session_commit();
 		if ($current_user->admin === "yes") {
-			header('Location: admin.php');
+			header('Location: admin_page.php');
 			exit();
 		} else {
-			header('Location: welcome.php');
+			header('Location: welcome_page.php');
 			exit();
 		}
 

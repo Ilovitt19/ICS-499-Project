@@ -1,6 +1,6 @@
 <?php
 include ('reunion_fns.php');
-include ('LoggedInUser.php');
+include('logged_in_user_class.php');
 
 if (isset($_SERVER['HTTP_REFERER'])) {
   $new_username = $_POST['new_username'];
@@ -14,7 +14,7 @@ if (isset($_SERVER['HTTP_REFERER'])) {
   if ($result->num_rows != 0) {
     ?>
     <div style="display:none;">
-      <form id="username_fail" method="POST" action="create_user.php">
+      <form id="username_fail" method="POST" action="create_user_page.php">
         <input type="hidden" name="new_username" value=" <?php echo $new_username; ?>" />
         <input type="hidden" name="new_user_type" value="<?php echo $new_user_type; ?>" />
         <input type="hidden" name="new_admin" value="<?php echo $new_admin; ?>" />
@@ -30,7 +30,7 @@ if (isset($_SERVER['HTTP_REFERER'])) {
   } elseif ($new_password != $confirm_new_password) {
     ?>
     <div style="display:none;">
-      <form id="password_fail" method="POST" action="create_user.php">
+      <form id="password_fail" method="POST" action="create_user_page.php">
         <input type="hidden" name="new_username" value=" <?php echo $new_username; ?>" />
         <input type="hidden" name="new_user_type" value="<?php echo $new_user_type; ?>" />
         <input type="hidden" name="new_admin" value="<?php echo $new_admin; ?>" />

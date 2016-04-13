@@ -17,24 +17,24 @@ function do_html_header($title = '',$section = '')
     <?php
     if (isset($_SESSION['current_user'])) {
       $current_user = unserialize($_SESSION['current_user']);
-      echo "<li><a class = 'nav' title='Welcome' href='welcome.php'>HOME</a></li>";
+      echo "<li><a class = 'nav' title='Welcome' href='welcome_page.php'>HOME</a></li>";
     } else {
       echo "<li><a class = 'nav' title='Home' href='index.php'>HOME</a></li>";
     }
 
   if (isset($current_user)) {
-	echo "<li><a class='nav' title='Find People' href='search_select.php'>FIND PEOPLE</a></li>";
-    echo "<li><a class = 'nav-right' title='Logout' href='logout.php'>LOGOUT</a></li>";
+	echo "<li><a class='nav' title='Find People' href='search_select_page.php'>FIND PEOPLE</a></li>";
+    echo "<li><a class = 'nav-right' title='Logout' href='logout_page.php'>LOGOUT</a></li>";
 	  if (isset($current_user) && isset($current_user->first_name)){
-		  echo "<li><a class = 'nav-right' title='Welcome' href='UserInfo.php'>" . strtoupper ($current_user->first_name) . " " . strtoupper ($current_user->last_name) . "</a></li>";
+		  echo "<li><a class = 'nav-right' title='Welcome' href='view_user_page.php'>" . strtoupper ($current_user->first_name) . " " . strtoupper ($current_user->last_name) . "</a></li>";
 	  } else {
-		  echo "<li><a class = 'nav-right' title='Welcome' href='UserInfo.php'>MY PROFILE</a></li>";
+		  echo "<li><a class = 'nav-right' title='Welcome' href='view_user_page.php'>MY PROFILE</a></li>";
 	  }
   } else {
-    echo "<li><a class = 'nav-right' title='Login' href='login.php'>LOGIN</a></li>";
+    echo "<li><a class = 'nav-right' title='Login' href='login_page.php'>LOGIN</a></li>";
   }
   if (isset($current_user) && $current_user->admin == 'yes') {
-	  echo "<li><a class = 'nav-right' title='Admin' href='admin.php'>ADMIN</a></li>";
+	  echo "<li><a class = 'nav-right' title='Admin' href='admin_page.php'>ADMIN</a></li>";
   }
       ?>
     </ul>
@@ -117,10 +117,10 @@ function display_login_form() {
 }
 
 function create_database() {
-  include_once('CreateDatabase.php');
+  include_once('create_database.php');
 }
 
-function do_info_form(){
+function do_edit_info_form(){
   if (isset($_POST['admin_edit'])) {
       $username = get_username_by_id($_POST['user_id']);
       $current_user = new LoggedInUser($username);
@@ -132,11 +132,11 @@ function do_info_form(){
 	<div id="ProfilePage">
 	<div id="LeftCol">
 		<div id="Photo">
-			<?php display_photo($current_user); ?>
+			<?php display_photo($current_user, "edit_mode"); ?>
 		</div>
 	</div>
   <div id="infoForm">
-    <form action="submit.php" method="post">
+    <form action="update_info_action.php" method="post">
 <?php
 if (isset($_POST['admin_edit'])) {
   echo "<input type = \"hidden\" name='admin_edit' value='yes'>";
@@ -268,8 +268,8 @@ if (isset($_POST['admin_edit'])) {
         value="<?php echo !empty($current_user->zip) ? $current_user->zip : "" ?>"/></td>
      </tr>
      <?php
-        $current_user->user_type == 'student' ? student_year($current_user->grad_year)
-          : teacher_year($current_user->start_year, $current_user->end_year);
+        $current_user->user_type == 'student' ? edit_student_year($current_user->grad_year)
+          : edit_teacher_year($current_user->start_year, $current_user->end_year);
      ?>
 
      <tr>
@@ -310,7 +310,7 @@ if (isset($_POST['admin_edit'])) {
 <?php
 }
 
-function student_year ($grad_year) {
+function edit_student_year ($grad_year) {
   ?>
     <tr>
       <td><label for="user_type">Type:</label></td>
@@ -356,7 +356,7 @@ function student_year ($grad_year) {
 <?php
 }
 
-function teacher_year($start_year, $end_year) {
+function edit_teacher_year($start_year, $end_year) {
   ?><tr>
     <td><label for="user_type">Type:</label></td>
     <td align="left"><input type="text" name="user_type" title="User Type" size="30" maxlength="40" value="Teacher" readonly /></td>
@@ -371,7 +371,7 @@ function teacher_year($start_year, $end_year) {
 
 function upload_photo(){
 	?>
-	<form action="upload.php" method="post" enctype="multipart/form-data">
+	<form action="upload_photo_action.php" method="post" enctype="multipart/form-data">
 		Select profile picture to upload:<br>
 		<input type="file" name="fileToUpload" id="fileToUpload"><br>
 		<input type="submit" value="Upload Image" name="submit"><br>
@@ -385,13 +385,13 @@ if (isset($_POST['admin_edit'])) {
 	<?php
 }
 
-function display_photo($current_user) {
+function display_photo($current_user, $mode) {
 	if ($current_user->photo == !NULL) {
 		echo "<img class='photo' src='$current_user->photo' align='middle'><br>";
 	} else {
 		echo "<img class='photo' src='images/Profile_0.jpg' align='middle'><br>";
 	}
-		upload_photo();
+	if ($mode == "edit_mode") {upload_photo();}
 }
 
 
@@ -503,8 +503,141 @@ function do_user_create_form() {
 
   <?php
 }
-?>
 
+function do_view_info_form(){
+  if (isset($_POST['view_user']) || isset($_POST['admin_view'])) {
+      $username = get_username_by_id($_POST['user_id']);
+      $current_user = new LoggedInUser($username);
+    } else {
+      $current_user = unserialize($_SESSION['current_user']);
+    }
 
+  ?>
+	<div id="ProfilePage">
+	<div id="LeftCol">
+		<div id="Photo">
+			<?php display_photo($current_user, "view_mode"); ?>
+		</div>
+	</div>
+  <div id="infoForm">
+    <form action="update_info_action.php" method="post">
+   <table>
+      <tr>
+        <td width="150"></td>
+        <td width="200"></td>
+      </tr>
+	  <tr>
+		<td><label>Attending Reunion:</label></td>
+		<td align='left'><input type='text' name='attending'  title='Attending' value='<?php echo $current_user->attending; ?>' readonly/></td>
+	  </tr>
+      <tr>
+        <td><label>First Name:</label></td>
+        <td align="left"><input type="text" name="first_name"  title="First Name" size="30" maxlength="40" value="<?php echo $current_user->first_name; ?>" readonly/></td>
+      </tr>
+      <tr>
+        <td><label>Last Name:</label></td>
+        <td align="left"><input type="text" name="last_name" title="Last Name" size="30" maxlength="40" value="<?php echo $current_user->last_name; ?>" readonly/></td>
+      </tr>
+      <tr>
+        <td><label>Nickname:</label></td>
+        <td align="left"><input type="text" name="nickname" title=" Nickname" size="30" maxlength="40" value="<?php echo$current_user->nickname; ?>" readonly/></td>
+      </tr>
+	   <tr>
+       <td><label>Email:</label></td>
+       <td align="left"><input type="text" name="email" title="Email" size="30" maxlength="40" value="<?php echo$current_user->email; ?>" readonly/></td>
+     </tr>
+     <tr>
+       <td><label>Phone:</label></td>
+       <td align="left"><input type="text" name="phone" title="phone" size="30" maxlength="40" value="<?php echo $current_user->phone; ?>" readonly/></td>
+     </tr>
+     <tr>
+       <td><label>Street Address:</label></td>
+       <td align="left"><input type="text" name="street" title="Title" size="30" maxlength="40" value="<?php echo $current_user->street; ?>" readonly/></td>
+     </tr>
+     <tr>
+       <td><label>City:</label></td>
+       <td align="left"><input type="text" name="city" title="City" size="30" maxlength="40" value="<?php echo $current_user->city; ?>" readonly/></td>
+     </tr>
+     <tr>
+       <td><label>State:</label></td>
+       <td align="left">
+         <input type="text" name="state" title="State" value="<?php echo $current_user->state; ?>" readonly></td>
+     </tr>
+     <tr>
+       <td><label>Zip Code:</label></td>
+       <td align="left"><input type="text" name="zip" title="Zip" size="5" maxlength="5"
+        value="<?php echo !empty($current_user->zip) ? $current_user->zip : "" ?>" readonly/></td>
+     </tr>
+     <?php
+        $current_user->user_type == 'student' ? view_student_year($current_user->grad_year)
+          : view_teacher_year($current_user->start_year, $current_user->end_year);
+     ?>
 
+     <tr>
+       <td><label>Father's Name:</label></td>
+       <td align="left"><input type="text" name="father_name" title="Fathers Name" size="30" maxlength="40" value="<?php echo $current_user->father_name; ?>" readonly/></td>
+     </tr>
+     <tr>
+       <td><label>Mother's Name:</label></td>
+       <td align="left"><input type="text" name="mother_name" title="Mothers Name" size="30" maxlength="40" value="<?php echo$current_user->mother_name; ?>" readonly/></td>
+     </tr>
+     <tr>
+     <tr>
+       <td><label>Family Details:</label></td>
+       <td align="left"><input type="text" name="family_details" title="Family Details" size="30" maxlength="40" value="<?php echo $current_user->family_details; ?>" readonly/></td>
+     </tr>
+     <tr>
+       <td><label>Work Experience:</label></td>
+       <td align="left"><textarea name="work_experience" title="Work Experience" rows="3" cols="30" maxlength="200" readonly><?php echo $current_user->work_experience; ?></textarea></td>
+     </tr>
+     <tr>
+       <td><label>Awards:</label></td>
+       <td align="left"><textarea name="awards" title="Awards" rows="3" cols="30" maxlength="200" readonly><?php echo $current_user->awards; ?></textarea></td>
+     </tr>
+     <tr>
+       <td><label>Notes:</label></td>
+       <td align="left"><textarea name="notes" title="Notes" rows="3" cols="30" maxlength="200" readonly><?php echo $current_user->notes; ?></textarea></td>
+     </tr>
+    </table>
+    </form>
+  </div>
+	<div style="clear:both"></div>
+	</div>
 
+<?php
+}
+
+function view_teacher_year($start_year, $end_year) {
+  ?><tr>
+    <td><label for="user_type">Type:</label></td>
+    <td align="left"><input type="text" name="user_type" title="User Type" size="30" maxlength="40" value="Teacher" readonly /></td>
+  </tr>
+  <tr>
+    <td>Years Taught (Teacher):</td>
+    <td align="left"><input type="text" name="start_year" title="Start Year" size="4" maxlength="4" width="4" value="<?php echo $start_year; ?>" readonly/> to
+      <input type="text" name="end_year" title="End Year" size="4" maxlength="4" width="4" value="<?php echo $end_year; ?>" readonly/></td>
+  </tr>
+<?php
+}
+
+function view_student_year ($grad_year) {
+  ?>
+    <tr>
+      <td><label for="user_type">Type:</label></td>
+      <td align="left"><input type="text" name="user_type" title="User Typr" size="30" maxlength="40" value="Student" readonly /></td>
+    </tr>
+  <tr>
+   <td><label for="grad_year">Graduation Year (Student):</label></td>
+   <td align="left">
+   <input type="text" name="grad_year" title="Grad Year" value="<?php echo $grad_year; ?>" readonly></td>
+ </tr>
+<?php
+}
+
+function do_edit_button() {
+  ?>
+  <form action="edit_user_page.php" method="post">
+    <input type="submit" name="user_edit" value="Edit Your Info">
+  </form>
+  <?php
+}

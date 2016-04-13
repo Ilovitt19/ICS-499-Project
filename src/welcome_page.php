@@ -3,7 +3,7 @@
  * Welcome.php acts as Home page while user is logged in
  */
 include ('reunion_fns.php');
-include ('LoggedInUser.php');
+include('logged_in_user_class.php');
 
 
 do_html_header("Village High School Reunion","Welcome");

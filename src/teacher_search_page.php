@@ -1,7 +1,7 @@
 <?php
 
 include ('reunion_fns.php');
-include ('LoggedInUser.php');
+include('logged_in_user_class.php');
 $conn = db_connect();
 do_html_header("Find People","Teacher Search");
 if (login_check()) {
@@ -17,7 +17,7 @@ $admin = unserialize($_SESSION['current_user'])->admin;
 ?>
 	<div id="wrapper">
 		<section id="right_side">
-			<form id="generalform" class="container" method="post" action="student_search.php">
+			<form id="generalform" class="container" method="post" action="student_search_page.php">
 				<h3>Enter in Criteria</h3>
 				<div class="field">
 					<label for="first_name">First Name:</label>
@@ -35,7 +35,7 @@ $admin = unserialize($_SESSION['current_user'])->admin;
 				<input type="submit" name="search" id="search" class="button" value="Search"/>
 			</form>
 			</br>
-			<form id="generalform" class="container" method="post" action="create_user.php">
+			<form id="generalform" class="container" method="post" action="create_user_page.php">
         <h3>Create A New User Here</h3>
         <div class="field">
           <input type="submit" name="create_user" id="create_user" class="button" value="Create User"/>
@@ -87,7 +87,7 @@ if (isset($_POST['search_performed']) && !search_empty()) {
           <td><?php echo $a_row['start_year']; ?></td>
           <td><?php echo $a_row['end_year']; ?></td>
           <td>
-            <form action="view_user.php" method="post">
+            <form action="view_user_page.php" method="post">
               <input type="hidden" name="user_id" value="<?php echo $a_row['user_id']?>">
               <input type="submit" name="view_user" class="button" value="View">
             </form>
@@ -96,7 +96,7 @@ if (isset($_POST['search_performed']) && !search_empty()) {
           if ($admin == 'yes') {
             ?>
             <td>
-              <form action="UserInfo.php" method="post">
+              <form action="edit_user_page.php" method="post">
                 <input type="hidden" name="user_id" value="<?php echo $a_row['user_id']?>">
                 <input type="submit" name="admin_edit" class="button" value="Edit">
               </form>
