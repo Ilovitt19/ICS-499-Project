@@ -11,12 +11,25 @@ include ('LoggedInUser.php');
 do_html_header("Find People","Select Search Type");
 if (login_check()) {
 ?>
-  <form action="student_search.php" method="post">
-    <input type="submit" name="search_student" value="Search For Students">
-  </form>
-  <form action="teacher_search.php" method="post">
-    <input type="submit" name="admin_search" value="Search For Teachers">
-  </form>
+<html>
+	<link rel="stylesheet" href="forms.css">
+	<link rel="stylesheet" href="list.css">
+<body>
+	<div id="wrapper">
+		<aside id="left_side">
+			<img src="images/search_logo.png"/>
+		</aside>
+		<section id="right_side">
+			<form id="generalform" class="container">
+			<h3>Choose Search</h3>
+				<ul>
+					<li><a class="a" href="student_search.php">Students</a><li>
+					<li><a class="a" href="teacher_search.php">Teachers</a><li>
+				<ul>
+			</form>
+		<section>	
+	</div>
+</body>
 
 <?php
 } else {
