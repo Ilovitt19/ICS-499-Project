@@ -3,7 +3,7 @@
  * This file contains functions and code for:
  *  - Generating reports
  */
-include ('db_fns.php');
+include_once ('db_fns.php');
 /*
  * This function takes in the year and displays all of the students with names
  */
