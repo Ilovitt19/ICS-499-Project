@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: Ian
- * Date: 4/10/2016
- * Time: 5:27 PM
- */
 
 include ('reunion_fns.php');
 include ('LoggedInUser.php');

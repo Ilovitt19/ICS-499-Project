@@ -9,7 +9,7 @@ do_html_header("Admin","Admin");
 // add functions for logged in admin user
 
 
-if (isset($_SESSION['current_user'])) {
+if (login_check()) {
 	$current_user = unserialize($_SESSION['current_user']);
 	if ($current_user->admin == 'yes') {
 		// add functions for logged in admin user

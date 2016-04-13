@@ -35,10 +35,10 @@ $admin = unserialize($_SESSION['current_user'])->admin;
 				<input type="submit" name="search" id="search" class="button" value="Search"/>
 			</form>
 			</br>
-			<form id="generalform" class="container" method="" action="">
-				<h3>Modify Member Here</h3>
+			<form id="generalform" class="container" method="post" action="create_user.php">
+				<h3>Create A New User Here</h3>
 				<div class="field">
-					<input type="submit" name="modify" id="modify" class="button" value="Modify"/>
+					<input type="submit" name="create_user" id="create_user" class="button" value="Create User"/>
 				</div>
 			</form>
 		</section>

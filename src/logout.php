@@ -2,6 +2,7 @@
 
 // include function files for this application
 require_once('reunion_fns.php');
+include ('LoggedInUser.php');
 if (isset($_SESSION['current_user'])) {
   $old_user = $_SESSION['current_user'];  // store  to test if they *were* logged in
   clear_user_session_data();

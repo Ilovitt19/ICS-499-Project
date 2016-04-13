@@ -22,9 +22,6 @@ function do_html_header($title = '',$section = '')
       echo "<li><a class = 'nav' title='Home' href='index.php'>HOME</a></li>";
     }
 
-	  ?>
-    <?php
-
   if (isset($current_user)) {
 	echo "<li><a class='nav' title='Find People' href='search_select.php'>FIND PEOPLE</a></li>";
     echo "<li><a class = 'nav-right' title='Logout' href='logout.php'>LOGOUT</a></li>";
@@ -152,7 +149,7 @@ if (isset($_POST['admin_edit'])) {
         <td width="200"></td>
       </tr>
 	  <tr>
-		<td><label for="attending">Attending Reunion:</label></td>
+		<td><label>Attending Reunion:</label></td>
 		  <?php
 		  if ($current_user->attending === "yes") {
 			  echo "<td align='left'><input type='radio' name='attending'  title='Attending' value='no'/>No";
@@ -161,39 +158,39 @@ if (isset($_POST['admin_edit'])) {
 			  echo "<td align='left'><input type='radio' name='attending'  title='Attending' value='no' checked/>No";
 			  echo "<input type='radio' name='attending' value='yes'/>Yes";
 		  }
+		  echo "<td>"
 		  ?>
-		</td>
 	  </tr>
       <tr>
-        <td><label for="first_name">First Name:</label></td>
+        <td><label>First Name:</label></td>
         <td align="left"><input type="text" name="first_name"  title="First Name" size="30" maxlength="40" value="<?php echo $current_user->first_name; ?>" required/></td>
       </tr>
       <tr>
-        <td><label for="last_name">Last Name:</label></td>
+        <td><label>Last Name:</label></td>
         <td align="left"><input type="text" name="last_name" title="Last Name" size="30" maxlength="40" value="<?php echo $current_user->last_name; ?>" required/></td>
       </tr>
       <tr>
-        <td><label for="nickname">Nickname:</label></td>
+        <td><label>Nickname:</label></td>
         <td align="left"><input type="text" name="nickname" title=" Nickname" size="30" maxlength="40" value="<?php echo$current_user->nickname; ?>" /></td>
       </tr>
 	   <tr>
-       <td><label for="email">Email:</label></td>
+       <td><label>Email:</label></td>
        <td align="left"><input type="text" name="email" title="Email" size="30" maxlength="40" value="<?php echo$current_user->email; ?>" required/></td>
      </tr>
      <tr>
-       <td><label for="phone">Phone:</label></td>
+       <td><label>Phone:</label></td>
        <td align="left"><input type="text" name="phone" title="phone" size="30" maxlength="40" value="<?php echo $current_user->phone; ?>" /></td>
      </tr>
      <tr>
-       <td><label for="street">Street Address:</label></td>
+       <td><label>Street Address:</label></td>
        <td align="left"><input type="text" name="street" title="Title" size="30" maxlength="40" value="<?php echo $current_user->street; ?>" /></td>
      </tr>
      <tr>
-       <td><label for="city">City:</label></td>
+       <td><label>City:</label></td>
        <td align="left"><input type="text" name="city" title="City" size="30" maxlength="40" value="<?php echo $current_user->city; ?>" /></td>
      </tr>
      <tr>
-       <td><label for="state">State:</label></td>
+       <td><label>State:</label></td>
        <td align="left">
          <select name="state" title="State">
            <option></option>
@@ -266,7 +263,7 @@ if (isset($_POST['admin_edit'])) {
        </td>
      </tr>
      <tr>
-       <td><label for="zip">Zip Code:</label></td>
+       <td><label>Zip Code:</label></td>
        <td align="left"><input type="text" name="zip" title="Zip" size="5" maxlength="5"
         value="<?php echo !empty($current_user->zip) ? $current_user->zip : "" ?>"/></td>
      </tr>
@@ -276,28 +273,28 @@ if (isset($_POST['admin_edit'])) {
      ?>
 
      <tr>
-       <td><label for="father_name">Father's Name:</label></td>
+       <td><label>Father's Name:</label></td>
        <td align="left"><input type="text" name="father_name" title="Fathers Name" size="30" maxlength="40" value="<?php echo $current_user->father_name; ?>"/></td>
      </tr>
      <tr>
-       <td><label for="mother_name">Mother's Name:</label></td>
+       <td><label>Mother's Name:</label></td>
        <td align="left"><input type="text" name="mother_name" title="Mothers Name" size="30" maxlength="40" value="<?php echo$current_user->mother_name; ?>"/></td>
      </tr>
      <tr>
      <tr>
-       <td><label for="family_details">Family Details:</label></td>
+       <td><label>Family Details:</label></td>
        <td align="left"><input type="text" name="family_details" title="Family Details" size="30" maxlength="40" value="<?php echo $current_user->family_details; ?>"/></td>
      </tr>
      <tr>
-       <td><label for="work_experience">Work Experience:</label></td>
+       <td><label>Work Experience:</label></td>
        <td align="left"><textarea name="work_experience" title="Work Experience" rows="3" cols="30" maxlength="200"><?php echo $current_user->work_experience; ?></textarea></td>
      </tr>
      <tr>
-       <td><label for="awards">Awards:</label></td>
+       <td><label>Awards:</label></td>
        <td align="left"><textarea name="awards" title="Awards" rows="3" cols="30" maxlength="200"><?php echo $current_user->awards; ?></textarea></td>
      </tr>
      <tr>
-       <td><label for="notes">Notes:</label></td>
+       <td><label>Notes:</label></td>
        <td align="left"><textarea name="notes" title="Notes" rows="3" cols="30" maxlength="200" ><?php echo $current_user->notes; ?></textarea></td>
      </tr>
      <tr>
@@ -436,11 +433,73 @@ function scroll (){
 	<?php
 }
 
-function do_back_button($destination_page) {
+function do_back_button($destination_page, $button_title) {
   ?>
   <form action="<?php echo $destination_page?>" method="post">
-  <input type="submit" name="back_button" value="Back">
+  <input type="submit" name="back_button" value="<?php echo $button_title?>">
   </form>
+
+  <?php
+}
+
+function do_user_create_form() {
+  ?>
+
+  <form action="create_action.php" method="post" id="info">
+     <?php
+      if (isset($_POST['username_error'])) {
+        echo "<h3>Error: Username already exists!</h3>";
+      } elseif (isset($_POST['password_error'])) {
+        echo "<h3>Error: Passwords do not match</h3>";
+      }
+     ?>
+     <table>
+     <tr>
+        <td><label>Username:</label></td>
+        <td align="left"><input type="text" name="new_username" size="30" maxlength="40" value="<?php echo isset($_POST['new_username']) ? $_POST['new_username'] : ""; ?>" required/></td>
+      </tr>
+      <tr>
+        <td><label>Password:</label></td>
+        <td align="left"><input type="password" name="new_password" size="30" maxlength="40" value="<?php echo isset($_POST['new_password']) ? $_POST['new_password'] : ""; ?>" required/></td>
+      </tr>
+      <tr>
+        <td><label>Confirm Password:</label></td>
+        <td align="left"><input type="password" name="confirm_new_password" size="30" maxlength="40" value="<?php echo isset($_POST['confirm_new_password']) ? $_POST['confirm_new_password'] : ""; ?>" required/></td>
+      </tr>
+	   <tr>
+       <td><label>User Type:</label></td>
+       <?php
+		  if (isset($_POST['new_user_type']) && $_POST['new_user_type'] == 'student') {
+			  echo "<td align='left'><input type='radio' name='new_user_type' value='teacher'/> Teacher  ";
+			  echo "<br>";
+			  echo "<input type='radio' name='new_user_type' value='student' checked/> Student  ";
+		  } else {
+			  echo "<td align='left'><input type='radio' name='new_user_type' value='teacher' checked/> Teacher  ";
+			  echo "<br>";
+			  echo "<input type='radio' name='new_user_type' value='student'/> Student  ";
+		  }
+		  echo "<td>"
+		  ?>
+     </tr>
+     <tr>
+      <td><label>Admin User:</label></td>
+      <?php
+		  if (isset($_POST['new_admin']) && $_POST['new_admin'] == 'yes') {
+			  echo "<td align='left'><input type='radio' name='new_admin' value='no'/> No  ";
+			  echo "<br>";
+			  echo "<input type='radio' name='new_admin' value='yes' checked/> Yes  ";
+		  } else {
+			  echo "<td align='left'><input type='radio' name='new_admin' value='no' checked/> No  ";
+			  echo "<br>";
+			  echo "<input type='radio' name='new_admin' value='yes'/> Yes  ";
+		  }
+		  echo "<td>"
+		  ?>
+     </tr>
+     </table>
+     <input type="submit" name="submit" value="Create">
+  </form>
+
 
   <?php
 }

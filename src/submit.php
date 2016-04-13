@@ -64,7 +64,7 @@ if (!isset($_POST['admin_edit'])) {
   unset($_SESSION['current_user']);
   $updated_user = new LoggedInUser($username);
   $_SESSION['current_user'] = serialize($updated_user);
-  do_back_button("UserInfo.php");
+  do_back_button("UserInfo.php", "Back To Edit");
 } else {
   ?>
   <form action="UserInfo.php" method="post">
