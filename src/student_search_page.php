@@ -16,7 +16,7 @@ $admin = unserialize($_SESSION['current_user'])->admin;
   }
   ?>
 	<div id="wrapper">
-		<section id="right_side">
+		<section id="left_side">
 			<form id="generalform" class="container" method="post" action="student_search_page.php">
 				<h3>Enter in Criteria</h3>
 				<div class="field">
@@ -35,18 +35,12 @@ $admin = unserialize($_SESSION['current_user'])->admin;
 				<input type="submit" name="search" id="search" class="button" value="Search"/>
 			</form>
 			</br>
-      <?php
-      if ($admin == 'yes') {
-        ?>
-        <form id="generalform" class="container" method="post" action="create_user_page.php">
-          <h3>Create A New User Here</h3>
-          <div class="field">
-            <input type="submit" name="create_user" id="create_user" class="button" value="Create User"/>
-          </div>
-        </form>
-        <?php
-      }
-      ?>
+			<form id="generalform" class="container" method="post" action="create_user_page.php">
+				<h3>Create A New User Here</h3>
+				<div class="field">
+					<input type="submit" name="create_user" id="create_user" class="button" value="Create User"/>
+				</div>
+			</form>
 		</section>
 	</div>
 
@@ -58,47 +52,52 @@ $admin = unserialize($_SESSION['current_user'])->admin;
       } else {
         foreach ($result_list as $a_row) {
           ?>
-          <table>
-            <tr>
-              <th>Last Name </th>
-              <th>First Name </th>
-              <th>Grad Year</th>
-              <th></th>
-              <?php
-              if ($admin == 'yes') echo "<th></th><th></th>"
-              ?>
-            </tr>
-            <tr>
-              <td><?php echo $a_row['last_name']; ?></td>
-              <td><?php echo $a_row['first_name']; ?></td>
-              <td><?php echo $a_row['grad_year']; ?></td>
-              <td>
-                <form action="view_user_page.php" method="post">
-                  <input type="hidden" name="user_id" value="<?php echo $a_row['user_id']?>">
-                  <input type="submit" name="view_user" class="button" value="View">
-                </form>
-              </td>
-              <?php
-              if ($admin == 'yes') {
-                ?>
-                <td>
-                  <form action="edit_user_page.php" method="post">
-                    <input type="hidden" name="user_id" value="<?php echo $a_row['user_id']?>">
-                    <input type="submit" name="admin_edit" class="button" value="Edit">
-                  </form>
-                </td>
-                <td>
-                  <form action="delete_action.php" method="post">
-                    <input type="hidden" name="user_id" value="<?php echo $a_row['user_id']?>">
-                    <input type="hidden" name="delete_type" value="student">
-                    <input type="submit" name="delete_user" class="button" value="Delete" onclick="return confirm('Are you sure you want to delete this user?');">
-                  </form>
-                </td>
-              <?php
-              }
-              ?>
-            </tr>
-          </table>
+		  <div id="wrapper">
+			  <section id="right_side">
+			  
+			  <table>
+				<tr>
+				  <th>Last Name </th>
+				  <th>First Name </th>
+				  <th>Grad Year</th>
+				  <th></th>
+				  <?php
+				  if ($admin == 'yes') echo "<th></th><th></th>"
+				  ?>
+				</tr>
+				<tr>
+				  <td><?php echo $a_row['last_name']; ?></td>
+				  <td><?php echo $a_row['first_name']; ?></td>
+				  <td><?php echo $a_row['grad_year']; ?></td>
+				  <td>
+					<form action="view_user_page.php" method="post">
+					  <input type="hidden" name="user_id" value="<?php echo $a_row['user_id']?>">
+					  <input type="submit" name="view_user" class="button" value="View">
+					</form>
+				  </td>
+				  <?php
+				  if ($admin == 'yes') {
+					?>
+					<td>
+					  <form action="edit_user_page.php" method="post">
+						<input type="hidden" name="user_id" value="<?php echo $a_row['user_id']?>">
+						<input type="submit" name="admin_edit" class="button" value="Edit">
+					  </form>
+					</td>
+					<td>
+					  <form action="delete_action.php" method="post">
+						<input type="hidden" name="user_id" value="<?php echo $a_row['user_id']?>">
+						<input type="hidden" name="delete_type" value="student">
+						<input type="submit" name="delete_user" class="button" value="Delete" onclick="return confirm('Are you sure you want to delete this user?');">
+					  </form>
+					</td>
+				  <?php
+				  }
+				  ?>
+				</tr>
+			  </table>
+			  </section>
+		  </div>
         <?php
         }
       }
