@@ -9,6 +9,7 @@ function do_html_header($title = '',$section = '')
   <head>
     <title><?php echo $title; ?></title>
     <link rel="stylesheet" type="text/css" href="style.css"/>
+	<link rel="stylesheet" href="forms.css">
   </head>
   <body>
 	<h1><img src="images/wildcat-logo-small.png" class="imgFlipped" height="80px" width="80px">Village High School Reunion<img src="images/wildcat-logo-small.png" height="80px" width="80px"></h1>
@@ -131,12 +132,16 @@ function do_edit_info_form(){
   ?>
 	<div id="ProfilePage">
 	<div id="LeftCol">
+	
 		<div id="Photo">
+			<form id="generalform" class="container">
 			<?php display_photo($current_user, "edit_mode"); ?>
+			</form>
 		</div>
+	
 	</div>
   <div id="infoForm">
-    <form action="update_info_action.php" method="post">
+    <form id="generalform" class="container" action="update_info_action.php" method="post">
 <?php
 if (isset($_POST['admin_edit'])) {
   echo "<input type = \"hidden\" name='admin_edit' value='yes'>";
@@ -299,7 +304,7 @@ if (isset($_POST['admin_edit'])) {
      </tr>
      <tr>
        <td></td>
-       <td><input type="submit" value="Save"></td>
+       <td><input type="submit" class="button" value="Save"></td>
      </tr>
     </table>
     </form>
@@ -374,7 +379,7 @@ function upload_photo(){
 	<form action="upload_photo_action.php" method="post" enctype="multipart/form-data">
 		Select profile picture to upload:<br>
 		<input type="file" name="fileToUpload" id="fileToUpload"><br>
-		<input type="submit" value="Upload Image" name="submit"><br>
+		<input type="submit" value="Upload Image" class="button" name="submit"><br>
 	<?php
 if (isset($_POST['admin_edit'])) {
   echo "<input type = \"hidden\" name='admin_edit' value='yes'>";
@@ -436,7 +441,7 @@ function scroll (){
 function do_back_button($destination_page, $button_title) {
   ?>
   <form action="<?php echo $destination_page?>" method="post">
-  <input type="submit" name="back_button" value="<?php echo $button_title?>">
+  <input type="submit" class="button" name="back_button" value="<?php echo $button_title?>">
   </form>
 
   <?php
@@ -444,8 +449,8 @@ function do_back_button($destination_page, $button_title) {
 
 function do_user_create_form() {
   ?>
-
-  <form action="create_action.php" method="post" id="info">
+<div id="wrapper">
+  <form id="generalform" class="container" action="create_action.php" method="post" id="info">
      <?php
       if (isset($_POST['username_error'])) {
         echo "<h3>Error: Username already exists!</h3>";
@@ -497,8 +502,9 @@ function do_user_create_form() {
 		  ?>
      </tr>
      </table>
-     <input type="submit" name="submit" value="Create">
+     <input type="submit" name="submit" class="button" value="Create">
   </form>
+</div>
 
 
   <?php
@@ -515,12 +521,15 @@ function do_view_info_form(){
   ?>
 	<div id="ProfilePage">
 	<div id="LeftCol">
+	
 		<div id="Photo">
+		<form id="generalform" class="container">
 			<?php display_photo($current_user, "view_mode"); ?>
+		</form>
 		</div>
 	</div>
   <div id="infoForm">
-    <form action="update_info_action.php" method="post">
+    <form id="generalform" class="container" action="update_info_action.php" method="post">
    <table>
       <tr>
         <td width="150"></td>
@@ -637,7 +646,7 @@ function view_student_year ($grad_year) {
 function do_edit_button() {
   ?>
   <form action="edit_user_page.php" method="post">
-    <input type="submit" name="user_edit" value="Edit Your Info">
+    <input type="submit" name="user_edit" class="button" value="Edit Your Info">
   </form>
   <?php
 }
