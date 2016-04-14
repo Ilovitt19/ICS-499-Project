@@ -190,7 +190,7 @@ function load_teachers_data() {
 }
 function load_user_data() {
 	$conn = db_connect();
-	$sqlDump = file_get_contents('user.sql');
+	$sqlDump = file_get_contents('sql_files/user.sql');
 
 	if (mysqli_multi_query($conn,$sqlDump) === TRUE) {
 		echo "User data entered successfully <br>";
