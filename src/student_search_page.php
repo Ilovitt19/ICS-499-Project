@@ -34,19 +34,13 @@ $admin = unserialize($_SESSION['current_user'])->admin;
 				</div>
 				<input type="submit" name="search" id="search" class="button" value="Search"/>
 			</form>
-			<br>
-      <?php
-      if ($admin == 'yes') {
-        ?>
-        <form id="generalform" class="container" method="post" action="create_user_page.php">
-          <h3>Create A New User Here</h3>
-          <div class="field">
-            <input type="submit" name="create_user" id="create_user" class="button" value="Create User"/>
-          </div>
-        </form>
-        <?php
-      }
-      ?>
+			</br>
+			<form id="generalform" class="container" method="post" action="create_user_page.php">
+				<h3>Create A New User Here</h3>
+				<div class="field">
+					<input type="submit" name="create_user" id="create_user" class="button" value="Create User"/>
+				</div>
+			</form>
 		</section>
 	</div>
 
@@ -55,12 +49,11 @@ $admin = unserialize($_SESSION['current_user'])->admin;
     $result_list = search_for_students($conn);
     if (!isset($result_list)) {
       echo '<p>No results found.</p>';
-      } else {
-        foreach ($result_list as $a_row) {
-          ?>
-		  <div id="wrapper">
-			  <section id="right_side">
-			  
+      } else { ?>
+		  <div class="scrollit">
+		  <section id="right_side">
+        <?php foreach ($result_list as $a_row) {
+          ?>  
 			  <table>
 				<tr>
 				  <th>Last Name </th>
@@ -103,9 +96,11 @@ $admin = unserialize($_SESSION['current_user'])->admin;
 				</tr>
 			  </table>
 			  </section>
-		  </div>
+		 
         <?php
-        }
+        } ?>
+	</div>
+	<?php
       }
     }
   } else {
@@ -129,7 +124,8 @@ function search_for_students($conn) {
 					FROM students
 					WHERE (first_name = ? AND first_name IS NOT NULL)
 					OR (last_name = ? AND last_name IS NOT NULL)
-					OR (grad_year = ? AND grad_year != 0)';
+					OR (grad_year = ? AND grad_year != 0)
+					ORDER BY last_name';
     $stmt = $conn->stmt_init();
     if (!$stmt->prepare($sql)) {
       echo $stmt->error;
