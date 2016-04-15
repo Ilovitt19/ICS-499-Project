@@ -49,9 +49,15 @@ if (isset($_POST['search_performed']) && !search_empty()) {
   $result_list = search_for_teachers($conn);
   if (!isset($result_list)) {
     echo '<p>No results found.</p>';
-  } else {
+  } else { ?>
+	<div class="scrollit">
+	<!--<div id="wrapper">-->
+	  <section id="left_side">
+	<!--<form id="generalform" class="container">-->
+	<?php
     foreach ($result_list as $a_row) {
       ?>
+	  
       <table>
         <tr>
           <th>Last Name </th>
@@ -90,13 +96,19 @@ if (isset($_POST['search_performed']) && !search_empty()) {
                 <input type="submit" name="delete_user" class="button" value="Delete" onclick="return confirm('Are you sure you want to delete this user?');">
               </form>
             </td>
+		
             <?php
           }
           ?>
         </tr>
       </table>
+	 <!-- </form>-->
+	  </section>
+	  <!--</div>-->
       <?php
-    }
+    }?>
+	</div>
+<?php
   }
 }
 } else {
@@ -120,7 +132,8 @@ function search_for_teachers($conn) {
 					FROM teachers
 					WHERE (first_name = ? AND first_name IS NOT NULL)
 					OR (last_name = ? AND last_name IS NOT NULL)
-					OR (start_year <= ? AND end_year >= ? AND start_year != 0)';
+					OR (start_year <= ? AND end_year >= ? AND start_year != 0)
+					ORDER BY last_name';
     $stmt = $conn->stmt_init();
     if (!$stmt->prepare($sql)) {
       echo $stmt->error;
