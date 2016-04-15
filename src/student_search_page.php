@@ -34,13 +34,19 @@ $admin = unserialize($_SESSION['current_user'])->admin;
 				</div>
 				<input type="submit" name="search" id="search" class="button" value="Search"/>
 			</form>
-			</br>
-			<form id="generalform" class="container" method="post" action="create_user_page.php">
-				<h3>Create A New User Here</h3>
-				<div class="field">
-					<input type="submit" name="create_user" id="create_user" class="button" value="Create User"/>
-				</div>
-			</form>
+			<br>
+      <?php
+      if ($admin == 'yes') {
+        ?>
+        <form id="generalform" class="container" method="post" action="create_user_page.php">
+          <h3>Create A New User Here</h3>
+          <div class="field">
+            <input type="submit" name="create_user" id="create_user" class="button" value="Create User"/>
+          </div>
+        </form>
+        <?php
+      }
+      ?>
 		</section>
 	</div>
 
