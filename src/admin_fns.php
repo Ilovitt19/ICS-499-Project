@@ -188,6 +188,7 @@ function export_database()
 
         }
     }
+    $conn->close();
 }
 
 function do_stats_output() {

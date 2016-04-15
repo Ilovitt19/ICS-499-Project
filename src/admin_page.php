@@ -13,7 +13,6 @@ do_html_header("Admin","Admin Reports");
 if (login_check()) {
 	$current_user = unserialize($_SESSION['current_user']);
 	if ($current_user->admin == 'yes') {
-		$conn = db_connect();
 		export_db_button();
 		import_db_button();
 		do_stats_output();
