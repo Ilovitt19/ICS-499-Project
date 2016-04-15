@@ -4,60 +4,101 @@
  *  - Generating reports
  */
 include_once ('db_fns.php');
-/*
- * This function takes in the year and displays all of the students with names
- */
-function numberOfStudents ($year) {
-    $numberOfStudentsSQL= "SELECT * FROM students WHERE grad_year = $year";
-    $result = db_result_to_Array($numberOfStudentsSQL);
-    $numberOfRows = len($result);
-    echo "There are " + $numberOfRows + "students of year " + $year;
-    while($row = $result) { // displaying the actual rows
-        echo $row[first_name] + " " + $row[last_name]; // display the student names
+
+function count_total_teachers() {
+    $conn = db_connect();
+    $sql= "SELECT COUNT(*) AS total FROM teachers";
+    $result = $conn->query($sql);
+    $row = $result->fetch_assoc();
+    $conn->close();
+    return $row['total'];
+}
+
+
+function count_total_students() {
+    $conn = db_connect();
+    $sql= "SELECT COUNT(*) AS total FROM students";
+    $result = $conn->query($sql);
+    $row = $result->fetch_assoc();
+    $conn->close();
+    return $row['total'];
+}
+
+
+function count_donations() {
+    $conn = db_connect();
+    $sql = "SELECT SUM(donation) AS total FROM teachers";
+    $result = $conn->query($sql);
+    $row_one = $result->fetch_assoc();
+    $sql = "SELECT SUM(donation) AS total FROM students";
+    $result= $conn->query($sql);
+    $row_two = $result->fetch_assoc();
+    $conn->close();
+    return $row_one['total'] + $row_two['total'];
+}
+
+
+function count_students_attending() {
+    $conn = db_connect();
+    $sql = "SELECT COUNT(*) AS total FROM students WHERE attending = 'yes'";
+    $result = $conn->query($sql);
+    $row = $result->fetch_assoc();
+    $conn->close();
+    return $row['total'];
+}
+
+
+function count_teachers_attending() {
+    $conn = db_connect();
+    $sql = "SELECT COUNT(*) AS total FROM teachers WHERE attending = 'yes'";
+    $result = $conn->query($sql);
+    $row = $result->fetch_assoc();
+    $conn->close();
+    return $row['total'];
+}
+
+function count_admin_users() {
+    $conn = db_connect();
+    $sql = "SELECT COUNT(*) AS total FROM user WHERE admin = 'yes'";
+    $result = $conn->query($sql);
+    $row = $result->fetch_assoc();
+    $conn->close();
+    return $row['total'];
+}
+
+function count_updated_users() {
+    $conn = db_connect();
+    $sql = "SELECT COUNT(*) AS total FROM teachers WHERE first_name IS NOT NULL ";
+    $result = $conn->query($sql);
+    $row_one = $result->fetch_assoc();
+    $sql = "SELECT COUNT(*) AS total FROM students WHERE first_name IS NOT NULL ";
+    $result= $conn->query($sql);
+    $row_two = $result->fetch_assoc();
+    $conn->close();
+    return $row_one['total'] + $row_two['total'];
+}
+
+function get_class_count_list() {
+    $list = array();
+    $conn = db_connect();
+    $sql = "SELECT DISTINCT grad_year FROM students WHERE grad_year IS NOT NULL ";
+    $result = $conn->query($sql);
+    while ($row = $result->fetch_assoc()) {
+        $grad_year = $row['grad_year'];
+        $sql = "SELECT COUNT(*) AS total FROM students WHERE grad_year = '$grad_year'";
+        $count_result = $conn->query($sql);
+        $count_row = $count_result->fetch_assoc();
+        array_push($list, array('grad_year'=>$grad_year, 'student_count'=>$count_row['total']));
     }
-}
-/*
- * This function displays the numbers of teachers in the database, and displays
- * their first and last names
- */
-function numberOfTeachers () {
-    $numberOfTeachersSQL= "SELECT * FROM teachers";
-    $result = db_result_to_Array($numberOfTeachersSQL);
-    $numberOfRows = len($result);
-    echo "There are " + $numberOfRows + "teachers of year";
-    while($row = $result) { // displaying the actual rows
-        echo $row[first_name] + " " + $row[last_name]; // display the teacher names
+    $conn->close();
+    $sorted_list = array();
+    foreach ($list as $key => $row)
+    {
+        $sorted_list[$key] = $row['grad_year'];
     }
-}
-/*
- * This function takes in the year and displays total number of students in
- * each class year
- */
-function studentsPerClass () {
-    $numberOfStudentsSQL= "SELECT COUNT(userID), grad_year FROM students GROUP BY grad_year";
-    echo "Number of students for every year:  " + $numberOfStudentsSQL;
-}
-/**
- * Returns the number of registered students that are in the database
- * @param $year
- */
-function registeredStudents () {
-    $numberOfStudentsSQL= "SELECT COUNT(userID) FROM user";
-    echo "There are " + $numberOfStudentsSQL + "registered students";
-}
-/**
- * Returns the total amount of donation students have raised
- */
-function studentFunds () {
-    $funds = "SELECT SUM(donation_field) FROM students";
-    echo "There are $" + $funds + "dollars raised from students ";
-}
-/**
- * Returns the total amount of donation teachers have raised
- */
-function teacherFunds () {
-    $funds = "SELECT SUM(donation_field) FROM teachers";
-    echo "There are $" + $funds + " dollars raised from teachers ";
+    array_multisort($sorted_list, SORT_ASC, $list);
+    return $list;
+
 }
 
 function export_db_button () {
