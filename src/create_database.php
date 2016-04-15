@@ -172,7 +172,7 @@ function reset_database(){
 
 function load_students_data() {
 	$conn = db_connect();
-	$sqlDump = file_get_contents('students.sql');
+	$sqlDump = file_get_contents('sql_files/students.sql');
 	if (mysqli_multi_query($conn,$sqlDump) === TRUE) {
 		echo "Student data entered successfully <br>";
 	} else {
@@ -181,7 +181,7 @@ function load_students_data() {
 }
 function load_teachers_data() {
 	$conn = db_connect();
-	$sqlDump = file_get_contents('teachers.sql');
+	$sqlDump = file_get_contents('sql_files/teachers.sql');
 	if (mysqli_multi_query($conn,$sqlDump) === TRUE) {
 		echo "Teacher data entered successfully <br>";
 	} else {

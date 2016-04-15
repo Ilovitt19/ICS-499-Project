@@ -59,3 +59,95 @@ function teacherFunds () {
     $funds = "SELECT SUM(donation_field) FROM teachers";
     echo "There are $" + $funds + " dollars raised from teachers ";
 }
+
+function export_db_button () {
+    ?>
+    <button type="button" class="fakebutton"  onclick="myFunction()"><a>Backup Database</a></button>
+    <script>
+        function myFunction() {
+            <?php export_database(); ?>
+            confirm("Database Backed up\n File saved to src/sql_files");
+        }
+    </script>
+<?php
+
+}
+function import_db_button () {
+    ?>
+    <form action="import_database_action.php" method="post" enctype="multipart/form-data">
+        Select SQL file to import to DB<br>
+        <input type="file" name="fileToUpload" id="fileToUpload"><br>
+        <input type="submit" value="Import SQL" class="button" name="submit"><br>
+    <?php
+   }
+function export_database()
+{
+    $conn = db_connect();
+
+    $sql = "SELECT * FROM students";
+
+    $result = $conn->query($sql);
+    //output to file location change file path if needed. Default is src/sql_files/
+    $output_file = fopen("sql_files/reunion_db_" . date("dMY") . "_backup.sql", "w");
+
+    if ($result !== false) {
+
+        while ($row_array = $result->fetch_assoc()) {
+            $build_query = " INSERT INTO students (";
+            foreach ($row_array as $key => $value) {
+                $build_query .= $key . ", ";
+            }
+            $build_query = substr($build_query, 0, -2) . ") VALUES (";
+            foreach ($row_array as $key => $value) {
+                $build_query .= "'" . $value . "', ";
+            }
+            $build_query = substr($build_query, 0, -2) . ");\n";
+            fwrite($output_file, $build_query);
+
+        }
+    }
+    $sql = "SELECT * FROM teachers";
+
+    $result = $conn->query($sql);
+
+    if ($result !== false) {
+
+        while ($row_array = $result->fetch_assoc()) {
+            $build_query = " INSERT INTO teachers (";
+            foreach ($row_array as $key => $value) {
+                $build_query .= $key . ", ";
+            }
+            $build_query = substr($build_query, 0, -2) . ") VALUES (";
+            foreach ($row_array as $key => $value) {
+                $build_query .= "'" . $value . "', ";
+            }
+            $build_query = substr($build_query, 0, -2) . ");\n";
+            fwrite($output_file, $build_query);
+
+        }
+    }
+    $sql = "SELECT * FROM user";
+
+    $result = $conn->query($sql);
+
+    if ($result !== false) {
+
+
+        while ($row_array = $result->fetch_assoc()) {
+            $build_query = " INSERT INTO user (";
+            foreach ($row_array as $key => $value) {
+                $build_query .= $key . ", ";
+            }
+            $build_query = substr($build_query, 0, -2) . ") VALUES (";
+            foreach ($row_array as $key => $value) {
+                $build_query .= "'" . $value . "', ";
+            }
+            $build_query = substr($build_query, 0, -2) . ");\n";
+            fwrite($output_file, $build_query);
+
+        }
+    }
+}
+
+
+

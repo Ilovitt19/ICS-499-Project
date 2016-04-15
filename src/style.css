@@ -129,6 +129,20 @@ p {
     margin-right: auto;
 }
 
+button , .fakebutton {
+    background-color:  #003E67;
+    border: 2px double #000000;
+    font-weight: bold;
+    font-size: 40px;
+    color: #c5d6db;
+    padding: 2px;
+    margin: 8px;
+    display: inline-block;
+}
+button .fakebutton a:hover {
+    color: #FFFFFF;
+}
+
 /* Scroll Style below*/
 
 * {margin: 0; padding: 0;}

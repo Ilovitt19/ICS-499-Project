@@ -15,10 +15,12 @@ if (login_check()) {
 	if ($current_user->admin == 'yes') {
 		// add functions for logged in admin user
 		echo "<p>ADMIN REPORTS.</p>";
-		studentsPerClass(); //displays number of users for each year
-		registeredStudents(); //displays number of registered students
-		studentFunds(); //displays donation amount received from students
-		teacherFunds(); //displays donation amount received from teachers
+		export_db_button();
+		import_db_button();
+		//studentsPerClass(); //displays number of users for each year
+		//registeredStudents(); //displays number of registered students
+		//studentFunds(); //displays donation amount received from students
+		//teacherFunds(); //displays donation amount received from teachers
 	} else {
 		echo "<p>You are not authorized to enter the administration area.</p>";
 	}
