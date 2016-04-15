@@ -11,3 +11,4 @@ if (mysqli_multi_query($conn,$sqlSource) === TRUE) {
 } else {
 	echo "User data not entered: " . $conn->error . "<br>";
 }
+do_back_button('admin.php', "Back To Admin");
