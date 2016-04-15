@@ -190,5 +190,58 @@ function export_database()
     }
 }
 
+function do_stats_output() {
+    ?>
+  <div id="wrapper">
+		<form id="generalform" class="container" method="post" action="">
+			<table>
+			<h3>System Metrics</h3>
+				<tr>
+					<td><label>Student Users Registered:</label></td>
+					<td align="left"><input type="text" name="" size="" maxlength="" value="<?php echo count_total_students();?>" readonly></td>
+				</tr>
+				<tr>
+					<td><label>Teachers Users Registered:</label></td>
+					<td align="left"><input type="text" name="" size="" maxlength="" value="<?php echo count_total_teachers();?>" readonly></td>
+				</tr>
+				<tr>
+					<td><label>Total Users Registered:</label></td>
+					<td align="left"><input type="text" name="" size="" maxlength="" value="<?php echo count_total_teachers() + count_total_students();?>" readonly></td>
+				</tr>
+				<tr>
+					<td><label>Updated Profiles:</label></td>
+					<td align="left"><input type="text" name="" size="" maxlength="" value="<?php echo count_updated_users();?>" readonly></td>
+				</tr>
+				<tr>
+					<td><label>Empty Profiles:</label></td>
+					<td align="left"><input type="text" name="" size="" maxlength="" value="<?php echo (count_total_students() + count_total_teachers()) - count_updated_users();?>" readonly></td>
+				</tr>
+				<tr>
+					<td><label>Admin Users:</label></td>
+					<td align="left"><input type="text" name="" size="" maxlength="" value="<?php echo count_admin_users();?>" readonly></td>
+				</tr>
+				<tr>
+					<td><label>Students Attending Reunion:</label></td>
+					<td align="left"><input type="text" name="" size="" maxlength="" value="<?php echo count_students_attending();?>" readonly></td>
+				</tr>
+				<tr>
+					<td><label>Teachers Attending Reunion:</label></td>
+					<td align="left"><input type="text" name="" size="" maxlength="" value="<?php echo count_teachers_attending();?>" readonly></td>
+				</tr>
+				<tr>
+					<td><label>Total Attending Reunion:</label></td>
+					<td align="left"><input type="text" name="" size="" maxlength="" value="<?php echo count_students_attending() + count_teachers_attending();?>" readonly></td>
+				</tr>
+				<tr>
+					<td><label>Total Donation Count</label></td>
+					<td align="left"><input type="text" name="" size="" maxlength="" value="<?php echo "$" . count_donations();?>" readonly></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+    <?php
+
+}
+
 
 
