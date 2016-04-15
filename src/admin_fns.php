@@ -116,9 +116,9 @@ function export_db_button () {
 function import_db_button () {
     ?>
     <form action="import_database_action.php" method="post" enctype="multipart/form-data">
-        Select SQL file to import to DB<br>
-        <input type="file" name="fileToUpload" id="fileToUpload"><br>
-        <input type="submit" value="Import SQL" class="button" name="submit"><br>
+        <button type="button" class="fakebutton"><a>Select a SQL file to import to the Database</a></button>
+        <input class="fakebutton" type="file" name="fileToUpload" id="fileToUpload"><br>
+        <input class="fakebutton" type="submit" value="Submit" class="button" name="submit"><br>
     <?php
    }
 function export_database()
