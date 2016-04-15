@@ -101,11 +101,11 @@ $admin = unserialize($_SESSION['current_user'])->admin;
 				  ?>
 				</tr>
 			  </table>
-			  </section>
-		 
         <?php
-        } ?>
-	</div>
+        }
+        ?>
+		  </section>
+		  </div>
 	<?php
       }
     }

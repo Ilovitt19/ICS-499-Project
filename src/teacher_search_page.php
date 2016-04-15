@@ -102,16 +102,16 @@ if (isset($_POST['search_performed']) && !search_empty()) {
                 <input type="submit" name="delete_user" class="button" value="Delete" onclick="return confirm('Are you sure you want to delete this user?');">
               </form>
             </td>
-		
             <?php
           }
           ?>
         </tr>
       </table>
-	  </section>
       <?php
-    }?>
-	</div>
+    }
+  ?>
+    </section>
+  </div>
 <?php
   }
 }
