@@ -378,8 +378,11 @@ function upload_photo(){
 	?>
 	<form action="upload_photo_action.php" method="post" enctype="multipart/form-data">
 		Select profile picture to upload:<br>
-		<input type="file" name="fileToUpload" id="fileToUpload"><br>
+		</br>
+		<input type="file" name="fileToUpload" class="custom-file-input" id="fileToUpload"><br>
+		</br>
 		<input type="submit" value="Upload Image" class="button" name="submit"><br>
+		</br></br></br></br></br></br></br></br></br></br></br>
 	<?php
 if (isset($_POST['admin_edit'])) {
   echo "<input type = \"hidden\" name='admin_edit' value='yes'>";
@@ -440,9 +443,13 @@ function scroll (){
 
 function do_back_button($destination_page, $button_title) {
   ?>
-  <form action="<?php echo $destination_page?>" method="post">
-  <input type="submit" class="button" name="back_button" value="<?php echo $button_title?>">
-  </form>
+  <div id="wrapper">
+  <section id="left_side">
+	  <form action="<?php echo $destination_page?>" method="post">
+	  <input type="submit" class="button" name="back_button" value="<?php echo $button_title?>">
+	  </form>
+  </section>
+  </div>
 
   <?php
 }
@@ -525,6 +532,7 @@ function do_view_info_form(){
 		<div id="Photo">
 		<form id="generalform" class="container">
 			<?php display_photo($current_user, "view_mode"); ?>
+			</br></br></br></br></br></br></br></br></br></br></br></br></br>
 		</form>
 		</div>
 	</div>
@@ -645,8 +653,12 @@ function view_student_year ($grad_year) {
 
 function do_edit_button() {
   ?>
-  <form action="edit_user_page.php" method="post">
-    <input type="submit" name="user_edit" class="button" value="Edit Your Info">
-  </form>
+  <div id="wrapper">
+	  <section id="left_side">
+		  <form action="edit_user_page.php" method="post">
+			<input type="submit" name="user_edit" class="button" value="Edit Your Info">
+		  </form>
+	  </section>
+  </div>
   <?php
 }

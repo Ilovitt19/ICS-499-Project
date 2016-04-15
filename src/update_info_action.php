@@ -49,7 +49,7 @@ if (isset($_SERVER['HTTP_REFERER'])) {
     "UPDATE teachers SET first_name = '$first_name', last_name = '$last_name', nickname = '$nickname',
          start_year = '$start_year', end_year = '$end_year', father_name = '$father_name', mother_name = '$mother_name', email = '$email',
           phone = '$phone', family_details = '$family_details', work_experience ='$work_experience', awards ='$awards',
-         street ='$street', city ='$city', state ='$state', zip ='$zip', notes ='$notes', attending-'$attending' WHERE user_id = '$user_id'";
+         street ='$street', city ='$city', state ='$state', zip ='$zip', notes ='$notes', attending ='$attending' WHERE user_id = '$user_id'";
 
   if ($conn->query($sql)) {
     if (!isset($_POST['admin_edit'])) {
