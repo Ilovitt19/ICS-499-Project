@@ -6,7 +6,7 @@ $sqlDump = $_FILES['fileToUpload']["tmp_name"];
 
 $sqlSource = file_get_contents($sqlDump);
 
-if (mysqli_multi_query($conn,$sqlDump) === TRUE) {
+if (mysqli_multi_query($conn,$sqlSource) === TRUE) {
 	echo "User data entered successfully <br>";
 } else {
 	echo "User data not entered: " . $conn->error . "<br>";
