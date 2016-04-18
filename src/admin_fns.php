@@ -103,11 +103,11 @@ function get_class_count_list() {
 
 function export_db_button () {
     ?>
-    <button type="button" class="fakebutton"  onclick="myFunction()"><a>Backup Database</a></button>
+    <a href="backup_database.php" type="button" class="fakebutton"">Backup Database</a>
     <script>
         function myFunction() {
             <?php export_database(); ?>
-            confirm("Database Backed up\n File saved to src/sql_files");
+            confirm("Database Backed up\n File saved to src/sql_files")
         }
     </script>
 <?php
@@ -124,6 +124,8 @@ function import_db_button () {
 function export_database()
 {
     $conn = db_connect();
+    //set time zone here
+    date_default_timezone_set("UTC");
 
     $sql = "SELECT * FROM students";
 

@@ -13,10 +13,10 @@ do_html_header("Admin","Admin Reports");
 if (login_check()) {
 	$current_user = unserialize($_SESSION['current_user']);
 	if ($current_user->admin == 'yes') {
+		do_stats_output();
 		export_db_button();
 		import_db_button();
-		do_stats_output();
-	} else {
+			} else {
 		echo "<p>You are not authorized to enter the administration area.</p>";
 	}
 } else {
