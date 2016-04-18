@@ -18,7 +18,7 @@ do_html_header($title, $title);
 if (login_check()) {
   do_view_info_form();
   if (isset($_POST['admin_view']) || isset($_POST['view_user'])) {
-    do_back_button("search_select_page.php", "Back To Search");
+    do_back_button(isset($_POST['teacher_result']) ? "teacher_search_page.php" : "student_search_page.php", "Back To Search");
   } elseif (!isset($_POST['info_update'])) {
     do_edit_button();
   }

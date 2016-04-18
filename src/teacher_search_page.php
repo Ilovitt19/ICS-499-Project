@@ -80,6 +80,7 @@ if (isset($_POST['search_performed']) && !search_empty()) {
           <td>
             <form action="view_user_page.php" method="post">
               <input type="hidden" name="user_id" value="<?php echo $a_row['user_id']?>">
+              <input type="hidden" name="teacher_result" value="yes">
               <input type="image" name="view_user" src ="images/View.png" class="button" value="View">
             </form>
           </td>

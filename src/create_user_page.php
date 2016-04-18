@@ -8,7 +8,7 @@ if (login_check()) {
   $current_user = unserialize($_SESSION['current_user']);
   if ($current_user->admin == 'yes') {
     do_user_create_form();
-    do_back_button("search_select_page.php", "Back To Search");
+    do_back_button("welcome_page.php", "Back To Home");
   } else {
     echo "<p>You are not authorized to enter the administration area.</p>";
   }
