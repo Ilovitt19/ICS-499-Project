@@ -138,7 +138,7 @@ function do_edit_info_form(){
 	<div id="ProfilePage">
 	<div id="LeftCol">
 
-    <div id="generalform" class="photoContainer" id="PhotoOptions">
+    <div id="generalformphoto" class="photoContainer">
         <?php display_photo($current_user, "edit_mode"); ?>
     </div>
 	</div>
@@ -529,7 +529,7 @@ function do_view_info_form(){
   ?>
 	<div id="ProfilePage">
 	<div id="LeftCol">
-    <div id="generalform" class="photoContainer">
+    <div id="generalformphoto" class="photoContainer">
         <?php display_photo($current_user, "view_mode"); ?>
     </div>
 	</div>
