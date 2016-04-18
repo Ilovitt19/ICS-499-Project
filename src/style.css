@@ -1,4 +1,9 @@
 body {
+    background: gray; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(white, gray); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(white, gray); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(white, gray); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(white, gray); /* Standard syntax (must be last) */
     margin: 2% 5% 0;
     font-family: "Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, sans-serif;
 }
@@ -35,7 +40,6 @@ h2 {
     margin: 20px auto;
     width: 700px;
 
-    border: 1px solid black;
 }
 #LeftCol
 {
@@ -54,8 +58,6 @@ h2 {
     text-align: center;
     width: 200px;
 
-    /* For visibility. Delete me */
-    border: 1px solid brown;
 }
 .photo{
     border: 1px solid black;
@@ -65,8 +67,6 @@ h2 {
 #infoForm {
     width: 400px;
     text-align: center;
-    border-left: 1px solid black;
-    /* Move it to the right */
     float: right;
 }
 .form {
