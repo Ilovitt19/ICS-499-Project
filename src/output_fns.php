@@ -24,7 +24,8 @@ function do_html_header($title = '',$section = '')
     }
 
   if (isset($current_user)) {
-	echo "<li><a class='nav' title='Find People' href='search_select_page.php'>FIND PEOPLE</a></li>";
+	  echo "<li><a class='nav' title='Student Search' href='student_search_page.php'>STUDENT SEARCH</a></li>";
+	  echo "<li><a class='nav' title='Student Search' href='teacher_search_page.php'>TEACHER SEARCH</a></li>";
     echo "<li><a class = 'nav-right' title='Logout' href='logout_page.php'>LOGOUT</a></li>";
 	  if (isset($current_user) && isset($current_user->first_name)){
 		  echo "<li><a class = 'nav-right' title='Welcome' href='view_user_page.php'>" . strtoupper ($current_user->first_name) . " " . strtoupper ($current_user->last_name) . "</a></li>";
