@@ -46,7 +46,10 @@ if (isset($_SERVER['HTTP_REFERER'])) {
   }
 
   if (create_user($conn, $new_username, $new_password, $new_admin, $new_user_type)) {
-    do_html_header("User Created", "Creation Successful");
+    $sql = "SELECT user_id FROM user WHERE username = '$new_username'";
+    $result = $conn->query($sql);
+    $row = $result->fetch_row();
+    do_html_header("User Created", "Creation Successful\n User ID: " . $row[0]);
   } else {
     do_html_header("Creation Failed", "Failed to create user");
   }
