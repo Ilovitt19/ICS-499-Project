@@ -137,13 +137,10 @@ function do_edit_info_form(){
   ?>
 	<div id="ProfilePage">
 	<div id="LeftCol">
-	
-		<div id="Photo">
-			<form id="generalform" class="container">
-			<?php display_photo($current_user, "edit_mode"); ?>
-			</form>
-		</div>
-	
+
+    <div id="generalform" class="container">
+        <?php display_photo($current_user, "edit_mode"); ?>
+    </div>
 	</div>
   <div id="infoForm">
     <form id="generalform" class="container" action="update_info_action.php" method="post">
@@ -387,7 +384,6 @@ function upload_photo(){
 		<input type="file" name="fileToUpload" class="custom-file-input" id="fileToUpload"><br>
 		</br>
 		<input type="submit" value="Upload Image" class="button" name="submit"><br>
-		</br></br></br></br></br></br></br></br></br></br></br>
 	<?php
 if (isset($_POST['admin_edit'])) {
   echo "<input type = \"hidden\" name='admin_edit' value='yes'>";
@@ -533,13 +529,9 @@ function do_view_info_form(){
   ?>
 	<div id="ProfilePage">
 	<div id="LeftCol">
-	
-		<div id="Photo">
-		<form id="generalform" class="container">
-			<?php display_photo($current_user, "view_mode"); ?>
-			</br></br></br></br></br></br></br></br></br></br></br></br></br>
-		</form>
-		</div>
+    <div id="generalform" class="container">
+        <?php display_photo($current_user, "view_mode"); ?>
+    </div>
 	</div>
   <div id="infoForm">
     <form id="generalform" class="container" action="update_info_action.php" method="post">
