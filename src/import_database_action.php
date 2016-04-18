@@ -3,6 +3,10 @@ include('reunion_fns.php');
 
 $conn = db_connect();
 
+if (empty($_FILES['fileToUpload']["tmp_name"])) {
+	header('Location: admin_page.php');
+	exit();
+}
 $sqlDump = $_FILES['fileToUpload']["tmp_name"];
 
 $sqlSource = file_get_contents($sqlDump);
