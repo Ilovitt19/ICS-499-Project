@@ -112,6 +112,11 @@ function display_login_form() {
 			</form>
 		</section>
 	</div>
+	<p>
+		<a style="font-size:25px;" href="mailto:someone@example.com?Subject=Request%20Account" target="_top">Request Account</a><br>
+		<a style="font-size:12px;">Or Send email to mailto:someone@example.com with First & Last Name and Graduation year or years taught</a>
+
+	</p>
 </body>
 
 <?php
