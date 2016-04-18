@@ -57,13 +57,7 @@ if (isset($_POST['search_performed']) && !search_empty()) {
     echo '<p>No results found.</p>';
   } else { ?>
 	<div class="scrollit">
-	<!--<div id="wrapper">-->
 	  <section id="left_side">
-	<!--<form id="generalform" class="container">-->
-	<?php
-    foreach ($result_list as $a_row) {
-      ?>
-	  
       <table>
         <tr>
           <th>Last Name </th>
@@ -75,6 +69,9 @@ if (isset($_POST['search_performed']) && !search_empty()) {
           if ($admin == 'yes') echo "<th></th><th></th>"
           ?>
         </tr>
+	<?php
+    foreach ($result_list as $a_row) {
+      ?>
         <tr>
           <td><?php echo $a_row['last_name']; ?></td>
           <td><?php echo $a_row['first_name']; ?></td>
@@ -83,7 +80,7 @@ if (isset($_POST['search_performed']) && !search_empty()) {
           <td>
             <form action="view_user_page.php" method="post">
               <input type="hidden" name="user_id" value="<?php echo $a_row['user_id']?>">
-              <input type="submit" name="view_user" class="button" value="View">
+              <input type="image" name="view_user" src ="images/View.png" class="button" value="View">
             </form>
           </td>
           <?php
@@ -92,24 +89,24 @@ if (isset($_POST['search_performed']) && !search_empty()) {
             <td>
               <form action="edit_user_page.php" method="post">
                 <input type="hidden" name="user_id" value="<?php echo $a_row['user_id']?>">
-                <input type="submit" name="admin_edit" class="button" value="Edit">
+                <input type="image" name="admin_edit" src ="images/Edit.png" class="button" value="Edit">
               </form>
             </td>
             <td>
               <form action="delete_action.php" method="post">
                 <input type="hidden" name="user_id" value="<?php echo $a_row['user_id']?>">
                 <input type="hidden" name="delete_type" value="teacher">
-                <input type="submit" name="delete_user" class="button" value="Delete" onclick="return confirm('Are you sure you want to delete this user?');">
+                <input type="image" name="delete_user" src="images/Delete.png" class="button" value="Delete" onclick="return confirm('Are you sure you want to delete this user?');">
               </form>
             </td>
             <?php
           }
           ?>
         </tr>
-      </table>
       <?php
     }
   ?>
+      </table>
     </section>
   </div>
 <?php
