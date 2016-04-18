@@ -324,7 +324,7 @@ function edit_student_year ($grad_year) {
   ?>
     <tr>
       <td><label for="user_type">Type:</label></td>
-      <td align="left"><input type="text" name="user_type" title="User Typr" size="30" maxlength="40" value="Student" readonly /></td>
+      <td align="left"><input type="text" name="user_type" title="User Type" size="30" maxlength="40" value="Student" readonly /></td>
     </tr>
   <tr>
        <td><label for="grad_year">Graduation Year (Student):</label></td>
@@ -372,8 +372,8 @@ function edit_teacher_year($start_year, $end_year) {
     <td align="left"><input type="text" name="user_type" title="User Type" size="30" maxlength="40" value="Teacher" readonly /></td>
   </tr>
   <tr>
-    <td>Years Taught (Teacher):</td>
-    <td align="left"><input type="text" name="start_year" title="Start Year" size="4" maxlength="4" width="4" value="<?php echo $start_year; ?>" required/> to
+    <td><label for="grad_year">Years Taught (Teacher):</label></td>
+    <td align="left"><input type="text" name="start_year" title="Start Year" size="4" maxlength="4" width="4" value="<?php echo $start_year; ?>" required/> <label>to</label>
       <input type="text" name="end_year" title="End Year" size="4" maxlength="4" width="4" value="<?php echo $end_year; ?>" required/></td>
   </tr>
 <?php
@@ -635,8 +635,8 @@ function view_teacher_year($start_year, $end_year) {
     <td align="left"><input type="text" name="user_type" title="User Type" size="30" maxlength="40" value="Teacher" readonly /></td>
   </tr>
   <tr>
-    <td>Years Taught (Teacher):</td>
-    <td align="left"><input type="text" name="start_year" title="Start Year" size="4" maxlength="4" width="4" value="<?php echo $start_year; ?>" readonly/> to
+    <td><label for="grad_year">Years Taught (Teacher):</label></td>
+    <td align="left"><input type="text" name="start_year" title="Start Year" size="4" maxlength="4" width="4" value="<?php echo $start_year; ?>" readonly/> <label>to</label>
       <input type="text" name="end_year" title="End Year" size="4" maxlength="4" width="4" value="<?php echo $end_year; ?>" readonly/></td>
   </tr>
 <?php
@@ -646,7 +646,7 @@ function view_student_year ($grad_year) {
   ?>
     <tr>
       <td><label for="user_type">Type:</label></td>
-      <td align="left"><input type="text" name="user_type" title="User Typr" size="30" maxlength="40" value="Student" readonly /></td>
+      <td align="left"><input type="text" name="user_type" title="User Type" size="30" maxlength="40" value="Student" readonly /></td>
     </tr>
   <tr>
    <td><label for="grad_year">Graduation Year (Student):</label></td>
