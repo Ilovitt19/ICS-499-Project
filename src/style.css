@@ -59,11 +59,7 @@ h2 {
     width: 200px;
 
 }
-.photo{
-    border: 1px solid black;
-    max-width: 100%;
-    max-height: 100%;
-}
+
 #infoForm {
     width: 400px;
     text-align: center;
