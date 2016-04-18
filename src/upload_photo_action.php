@@ -16,6 +16,7 @@ if (isset($_SERVER['HTTP_REFERER'])) {
 	create_folder();
 	$target_dir = "images/photos/";
 	$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+	$old_file = $current_user->photo;
 	$uploadOk = 1;
 	$imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
 // Check if image file is a actual image or fake image
@@ -42,6 +43,7 @@ if (isset($_SERVER['HTTP_REFERER'])) {
 		echo "Sorry, your file was not uploaded.<br>";
 		// if everything is ok, try to upload file
 	} else {
+		unlink($old_file);
 		$target_file = "images/Photos/" . $last_name . "_" . $user_id . "." . $imageFileType;
 		if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file) &&
 			save_to_database($target_file, $current_user->user_type, $user_id)
@@ -93,7 +95,7 @@ function create_folder() {
 	$dir = 'images/Photos';
 
 	if (!file_exists($dir)) {
-		mkdir($dir,0755);
+		mkdir($dir,0777);
 	}
 }
 
