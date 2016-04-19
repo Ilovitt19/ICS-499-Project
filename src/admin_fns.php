@@ -242,8 +242,29 @@ function do_stats_output() {
 			</table>
 		</form>
 	</div>
-    <?php
+	<div class="scrollit">
+	  <section id="left_side">
+      <table>
+        <tr>
+          <th>Graduation Class:</th>
+          <th>Students Registered</th>
+        </tr>
+	<?php
+	  $table_list = get_class_count_list();
+    foreach ($table_list as $a_row) {
+      ?>
+        <tr>
+          <td><?php echo $a_row['grad_year']; ?></td>
+          <td><?php echo $a_row['student_count']; ?></td>
+        </tr>
+      <?php
+    }
+  ?>
+      </table>
+    </section>
+  </div>
 
+	<?php
 }
 
 
