@@ -57,7 +57,7 @@ $objPHPExcel->setActiveSheetIndex(1);
 			$objPHPExcel->getActiveSheet()->setCellValue('P1', "zip");
 			$objPHPExcel->getActiveSheet()->setCellValue('Q1', "notes");
 			$objPHPExcel->getActiveSheet()->setCellValue('R1', "photo");
-			$objPHPExcel->getActiveSheet()->setCellValue('S1', "donation");
+			$objPHPExcel->getActiveSheet()->setCellValue('S1', "donations");
 			$objPHPExcel->getActiveSheet()->setCellValue('T1', "attending");
 
 $sql = "SELECT * FROM students";
@@ -84,7 +84,7 @@ $i = 2;
 			$objPHPExcel->getActiveSheet()->setCellValue('P'.$i , $row_array['zip']);
 			$objPHPExcel->getActiveSheet()->setCellValue('Q'.$i , $row_array['notes']);
 			$objPHPExcel->getActiveSheet()->setCellValue('R'.$i , $row_array['photo']);
-			$objPHPExcel->getActiveSheet()->setCellValue('S'.$i , $row_array['donation']);
+			$objPHPExcel->getActiveSheet()->setCellValue('S'.$i , $row_array['donations']);
 			$objPHPExcel->getActiveSheet()->setCellValue('T'.$i , $row_array['attending']);
 			$i++;
 	}
@@ -116,7 +116,7 @@ $objPHPExcel->setActiveSheetIndex(2);
 			$objPHPExcel->getActiveSheet()->setCellValue('Q1', "zip");
 			$objPHPExcel->getActiveSheet()->setCellValue('R1', "notes");
 			$objPHPExcel->getActiveSheet()->setCellValue('S1', "photo");
-			$objPHPExcel->getActiveSheet()->setCellValue('T1', "donation");
+			$objPHPExcel->getActiveSheet()->setCellValue('T1', "donations");
 			$objPHPExcel->getActiveSheet()->setCellValue('U1', "attending");
 
 $sql = "SELECT * FROM teachers";
@@ -144,7 +144,7 @@ $i = 2;
 			$objPHPExcel->getActiveSheet()->setCellValue('Q'.$i , $row_array['zip']);
 			$objPHPExcel->getActiveSheet()->setCellValue('R'.$i , $row_array['notes']);
 			$objPHPExcel->getActiveSheet()->setCellValue('S'.$i , $row_array['photo']);
-			$objPHPExcel->getActiveSheet()->setCellValue('T'.$i , $row_array['donation']);
+			$objPHPExcel->getActiveSheet()->setCellValue('T'.$i , $row_array['donations']);
 			$objPHPExcel->getActiveSheet()->setCellValue('U'.$i , $row_array['attending']);
 			$i++;
 	}
