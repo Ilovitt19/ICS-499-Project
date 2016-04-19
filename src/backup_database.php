@@ -31,10 +31,8 @@ $i = 2;
 	}
 
 
-$objPHPExcel->getActiveSheet()->setCellValue('A1', 'Something');
-
 // Rename sheet
-$objPHPExcel->getActiveSheet()->setTitle('User');
+$objPHPExcel->getActiveSheet()->setTitle('user');
 
 // Create a new worksheet, after the default sheet
 $objPHPExcel->createSheet();
@@ -92,7 +90,7 @@ $i = 2;
 	}
 
 // Rename 2nd sheet
-$objPHPExcel->getActiveSheet()->setTitle('Students');
+$objPHPExcel->getActiveSheet()->setTitle('students');
 
 $objPHPExcel->createSheet();
 
@@ -153,7 +151,7 @@ $i = 2;
 
 
 // Rename 2nd sheet
-$objPHPExcel->getActiveSheet()->setTitle('Teachers');
+$objPHPExcel->getActiveSheet()->setTitle('teachers');
 
 // Redirect output to a client’s web browser (Excel5)
 header('Content-Type: application/vnd.ms-excel');
