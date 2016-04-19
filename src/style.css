@@ -41,12 +41,18 @@ li{
 	
 }
 
-.a{
+.footer_text{
 	text-decoration:none;
 	font-family:Arial;
 	padding: .2em 1em;
 	color: white;
-	
+}
+
+.footer_link_text{
+    font-family:Arial;
+    padding: .2em 1em;
+    color: orange;
+    text-decoration: underline;
 }
 /*New for the footer*/
 #content {
