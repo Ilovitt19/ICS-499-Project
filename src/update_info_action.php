@@ -36,10 +36,23 @@ if (isset($_SERVER['HTTP_REFERER'])) {
 
   if ($user_type == "student") {
     $grad_year = $_POST["grad_year"];
+    $donation_sql = "UPDATE students SET donations = ? WHERE user_id = '$user_id'";
   } else {
     $start_year = $_POST["start_year"];
     $end_year = $_POST["end_year"];
+    $donation_sql = "UPDATE teachers SET donations = ? WHERE user_id = '$user_id'";
   }
+  $result = true;
+  if (isset($_POST['donations']) || $current_user->admin == 'yes') {
+    $stmt = $conn->stmt_init();
+    if ($stmt->prepare($donation_sql)) {
+      $stmt->bind_param("d", $_POST['donations']);
+      $result = $stmt->execute();
+    } else {
+      $result = false;
+    }
+  }
+
   $sql = $user_type == "student" ?
     "UPDATE students SET first_name = '$first_name', last_name = '$last_name', nickname = '$nickname',
        grad_year = '$grad_year', father_name = '$father_name', mother_name = '$mother_name', email = '$email',
@@ -51,7 +64,7 @@ if (isset($_SERVER['HTTP_REFERER'])) {
           phone = '$phone', family_details = '$family_details', work_experience ='$work_experience', awards ='$awards',
          street ='$street', city ='$city', state ='$state', zip ='$zip', notes ='$notes', attending ='$attending' WHERE user_id = '$user_id'";
 
-  if ($conn->query($sql)) {
+  if ($conn->query($sql) && $result) {
     if (!isset($_POST['admin_edit'])) {
       unset($_SESSION['current_user']);
       $updated_user = new LoggedInUser($username);
@@ -81,8 +94,8 @@ if (isset($_SERVER['HTTP_REFERER'])) {
     }
   } else {
     do_html_header("Error", "Error: Profile Failed To Update");
-    do_html_footer();
   }
+  do_html_footer();
   $conn->close();
 } else {
   echo "This page cannot be accessed";

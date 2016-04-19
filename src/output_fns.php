@@ -134,6 +134,7 @@ function do_edit_info_form(){
       $current_user = new LoggedInUser($username);
     } else {
       $current_user = unserialize($_SESSION['current_user']);
+      $admin_self = $current_user->admin == "yes";
     }
 
   ?>
@@ -306,6 +307,16 @@ if (isset($_POST['admin_edit'])) {
        <td><label>Notes:</label></td>
        <td align="left"><textarea name="notes" title="Notes" rows="3" cols="30" maxlength="200" ><?php echo $current_user->notes; ?></textarea></td>
      </tr>
+     <?php
+     if (isset($_POST['admin_edit']) || $admin_self) {
+       ?>
+       <tr>
+         <td><label>Donations ($)</label></td>
+         <td align="left"><input type="text" name="donations" title="Donations" rows="3" cols="30" maxlength="10" value="<?php echo $current_user->donations; ?>" ></td>
+       </tr>
+       <?php
+     }
+     ?>
      <tr>
        <td></td>
        <td><input type="submit" class="button" value="Save"></td>
@@ -526,6 +537,7 @@ function do_view_info_form(){
       $current_user = new LoggedInUser($username);
     } else {
       $current_user = unserialize($_SESSION['current_user']);
+      $admin_self = $current_user->admin == "yes";
     }
 
   ?>
@@ -536,7 +548,7 @@ function do_view_info_form(){
     </div>
 	</div>
   <div id="infoForm">
-    <form id="generalform" class="container" action="update_info_action.php" method="post">
+    <form id="generalform" class="container" method="post">
    <table>
       <tr>
         <td width="150"></td>
@@ -614,6 +626,16 @@ function do_view_info_form(){
        <td><label>Notes:</label></td>
        <td align="left"><textarea name="notes" title="Notes" rows="3" cols="30" maxlength="200" readonly><?php echo $current_user->notes; ?></textarea></td>
      </tr>
+     <?php
+     if (isset($_POST['admin_edit']) || $admin_self) {
+       ?>
+       <tr>
+         <td><label>Donations ($)</label></td>
+         <td align="left"><input type="text" name="donations" title="Donations" rows="3" cols="30" maxlength="10" value="<?php echo $current_user->donations; ?>" readonly></td>
+       </tr>
+       <?php
+     }
+     ?>
     </table>
     </form>
   </div>

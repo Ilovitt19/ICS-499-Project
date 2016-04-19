@@ -27,10 +27,10 @@ function count_total_students() {
 
 function count_donations() {
     $conn = db_connect();
-    $sql = "SELECT SUM(donation) AS total FROM teachers";
+    $sql = "SELECT SUM(donations) AS total FROM teachers";
     $result = $conn->query($sql);
     $row_one = $result->fetch_assoc();
-    $sql = "SELECT SUM(donation) AS total FROM students";
+    $sql = "SELECT SUM(donations) AS total FROM students";
     $result= $conn->query($sql);
     $row_two = $result->fetch_assoc();
     $conn->close();
