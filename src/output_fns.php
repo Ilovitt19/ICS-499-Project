@@ -382,7 +382,7 @@ function upload_photo(){
 	<form action="upload_photo_action.php" method="post" enctype="multipart/form-data">
 		Select profile picture to upload:<br>
 		</br>
-		<input type="file" name="fileToUpload" class="custom-file-input" id="fileToUpload"><br>
+		<input type="file" name="fileToUpload" id="fileToUpload"><br>
 		</br>
 		<input type="submit" value="Upload Image" class="button" name="submit"><br>
 	<?php
