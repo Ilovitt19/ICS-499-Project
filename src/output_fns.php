@@ -129,6 +129,7 @@ function create_database() {
 }
 
 function do_edit_info_form(){
+  $admin_self = false;
   if (isset($_POST['admin_edit'])) {
       $username = get_username_by_id($_POST['user_id']);
       $current_user = new LoggedInUser($username);
