@@ -64,9 +64,24 @@ function show_event_info() {
 
 function do_html_footer() {
   // print an HTML footer
-?>
-  </body>
-  </html>
+?><!--<link rel="stylesheet" href="list.css">-->
+		<div id="mainWrapper">
+			
+			<div id="content"></div>
+			<div id="footer">
+				<ul>
+					<li><a class="a" href="">Questions</a></li>
+					<li><a class="a" href="">Interested in Donating</a></li>
+					<li><a class="a" href="">Contact Administrator</a></li>
+				</ul>
+				&copy; 2016 Aligators ICS 499
+			</div>
+		</div>
+	
+			
+</body>
+</html>
+	
 <?php
 }
 
@@ -121,6 +136,24 @@ function display_login_form() {
 
 	</p>
 </body>
+
+<?php
+}
+function display_logged_out(){
+?>
+<head>
+<link rel="stylesheet" href="forms.css">
+</head>
+<body>
+	<div id=wrapper">
+		<aside id="left_side">
+			<img src="images/loggedout.png"/>
+		</aside>
+		<section id="right_side">
+		</section>
+	</div>
+</body>
+		
 
 <?php
 }
