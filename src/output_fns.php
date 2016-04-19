@@ -129,6 +129,7 @@ function create_database() {
 }
 
 function do_edit_info_form(){
+  $admin_self = false;
   if (isset($_POST['admin_edit'])) {
       $username = get_username_by_id($_POST['user_id']);
       $current_user = new LoggedInUser($username);
@@ -532,6 +533,7 @@ function do_user_create_form() {
 }
 
 function do_view_info_form(){
+  $admin_self = false;
   if (isset($_POST['view_user']) || isset($_POST['admin_view'])) {
       $username = get_username_by_id($_POST['user_id']);
       $current_user = new LoggedInUser($username);
@@ -627,7 +629,7 @@ function do_view_info_form(){
        <td align="left"><textarea name="notes" title="Notes" rows="3" cols="30" maxlength="200" readonly><?php echo $current_user->notes; ?></textarea></td>
      </tr>
      <?php
-     if (isset($_POST['admin_edit']) || $admin_self) {
+     if (isset($_POST['admin_view']) || $admin_self || isset($_POST['admin_search'])) {
        ?>
        <tr>
          <td><label>Donations ($)</label></td>
