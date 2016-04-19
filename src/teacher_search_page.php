@@ -78,7 +78,7 @@ if ((isset($_POST['search_performed']) && !search_empty()) || isset($_POST['view
                 echo "<input type='hidden' name='admin_search' value='yes'>";
               }
               ?>
-              <input type="image" name="view_user" src ="images/View.png" class="button" value="View">
+              <input style="width: 60%; height: 60%;" type="image" name="view_user" src ="images/View.png" class="button" value="View">
             </form>
           </td>
           <?php
@@ -87,14 +87,14 @@ if ((isset($_POST['search_performed']) && !search_empty()) || isset($_POST['view
             <td>
               <form action="edit_user_page.php" method="post">
                 <input type="hidden" name="user_id" value="<?php echo $a_row['user_id']?>">
-                <input type="image" name="admin_edit" src ="images/Edit.png" class="button" value="Edit">
+                <input style="width: 60%; height: 60%;" type="image" name="admin_edit" src ="images/Edit.png" class="button" value="Edit">
               </form>
             </td>
             <td>
               <form action="delete_action.php" method="post">
                 <input type="hidden" name="user_id" value="<?php echo $a_row['user_id']?>">
                 <input type="hidden" name="delete_type" value="teacher">
-                <input type="image" name="delete_user" src="images/Delete.png" class="button" value="Delete" onclick="return confirm('Are you sure you want to delete this user?');">
+                <input style="width: 60%; height: 60%;"  type="image" name="delete_user" src="images/Delete.png" class="button" value="Delete" onclick="return confirm('Are you sure you want to delete this user?');">
               </form>
             </td>
             <?php
