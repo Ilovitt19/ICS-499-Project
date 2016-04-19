@@ -101,18 +101,6 @@ function get_class_count_list() {
 
 }
 
-function export_db_button () {
-    ?>
-    <a href="backup_database.php" type="button" class="fakebutton"">Backup Database</a>
-    <script>
-        function myFunction() {
-            <?php export_database(); ?>
-            confirm("Database Backed up\n File saved to src/sql_files")
-        }
-    </script>
-<?php
-
-}
 function import_db_button () {
     ?>
     <form action="import_database_action.php" method="post" enctype="multipart/form-data">

@@ -137,8 +137,9 @@ function search_for_teachers($conn, $view_all) {
 					ORDER BY last_name';
       $result = $conn->query($sql);
       $rows = array();
-      while ($a_row = $result->fetch_row()) {
-        array_push($rows, array('first_name' => $a_row[0], 'last_name' => $a_row[1], 'start_year' => $a_row[2], 'end_year' => $a_row[3], 'user_id' => $a_row[4]));
+      while ($a_row = $result->fetch_assoc()) {
+        array_push($rows, array('first_name' => $a_row['first_name'], 'last_name' => $a_row['last_name'],
+          'start_year' => $a_row['start_year'], 'end_year' => $a_row['end_year'], 'user_id' => $a_row['user_id']));
       }
     } else {
       $sql = 'SELECT first_name, last_name, start_year, end_year, user_id

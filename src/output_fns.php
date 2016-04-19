@@ -25,7 +25,7 @@ function do_html_header($title = '',$section = '')
 
   if (isset($current_user)) {
 	  echo "<li><a class='nav' title='Student Search' href='student_search_page.php'>STUDENT SEARCH</a></li>";
-	  echo "<li><a class='nav' title='Student Search' href='teacher_search_page.php'>TEACHER SEARCH</a></li>";
+	  echo "<li><a class='nav' title='Teacher Search' href='teacher_search_page.php'>TEACHER SEARCH</a></li>";
     echo "<li><a class = 'nav-right' title='Logout' href='logout_page.php'>LOGOUT</a></li>";
 	  if (isset($current_user) && isset($current_user->first_name)){
 		  echo "<li><a class = 'nav-right' title='Welcome' href='view_user_page.php'>" . strtoupper ($current_user->first_name) . " " . strtoupper ($current_user->last_name) . "</a></li>";
@@ -38,6 +38,7 @@ function do_html_header($title = '',$section = '')
   if (isset($current_user) && $current_user->admin == 'yes') {
 	  echo "<li><a class = 'nav-right' title='Admin' href='admin_page.php'>ADMIN REPORTS</a></li>";
 	  echo "<li><a class = 'nav-right' title='Create' href='create_user_page.php'>CREATE USER</a></li>";
+    echo "<li><a class = 'nav-right' title='Export Database' href='backup_database.php'>EXPORT DATABASE</a></li>";
   }
       ?>
     </ul>
