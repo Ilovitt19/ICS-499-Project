@@ -27,6 +27,7 @@ class LoggedInUser {
   var $notes;
   var $photo;
   var $attending;
+  var $donations;
 
   public function __construct($username) {
     $conn = db_connect();
