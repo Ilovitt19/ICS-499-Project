@@ -114,7 +114,7 @@ $admin = unserialize($_SESSION['current_user'])->admin;
   if (isset($conn)) {
     $conn->close();
   }
-?>
+
 
 /**
  * @param $conn mysqli - The DB connection
