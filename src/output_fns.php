@@ -38,12 +38,26 @@ function do_html_header($title = '',$section = '') {
       if (isset($current_user) && $current_user->admin == 'yes') {
         ?>
         <li><a class = 'nav-right' title='Admin' href='admin_page.php'>ADMIN REPORTS</a></li>
-        <li><a class = 'nav-right' title='Create' href='create_user_page.php'>CREATE USER</a></li>
+        <li><a class = 'nav' title='Create' href='create_user_page.php'>CREATE USER</a></li>
         <li><a class = 'nav-right' title='Export Database' href='backup_database.php'>EXPORT DATABASE</a></li>
+        <li>
+          <a class = 'nav-right' title='Import Database' onclick="MyFunction()">IMPORT DATABASE</a>
+        </li>
         <?php
       }
           ?>
         </ul>
+        <form action='import_database.php' id="upload_form" enctype='multipart/form-data' method='post' style="visibility: hidden">
+          <input id='excelupload' name='excelupload' type='file' style="visibility: hidden"/>
+          <script>
+            document.getElementById("excelupload").onchange = function() {
+              document.getElementById("upload_form").submit();
+            };
+            function MyFunction() {
+              document.getElementById("excelupload").click();
+            }
+          </script>
+        </form>
       </div>
     </div>
 
@@ -121,10 +135,6 @@ function display_login_form() {
 			</form>
 		</section>
 	</div>
-	<p>
-		<a style="font-size:25px;" href="mailto:someone@example.com?Subject=Request%20Account" target="_top">Request Account</a><br>
-		<a style="font-size:12px;">Or Send email to mailto:someone@example.com with First & Last Name and Graduation year or years taught</a>
-	</p>
 
 <?php
 }

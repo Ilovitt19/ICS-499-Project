@@ -101,17 +101,7 @@ function get_class_count_list() {
 
 }
 
-function import_db_button () {
-    ?>
-	<form action='import_database.php' enctype='multipart/form-data' method='post'>
 
-		<input id='excelupload' name='excelupload' type='file' />
-
-		<input name='submit' type='submit' value='Upload' />
-
-	</form>
-    <?php
-   }
 
 
 function do_stats_output() {

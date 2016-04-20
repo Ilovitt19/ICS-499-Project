@@ -18,6 +18,9 @@ if(isset($_POST) && !empty($_FILES['excelupload']['name']))
 	if($invalid != 1)
 	{
 		$target_dir = "uploads/";
+		if (!file_exists($target_dir)) {
+			mkdir($target_dir);
+		}
 		$target_file = $target_dir . basename($_FILES["excelupload"]["name"]);
 		$response = move_uploaded_file($_FILES['excelupload']['tmp_name'],$target_file); // Upload the file to the current folder
 		if($response)

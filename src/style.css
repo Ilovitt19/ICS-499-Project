@@ -187,10 +187,12 @@ p {
     padding: 6px 0 6px 6px;
 }
 .nav {
+    float: left;
     color: #c5d6db;
     text-decoration: none;
     font-size: 14px;
     font-family: "Sans-serif", "Arial";
+    margin-left: 20px;
 }
 .nav-right{
     color: #c5d6db;
@@ -407,7 +409,7 @@ button .fakebutton a:hover {
 #left_side_list{
     width: 40%;
     margin-top: 10px;
-    margin-right: 10px;
+    margin-left: 20%;
     float: left;
 }
 
@@ -419,9 +421,8 @@ button .fakebutton a:hover {
 
 #right_side_list{
     margin-top: 10px;
-    margin-left: 10px;
+    margin-right: 20%;
     float: right;
-    width: 40%;
 }
 
 #generalform{
