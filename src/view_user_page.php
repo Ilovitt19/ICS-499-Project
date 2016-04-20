@@ -1,7 +1,6 @@
 <?php
 
 include ('reunion_fns.php');
-require_once ('user_auth_fns.php');
 include('logged_in_user_class.php');
 
 if (isset($_POST['view_user'])) {

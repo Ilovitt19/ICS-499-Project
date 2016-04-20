@@ -3,9 +3,6 @@ include ('reunion_fns.php');
 include('logged_in_user_class.php');
 include ('admin_fns.php');
 
-// include function files for this application
-require_once('user_auth_fns.php');
-
 do_html_header("Admin","Admin Reports");
 // add functions for logged in admin user
 

@@ -1,8 +1,7 @@
 <?php
 require_once ('db_fns.php');
 
-function do_html_header($title = '',$section = '')
-{
+function do_html_header($title = '',$section = '') {
 //Title of the page being created
   ?>
   <html>
@@ -11,39 +10,42 @@ function do_html_header($title = '',$section = '')
     <link rel="stylesheet" type="text/css" href="style.css"/>
   </head>
   <body>
-	<h1><img src="images/wildcat-logo-small.png" class="imgFlipped" height="80px" width="80px">Village High School Reunion<img src="images/wildcat-logo-small.png" height="80px" width="80px"></h1>
-  <div id="topnavBar" class="topnavMenu">
-  <ul class="navbar">
-    <?php
-    if (isset($_SESSION['current_user'])) {
-      $current_user = unserialize($_SESSION['current_user']);
-      echo "<li><a class = 'nav' title='Welcome' href='welcome_page.php'>HOME</a></li>";
-    } else {
-      echo "<li><a class = 'nav' title='Home' href='index.php'>HOME</a></li>";
-    }
+	<div id="container">
+    <div id="header">
+      <h1><img src="images/wildcat-logo-small.png" class="imgFlipped" height="80px" width="80px">Village High School Reunion<img src="images/wildcat-logo-small.png" height="80px" width="80px"></h1>
+      <div id="topnavBar" class="topnavMenu">
+      <ul class="navbar">
+        <?php
+        if (isset($_SESSION['current_user'])) {
+          $current_user = unserialize($_SESSION['current_user']);
+          echo "<li><a class = 'nav' title='Welcome' href='welcome_page.php'>HOME</a></li>";
+        } else {
+          echo "<li><a class = 'nav' title='Home' href='index.php'>HOME</a></li>";
+        }
 
-  if (isset($current_user)) {
-	  echo "<li><a class='nav' title='Student Search' href='student_search_page.php'>STUDENT SEARCH</a></li>";
-	  echo "<li><a class='nav' title='Teacher Search' href='teacher_search_page.php'>TEACHER SEARCH</a></li>";
-    echo "<li><a class = 'nav-right' title='Logout' href='logout_page.php'>LOGOUT</a></li>";
-	  if (isset($current_user) && isset($current_user->first_name)){
-		  echo "<li><a class = 'nav-right' title='Welcome' href='view_user_page.php'>" . strtoupper ($current_user->first_name) . " " . strtoupper ($current_user->last_name) . "</a></li>";
-	  } else {
-		  echo "<li><a class = 'nav-right' title='Welcome' href='view_user_page.php'>MY PROFILE</a></li>";
-	  }
-  } else {
-    echo "<li><a class = 'nav-right' title='Login' href='login_page.php'>LOGIN</a></li>";
-  }
-  if (isset($current_user) && $current_user->admin == 'yes') {
-	  echo "<li><a class = 'nav-right' title='Admin' href='admin_page.php'>ADMIN REPORTS</a></li>";
-	  echo "<li><a class = 'nav-right' title='Create' href='create_user_page.php'>CREATE USER</a></li>";
-    echo "<li><a class = 'nav-right' title='Export Database' href='backup_database.php'>EXPORT DATABASE</a></li>";
-  }
-      ?>
-    </ul>
-  </div>
-	</div>
+      if (isset($current_user)) {
+        echo "<li><a class='nav' title='Student Search' href='student_search_page.php'>STUDENT SEARCH</a></li>";
+        echo "<li><a class='nav' title='Teacher Search' href='teacher_search_page.php'>TEACHER SEARCH</a></li>";
+        echo "<li><a class = 'nav-right' title='Logout' href='logout_page.php'>LOGOUT</a></li>";
+        if (isset($current_user) && isset($current_user->first_name)){
+          echo "<li><a class = 'nav-right' title='Welcome' href='view_user_page.php'>" . strtoupper ($current_user->first_name) . " " . strtoupper ($current_user->last_name) . "</a></li>";
+        } else {
+          echo "<li><a class = 'nav-right' title='Welcome' href='view_user_page.php'>MY PROFILE</a></li>";
+        }
+      } else {
+        echo "<li><a class = 'nav-right' title='Login' href='login_page.php'>LOGIN</a></li>";
+      }
+      if (isset($current_user) && $current_user->admin == 'yes') {
+        echo "<li><a class = 'nav-right' title='Admin' href='admin_page.php'>ADMIN REPORTS</a></li>";
+        echo "<li><a class = 'nav-right' title='Create' href='create_user_page.php'>CREATE USER</a></li>";
+        echo "<li><a class = 'nav-right' title='Export Database' href='backup_database.php'>EXPORT DATABASE</a></li>";
+      }
+          ?>
+        </ul>
+      </div>
+    </div>
 
+    <div id="body">
 <?php
 	if($section) {
 		do_html_heading($section);
@@ -64,18 +66,16 @@ function show_event_info() {
 function do_html_footer() {
   // print an HTML footer
 ?>
-  <div id="mainWrapper">
-    <div id="content"></div>
-    <div id="footer">
+  </div>
+  <div id="footer">
       <div class="footer_text">Questions? Need to register? Interested in Donating?</div>
       <a class="footer_link_text" href="">Contact an Administrator Here</a>
       <br><br>
       &copy; 2016 Aligators ICS 499
-    </div>
   </div>
+</div>
 </body>
 </html>
-	
 <?php
 }
 
@@ -433,7 +433,7 @@ function scroll (){
 
 	?>
 	<h2>Students and Teachers</h2 >
-	<div id="container">
+	<div id="scroll_container">
 		<?php
 		//gets list of photos from folder  alphabetically
 		$dir = scandir("images/Photos");
@@ -652,7 +652,7 @@ function do_view_info_form(){
     </table>
     </form>
     <?php
-    if (!isset($_POST['info_update'])) {do_edit_button();}
+    if (!isset($_POST['info_update']) && !isset($_POST['admin_view']) && !isset($_POST['view_user'])) {do_edit_button();}
     ?>
   </div>
 	</div>

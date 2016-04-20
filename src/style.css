@@ -1,13 +1,18 @@
-
+html{
+    margin:0;
+    padding:0;
+    height:100%;
+}
 body {
     background: gray; /* For browsers that do not support gradients */
     background: -webkit-linear-gradient(white, gray); /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient(white, gray); /* For Opera 11.1 to 12.0 */
     background: -moz-linear-gradient(white, gray); /* For Firefox 3.6 to 15 */
     background: linear-gradient(white, gray); /* Standard syntax (must be last) */
-    margin: 2% 5% 0;
+    margin: 0;
+    padding: 0;
+    height: 100%;
     font-family: "Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, sans-serif;
-	
 }
 h1 {
     font-weight: bold;
@@ -43,7 +48,6 @@ label{
     font-size: 22px;
     color: white;
     text-shadow:1px 1px 3px #080808;
-
 }
 
 .input{
@@ -56,24 +60,6 @@ label{
 
 .field{
     margin-bottom: 7px;
-}
-
-/*New for the footer*/
-#mainWrapper {
-	min-height:18%;
-	position:relative;
-}
-ul {
-	padding:5px;
-	list-style-type: none;
-	text-align: center;
-	margin: 10px;
-	
-}
-
-li{
-	display: inline;
-	
 }
 
 .footer_text{
@@ -89,10 +75,21 @@ li{
     color: orange;
     text-decoration: underline;
 }
-/*New for the footer*/
-#content {
-	padding-bottom:400px; /* Height of the footer element */
+
+#container {
+    min-height:100%;
+    position:relative;
 }
+
+#header {
+    padding:10px;
+}
+
+#body {
+    padding:10px;
+    padding-bottom:100px;   /* Height of the footer */
+}
+
 /*new for the footer*/
 #footer {
 	background:#003E67;
@@ -100,9 +97,7 @@ li{
 	height:100px;
 	position:absolute;
 	bottom:0;
-	left:0;
 	text-align: center;
-	padding: 15px;
 	font-size: 90%;
 }
 #info {
@@ -238,7 +233,7 @@ button .fakebutton a:hover {
 
 * {margin: 0; padding: 0;}
 
-#container {
+#scroll_container {
     width: 600px;
     overflow: hidden;
     margin: auto;
@@ -345,9 +340,7 @@ button .fakebutton a:hover {
 }
 .search_result_table {
     max-width: 1000px;
-    border-collapse: collapse;
     border: 1px solid #c9c9c9;
-    margin: 0 auto 20px 50px;
 }
 
 .search_result_table th {

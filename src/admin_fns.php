@@ -118,7 +118,7 @@ function do_stats_output() {
     ?>
   <section id="left_side_list">
 		<form class="container_center" method="post" action="">
-      <h2>System Metrics</h2>
+      <h2>User Statistics</h2>
       <table>
 				<tr>
 					<td><label>Student Users Registered:</label></td>
@@ -165,7 +165,7 @@ function do_stats_output() {
 	</section>
   <section id="right_side_list">
     <h2>Updated students by class:</h2>
-    <table class="search_result_table">
+    <div class="scrollit"><table class="search_result_table">
       <tr>
         <th>Graduation Class:</th>
         <th>Students Registered</th>
@@ -181,7 +181,7 @@ function do_stats_output() {
         <?php
       }
       ?>
-    </table>
+    </table></div>
   </section>
 
 
