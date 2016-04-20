@@ -494,8 +494,8 @@ function do_back_button($destination_page, $button_title) {
 
 function do_user_create_form() {
   ?>
-<div id="wrapper">
-  <form id="generalform" class="container_center" action="create_action.php" method="post" id="info">
+<div id="wrapper_centered">
+  <form id="create_form" action="create_action.php" method="post">
      <?php
       if (isset($_POST['username_error'])) {
         echo "<h3>Error: Username already exists!</h3>";
