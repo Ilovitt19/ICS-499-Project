@@ -80,6 +80,7 @@ if ((isset($_POST['search_performed']) && !search_empty()) || isset($_POST['view
               <form action="edit_user_page.php" method="post">
                 <input type="hidden" name="user_id" value="<?php echo $a_row['user_id']?>">
                 <input style="width: 60%; height: 60%;" type="image" name="admin_edit" src ="images/Edit.png" class="button" value="Edit">
+                <input type="hidden" name="teacher_result" value="yes">
               </form>
             </td>
             <td>

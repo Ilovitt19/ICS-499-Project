@@ -160,4 +160,11 @@ function get_username_by_id($user_id) {
    return $result['username'];
 }
 
+function get_type_by_id($user_id) {
+   $conn = db_connect();
+   $query = "SELECT user_type FROM user WHERE user_id = '$user_id'";
+   $result =  $conn->query($query)->fetch_assoc();
+   return $result['user_type'];
+}
+
 ?>

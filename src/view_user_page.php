@@ -17,7 +17,7 @@ do_html_header($title, $title);
 if (login_check()) {
   do_view_info_form();
   if (isset($_POST['admin_view']) || isset($_POST['view_user'])) {
-    do_back_button(isset($_POST['teacher_result']) ? "teacher_search_page.php" : "student_search_page.php", "Back To Search");
+    do_back_button((isset($_POST['teacher_result']) ||  get_type_by_id($_POST['user_id']) == "teacher")? "teacher_search_page.php" : "student_search_page.php", "Back To Search");
   }
 } else {
   echo "<p><br>You must be logged in to visit this page.</p>";
