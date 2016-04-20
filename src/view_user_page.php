@@ -19,8 +19,6 @@ if (login_check()) {
   do_view_info_form();
   if (isset($_POST['admin_view']) || isset($_POST['view_user'])) {
     do_back_button(isset($_POST['teacher_result']) ? "teacher_search_page.php" : "student_search_page.php", "Back To Search");
-  } elseif (!isset($_POST['info_update'])) {
-    do_edit_button();
   }
 } else {
   echo "<p><br>You must be logged in to visit this page.</p>";

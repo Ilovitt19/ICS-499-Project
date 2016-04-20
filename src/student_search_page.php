@@ -7,17 +7,9 @@ do_html_header("Find People","Student Search");
 if (login_check()) {
 $admin = unserialize($_SESSION['current_user'])->admin;
 ?>
-  <html>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="forms.css">
-  <body>
-  <?php if (isset($error)) {
-    echo "<p>$error</p>";
-  }
-  ?>
 	<div id="wrapper">
 		<section id="left_side">
-			<form id="generalform" class="container" method="post" action="student_search_page.php">
+			<form id="generalform" class="container_center" method="post" action="student_search_page.php">
 				<h3>Enter in Criteria</h3>
 				<div class="field">
 					<label for="first_name">First Name:</label>
@@ -34,7 +26,7 @@ $admin = unserialize($_SESSION['current_user'])->admin;
 				</div>
 				<input type="submit" name="search" id="search" class="button" value="Search"/>
 			</form>
-			<form id="generalform" class="container" method="post" action="student_search_page.php">
+			<form id="generalform" class="container_center" method="post" action="student_search_page.php">
 				<div class="field">
 					<input type="submit" name="view_all" id="view_all" class="button" value="View All Students"/>
 				</div>
@@ -42,79 +34,77 @@ $admin = unserialize($_SESSION['current_user'])->admin;
 		</section>
 	</div>
 
-  <?php
-  if ((isset($_POST['search_performed']) && !search_empty()) || isset($_POST['view_all'])) {
-    $result_list = search_for_students($conn, isset($_POST['view_all']));
-    if (!isset($result_list)) {
-      echo '<p>No results found.</p>';
-      } else { ?>
-		  <div class="scrollit">
-		  <section id="right_side">
-			  <table>
-				  <tr>
-					  <th>Last Name </th>
-					  <th>First Name </th>
-					  <th>Grad Year</th>
-					  <th></th>
-					  <?php
-					  if ($admin == 'yes') echo "<th></th><th></th>"
-					  ?>
-				  </tr>
-        <?php foreach ($result_list as $a_row) {
-          ?>
-				<tr>
-				  <td><?php echo $a_row['last_name']; ?></td>
-				  <td><?php echo $a_row['first_name']; ?></td>
-				  <td><?php echo $a_row['grad_year']; ?></td>
-				  <td>
-					<form action="view_user_page.php" method="post">
-					  <input type="hidden" name="user_id" value="<?php echo $a_row['user_id']?>">
-						<?php
-						if ($admin == 'yes') {
-							echo "<input type='hidden' name='admin_search' value='yes'>";
-						}
-						?>
-					  <input style="width: 60%; height: 60%;"type="image" name="view_user" src ="images/View.png" class="button" value="View">
-					</form>
-				  </td>
+<?php
+if ((isset($_POST['search_performed']) && !search_empty()) || isset($_POST['view_all'])) {
+  $result_list = search_for_students($conn, isset($_POST['view_all']));
+  if (!isset($result_list)) {
+    echo '<p>No results found.</p>';
+    } else { ?>
+	  <div class="scrollit">
+	  <section id="right_side">
+		  <table class="search_result_table">
+			  <tr>
+				  <th>Last Name </th>
+				  <th>First Name </th>
+				  <th>Grad Year</th>
+				  <th></th>
 				  <?php
-				  if ($admin == 'yes') {
-					?>
-					<td>
-					  <form action="edit_user_page.php" method="post">
-						<input type="hidden" name="user_id" value="<?php echo $a_row['user_id']?>">
-						<input style="width: 60%; height: 60%;"type="image" name="admin_edit" src ="images/Edit.png" class="button" value="Edit">
-					  </form>
-					</td>
-					<td>
-					  <form action="delete_action.php" method="post">
-						<input type="hidden" name="user_id" value="<?php echo $a_row['user_id']?>">
-						<input type="hidden" name="delete_type" value="student">
-						<input style="width: 60%; height: 60%;" type="image" name="delete_user" src="images/Delete.png" class="button" value="Delete" onclick="return confirm('Are you sure you want to delete this user?');">
-					  </form>
-					</td>
-				  <?php
-				  }
+				  if ($admin == 'yes') echo "<th></th><th></th>"
 				  ?>
-				</tr>
-        <?php
-        }
+			  </tr>
+      <?php foreach ($result_list as $a_row) {
         ?>
-			  </table>
-		  </section>
-		  </div>
-	<?php
+			<tr>
+			  <td><?php echo $a_row['last_name']; ?></td>
+			  <td><?php echo $a_row['first_name']; ?></td>
+			  <td><?php echo $a_row['grad_year']; ?></td>
+			  <td>
+				<form action="view_user_page.php" method="post">
+				  <input type="hidden" name="user_id" value="<?php echo $a_row['user_id']?>">
+					<?php
+					if ($admin == 'yes') {
+						echo "<input type='hidden' name='admin_search' value='yes'>";
+					}
+					?>
+				  <input style="width: 60%; height: 60%;"type="image" name="view_user" src ="images/View.png" class="button" value="View">
+				</form>
+			  </td>
+			  <?php
+			  if ($admin == 'yes') {
+				?>
+				<td>
+				  <form action="edit_user_page.php" method="post">
+					<input type="hidden" name="user_id" value="<?php echo $a_row['user_id']?>">
+					<input style="width: 60%; height: 60%;"type="image" name="admin_edit" src ="images/Edit.png" class="button" value="Edit">
+				  </form>
+				</td>
+				<td>
+				  <form action="delete_action.php" method="post">
+					<input type="hidden" name="user_id" value="<?php echo $a_row['user_id']?>">
+					<input type="hidden" name="delete_type" value="student">
+					<input style="width: 60%; height: 60%;" type="image" name="delete_user" src="images/Delete.png" class="button" value="Delete" onclick="return confirm('Are you sure you want to delete this user?');">
+				  </form>
+				</td>
+			  <?php
+			  }
+			  ?>
+			</tr>
+      <?php
       }
+      ?>
+		  </table>
+	  </section>
+	  </div>
+<?php
     }
-  } else {
-    echo "<p>You must be logged in to visit this page.</p>";
   }
-  echo "</body>";
-  echo "</html>";
-  if (isset($conn)) {
+} else {
+	echo "<p>You must be logged in to visit this page.</p>";
+}
+if (isset($conn)) {
     $conn->close();
-  }
-
+}
+do_html_footer();
 
 /**
  * @param $conn mysqli - The DB connection
@@ -171,4 +161,4 @@ function search_for_students($conn, $view_all) {
 function search_empty() {
   return empty($_POST['first_name']) && empty($_POST['last_name']) && empty($_POST['grad_year']);
 }
-?>
+

@@ -7,4 +7,4 @@
   show_event_info();
 
   do_html_footer();
-?>
+

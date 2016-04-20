@@ -9,7 +9,6 @@ function do_html_header($title = '',$section = '')
   <head>
     <title><?php echo $title; ?></title>
     <link rel="stylesheet" type="text/css" href="style.css"/>
-	<link rel="stylesheet" href="forms.css">
   </head>
   <body>
 	<h1><img src="images/wildcat-logo-small.png" class="imgFlipped" height="80px" width="80px">Village High School Reunion<img src="images/wildcat-logo-small.png" height="80px" width="80px"></h1>
@@ -100,17 +99,12 @@ function do_html_heading($heading) {
 function display_login_form() {
   // display form asking for name and password
 ?>
-<head>
-	<title>Log In</title>
-	<link rel="stylesheet" href="forms.css">
-</head>
-<body>
 	<div id="wrapper">
 		<aside id="left_side">
 			<img src="images/loginbanner.png"/>
 		</aside>
 		<section id="rigt_side">
-			<form id="generalform" class="container" method="POST" action="login_action.php">
+			<form id="generalform" class="container_center" method="POST" action="login_action.php">
 				<h3>Log In</h3>
 				<?php //echo @$error_message; ?>
 				<div class="field">
@@ -128,18 +122,12 @@ function display_login_form() {
 	<p>
 		<a style="font-size:25px;" href="mailto:someone@example.com?Subject=Request%20Account" target="_top">Request Account</a><br>
 		<a style="font-size:12px;">Or Send email to mailto:someone@example.com with First & Last Name and Graduation year or years taught</a>
-
 	</p>
-</body>
 
 <?php
 }
 function display_logged_out(){
 ?>
-<head>
-<link rel="stylesheet" href="forms.css">
-</head>
-<body>
 	<div id=wrapper">
 		<aside id="left_side">
 			<img src="images/loggedout.png"/>
@@ -147,9 +135,6 @@ function display_logged_out(){
 		<section id="right_side">
 		</section>
 	</div>
-</body>
-		
-
 <?php
 }
 
@@ -421,10 +406,8 @@ function edit_teacher_year($start_year, $end_year) {
 function upload_photo(){
 	?>
 	<form action="upload_photo_action.php" method="post" enctype="multipart/form-data">
-		Select profile picture to upload:<br>
-		</br>
-		<input type="file" name="fileToUpload" id="fileToUpload"><br>
-		</br>
+		Select profile picture to upload:<br><br>
+		<input type="file" name="fileToUpload""><br><br>
 		<input type="submit" value="Upload Image" class="button" name="submit"><br>
 	<?php
 if (isset($_POST['admin_edit'])) {
@@ -500,7 +483,7 @@ function do_back_button($destination_page, $button_title) {
 function do_user_create_form() {
   ?>
 <div id="wrapper">
-  <form id="generalform" class="container" action="create_action.php" method="post" id="info">
+  <form id="generalform" class="container_center" action="create_action.php" method="post" id="info">
      <?php
       if (isset($_POST['username_error'])) {
         echo "<h3>Error: Username already exists!</h3>";
@@ -668,6 +651,9 @@ function do_view_info_form(){
      ?>
     </table>
     </form>
+    <?php
+    if (!isset($_POST['info_update'])) {do_edit_button();}
+    ?>
   </div>
 	</div>
 
@@ -703,12 +689,9 @@ function view_student_year ($grad_year) {
 
 function do_edit_button() {
   ?>
-  <div id="wrapper">
-	  <section id="left_side">
-		  <form action="edit_user_page.php" method="post">
-			<input type="submit" name="user_edit" class="button" value="Edit Your Info">
-		  </form>
-	  </section>
-  </div>
+  <br>
+  <form action="edit_user_page.php" method="post">
+    <input type="submit" name="user_edit" class="button" value="Edit Your Info">
+  </form>
   <?php
 }

@@ -7,17 +7,9 @@ do_html_header("Find People","Teacher Search");
 if (login_check()) {
 $admin = unserialize($_SESSION['current_user'])->admin;
 ?>
-<html>
-<link rel="stylesheet" href="styles.css">
-<link rel="stylesheet" href="forms.css">
-<body>
-<?php if (isset($error)) {
-  echo "<p>$error</p>";
-}
-?>
 	<div id="wrapper">
 		<section id="left_side">
-			<form id="generalform" class="container" method="post" action="teacher_search_page.php">
+			<form id="generalform" class="container_center" method="post" action="teacher_search_page.php">
 				<h3>Enter in Criteria</h3>
 				<div class="field">
 					<label for="first_name">First Name:</label>
@@ -34,7 +26,7 @@ $admin = unserialize($_SESSION['current_user'])->admin;
 				</div>
 				<input type="submit" name="search" id="search" class="button" value="Search"/>
 			</form>
-      <form id="generalform" class="container" method="post" action="teacher_search_page.php">
+      <form id="generalform" class="container_center" method="post" action="teacher_search_page.php">
         <div class="field">
           <input type="submit" name="view_all" id="view_all" class="button" value="View All Teachers"/>
         </div>
@@ -49,8 +41,8 @@ if ((isset($_POST['search_performed']) && !search_empty()) || isset($_POST['view
     echo '<p>No results found.</p>';
   } else { ?>
 	<div class="scrollit">
-	  <section id="left_side">
-      <table>
+	  <section id="right_side">
+      <table class="search_result_table">
         <tr>
           <th>Last Name </th>
           <th>First Name </th>
@@ -113,14 +105,11 @@ if ((isset($_POST['search_performed']) && !search_empty()) || isset($_POST['view
 } else {
   echo "<p>You must be logged in to visit this page.</p>";
 }
-echo "</body>";
-echo "</html>";
 if (isset($conn)) {
   $conn->close();
 }
-?>
+do_html_footer();
 
-<?php
 /**
  * @param $conn mysqli - The DB connection
  * @param $view_all - View all users?
@@ -177,4 +166,4 @@ function search_for_teachers($conn, $view_all) {
 function search_empty() {
   return empty($_POST['first_name']) && empty($_POST['last_name']) && empty($_POST['teach_year']);
 }
-?>
+

@@ -116,10 +116,10 @@ function import_db_button () {
 
 function do_stats_output() {
     ?>
-  <div id="wrapper">
-		<form id="generalform" class="container" method="post" action="">
-			<table>
-			<h3>System Metrics</h3>
+  <section id="left_side_list">
+		<form class="container_center" method="post" action="">
+      <h2>System Metrics</h2>
+      <table>
 				<tr>
 					<td><label>Student Users Registered:</label></td>
 					<td align="left"><input type="text" name="" size="" maxlength="" value="<?php echo count_total_students();?>" readonly></td>
@@ -162,28 +162,28 @@ function do_stats_output() {
 				</tr>
 			</table>
 		</form>
-	</div>
-	<div class="scrollit">
-	  <section id="left_side">
-      <table>
-        <tr>
-          <th>Graduation Class:</th>
-          <th>Students Registered</th>
-        </tr>
-	<?php
-	  $table_list = get_class_count_list();
-    foreach ($table_list as $a_row) {
-      ?>
+	</section>
+  <section id="right_side_list">
+    <h2>Updated students by class:</h2>
+    <table class="search_result_table">
+      <tr>
+        <th>Graduation Class:</th>
+        <th>Students Registered</th>
+      </tr>
+      <?php
+      $table_list = get_class_count_list();
+      foreach ($table_list as $a_row) {
+        ?>
         <tr>
           <td><?php echo $a_row['grad_year']; ?></td>
           <td><?php echo $a_row['student_count']; ?></td>
         </tr>
-      <?php
-    }
-  ?>
-      </table>
-    </section>
-  </div>
+        <?php
+      }
+      ?>
+    </table>
+  </section>
+
 
 	<?php
 }

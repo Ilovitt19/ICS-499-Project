@@ -10,4 +10,4 @@ if (isset($_SERVER['HTTP_REFERER'])) {
 } else {
   echo "This page cannot be accessed";
 }
-?>
+
