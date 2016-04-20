@@ -81,7 +81,7 @@ function count_updated_users() {
 function get_class_count_list() {
     $list = array();
     $conn = db_connect();
-    $sql = "SELECT DISTINCT grad_year FROM students WHERE grad_year IS NOT NULL ";
+    $sql = "SELECT DISTINCT grad_year FROM students WHERE grad_year IS NOT NULL AND grad_year !=0 ";
     $result = $conn->query($sql);
     while ($row = $result->fetch_assoc()) {
         $grad_year = $row['grad_year'];
