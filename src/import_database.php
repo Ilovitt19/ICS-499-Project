@@ -146,7 +146,16 @@ if(isset($_POST) && !empty($_FILES['excelupload']['name']))
 
 		}
 	}// End Invalid Condition
-	echo "<div style='color:#3C7C64'>Import Successful</div>";
+	?>
+	<div style="display:none;">
+		<form id="import_form" method="POST" action="login_page.php">
+			<input type="hidden" name="db_imported" value="yes"/>
+		</form>
+		<script>
+			document.getElementById("import_form").submit();
+		</script>
+	</div>
+	<?php
 }
 
 function reset_tables(){

@@ -41,7 +41,9 @@ h4{/*For titles*/
     font-size: 22px;
     color: #0844A4;
     text-shadow:1px 1px 3px #080808;
+    text-align: center;
 }
+
 
 label{
     margin-bottom:15px;

@@ -131,6 +131,7 @@ function search_for_students($conn, $view_all) {
 					WHERE (first_name = ? AND first_name IS NOT NULL)
 					OR (last_name = ? AND last_name IS NOT NULL)
 					OR (grad_year = ? AND grad_year != 0)
+					AND (grad_year !=0)
 					ORDER BY last_name';
 	    $stmt = $conn->stmt_init();
 	    if (!$stmt->prepare($sql)) {

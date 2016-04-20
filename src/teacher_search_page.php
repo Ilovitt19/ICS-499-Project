@@ -136,6 +136,7 @@ function search_for_teachers($conn, $view_all) {
 					WHERE (first_name = ? AND first_name IS NOT NULL)
 					OR (last_name = ? AND last_name IS NOT NULL)
 					OR (start_year <= ? AND end_year >= ? AND start_year != 0)
+					AND (start_year !=0)
 					ORDER BY last_name';
       $stmt = $conn->stmt_init();
       if (!$stmt->prepare($sql)) {

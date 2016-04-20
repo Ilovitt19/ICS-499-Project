@@ -85,7 +85,8 @@ function do_html_footer() {
   </div>
   <div id="footer">
       <div class="footer_text">Questions? Need to register? Interested in Donating?</div>
-      <a class="footer_link_text" href="">Contact an Administrator Here</a>
+      <div class="footer_text">Contact an Administrator Here:</div>
+      <a class="footer_link_text" href="mailto:web_admin@villagehigh.edu?Subject=Request%20Account"> web_admin@villagehigh.edu</a>
       <br><br>
       &copy; 2016 Aligators ICS 499
   </div>
@@ -113,7 +114,9 @@ function do_html_heading($heading) {
 
 
 function display_login_form() {
-  // display form asking for name and password
+  if (isset($_POST['db_imported'])) {
+    echo "<h4>Database imported successfuly, please log in again</h4>";
+  }
 ?>
 	<div id="wrapper">
 		<aside id="left_side">
