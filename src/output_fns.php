@@ -36,9 +36,11 @@ function do_html_header($title = '',$section = '') {
         echo "<li><a class = 'nav-right' title='Login' href='login_page.php'>LOGIN</a></li>";
       }
       if (isset($current_user) && $current_user->admin == 'yes') {
-        echo "<li><a class = 'nav-right' title='Admin' href='admin_page.php'>ADMIN REPORTS</a></li>";
-        echo "<li><a class = 'nav-right' title='Create' href='create_user_page.php'>CREATE USER</a></li>";
-        echo "<li><a class = 'nav-right' title='Export Database' href='backup_database.php'>EXPORT DATABASE</a></li>";
+        ?>
+        <li><a class = 'nav-right' title='Admin' href='admin_page.php'>ADMIN REPORTS</a></li>
+        <li><a class = 'nav-right' title='Create' href='create_user_page.php'>CREATE USER</a></li>
+        <li><a class = 'nav-right' title='Export Database' href='backup_database.php'>EXPORT DATABASE</a></li>
+        <?php
       }
           ?>
         </ul>
