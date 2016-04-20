@@ -16,7 +16,7 @@ $admin = unserialize($_SESSION['current_user'])->admin;
 }
 ?>
 	<div id="wrapper">
-		<section id="right_side">
+		<section id="left_side">
 			<form id="generalform" class="container" method="post" action="teacher_search_page.php">
 				<h3>Enter in Criteria</h3>
 				<div class="field">

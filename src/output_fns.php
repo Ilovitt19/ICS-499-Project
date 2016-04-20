@@ -354,7 +354,6 @@ if (isset($_POST['admin_edit'])) {
     </table>
     </form>
   </div>
-	<div style="clear:both"></div>
 	</div>
 
 <?php
@@ -670,7 +669,6 @@ function do_view_info_form(){
     </table>
     </form>
   </div>
-	<div style="clear:both"></div>
 	</div>
 
 <?php
