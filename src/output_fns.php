@@ -186,7 +186,7 @@ if (isset($_POST['admin_edit'])) {
         <td width="200"></td>
       </tr>
 	  <tr>
-		<td><label>Attending Reunion:</label></td>
+		<td><label class="info_form_label">Attending Reunion:</label></td>
 		  <?php
 		  if ($current_user->attending === "yes") {
 			  echo "<td align='left'><input type='radio' name='attending'  title='Attending' value='no'/>No";
@@ -199,35 +199,35 @@ if (isset($_POST['admin_edit'])) {
 		  ?>
 	  </tr>
       <tr>
-        <td><label>First Name:</label></td>
+        <td><label class="info_form_label">First Name:</label></td>
         <td align="left"><input type="text" name="first_name"  title="First Name" size="30" maxlength="40" value="<?php echo $current_user->first_name; ?>" required/></td>
       </tr>
       <tr>
-        <td><label>Last Name:</label></td>
+        <td><label class="info_form_label">Last Name:</label></td>
         <td align="left"><input type="text" name="last_name" title="Last Name" size="30" maxlength="40" value="<?php echo $current_user->last_name; ?>" required/></td>
       </tr>
       <tr>
-        <td><label>Nickname:</label></td>
+        <td><label class="info_form_label">Nickname:</label></td>
         <td align="left"><input type="text" name="nickname" title=" Nickname" size="30" maxlength="40" value="<?php echo$current_user->nickname; ?>" /></td>
       </tr>
 	   <tr>
-       <td><label>Email:</label></td>
+       <td><label class="info_form_label">Email:</label></td>
        <td align="left"><input type="text" name="email" title="Email" size="30" maxlength="40" value="<?php echo$current_user->email; ?>" required/></td>
      </tr>
      <tr>
-       <td><label>Phone:</label></td>
+       <td><label class="info_form_label">Phone:</label></td>
        <td align="left"><input type="text" name="phone" title="phone" size="30" maxlength="40" value="<?php echo $current_user->phone; ?>" /></td>
      </tr>
      <tr>
-       <td><label>Street Address:</label></td>
+       <td><label class="info_form_label">Street Address:</label></td>
        <td align="left"><input type="text" name="street" title="Title" size="30" maxlength="40" value="<?php echo $current_user->street; ?>" /></td>
      </tr>
      <tr>
-       <td><label>City:</label></td>
+       <td><label class="info_form_label">City:</label></td>
        <td align="left"><input type="text" name="city" title="City" size="30" maxlength="40" value="<?php echo $current_user->city; ?>" /></td>
      </tr>
      <tr>
-       <td><label>State:</label></td>
+       <td><label class="info_form_label">State:</label></td>
        <td align="left">
          <select name="state" title="State">
            <option></option>
@@ -300,7 +300,7 @@ if (isset($_POST['admin_edit'])) {
        </td>
      </tr>
      <tr>
-       <td><label>Zip Code:</label></td>
+       <td><label class="info_form_label">Zip Code:</label></td>
        <td align="left"><input type="text" name="zip" title="Zip" size="5" maxlength="5"
         value="<?php echo !empty($current_user->zip) ? $current_user->zip : "" ?>"/></td>
      </tr>
@@ -310,35 +310,35 @@ if (isset($_POST['admin_edit'])) {
      ?>
 
      <tr>
-       <td><label>Father's Name:</label></td>
+       <td><label class="info_form_label">Father's Name:</label></td>
        <td align="left"><input type="text" name="father_name" title="Fathers Name" size="30" maxlength="40" value="<?php echo $current_user->father_name; ?>"/></td>
      </tr>
      <tr>
-       <td><label>Mother's Name:</label></td>
+       <td><label class="info_form_label">Mother's Name:</label></td>
        <td align="left"><input type="text" name="mother_name" title="Mothers Name" size="30" maxlength="40" value="<?php echo$current_user->mother_name; ?>"/></td>
      </tr>
      <tr>
      <tr>
-       <td><label>Family Details:</label></td>
+       <td><label class="info_form_label">Family Details:</label></td>
        <td align="left"><input type="text" name="family_details" title="Family Details" size="30" maxlength="40" value="<?php echo $current_user->family_details; ?>"/></td>
      </tr>
      <tr>
-       <td><label>Work Experience:</label></td>
+       <td><label class="info_form_label">Work Experience:</label></td>
        <td align="left"><textarea name="work_experience" title="Work Experience" rows="3" cols="30" maxlength="200"><?php echo $current_user->work_experience; ?></textarea></td>
      </tr>
      <tr>
-       <td><label>Awards:</label></td>
+       <td><label class="info_form_label">Awards:</label></td>
        <td align="left"><textarea name="awards" title="Awards" rows="3" cols="30" maxlength="200"><?php echo $current_user->awards; ?></textarea></td>
      </tr>
      <tr>
-       <td><label>Notes:</label></td>
+       <td><label class="info_form_label">Notes:</label></td>
        <td align="left"><textarea name="notes" title="Notes" rows="3" cols="30" maxlength="200" ><?php echo $current_user->notes; ?></textarea></td>
      </tr>
      <?php
      if (isset($_POST['admin_edit']) || $admin_self) {
        ?>
        <tr>
-         <td><label>Donations ($)</label></td>
+         <td><label class="info_form_label">Donations ($)</label></td>
          <td align="left"><input type="text" name="donations" title="Donations" rows="3" cols="30" maxlength="10" value="<?php echo $current_user->donations; ?>" ></td>
        </tr>
        <?php
@@ -359,11 +359,11 @@ if (isset($_POST['admin_edit'])) {
 function edit_student_year ($grad_year) {
   ?>
     <tr>
-      <td><label for="user_type">Type:</label></td>
+      <td><label class="info_form_label" for="user_type">Type:</label></td>
       <td align="left"><input type="text" name="user_type" title="User Type" size="30" maxlength="40" value="Student" readonly /></td>
     </tr>
   <tr>
-       <td><label for="grad_year">Graduation Year (Student):</label></td>
+       <td><label class="info_form_label" for="grad_year">Graduation Year (Student):</label></td>
        <td align="left">
        <select name="grad_year" title="Grad Year" required>
          <?php
@@ -404,12 +404,12 @@ function edit_student_year ($grad_year) {
 
 function edit_teacher_year($start_year, $end_year) {
   ?><tr>
-    <td><label for="user_type">Type:</label></td>
+    <td><label class="info_form_label" for="user_type">Type:</label></td>
     <td align="left"><input type="text" name="user_type" title="User Type" size="30" maxlength="40" value="Teacher" readonly /></td>
   </tr>
   <tr>
-    <td><label for="grad_year">Years Taught (Teacher):</label></td>
-    <td align="left"><input type="text" name="start_year" title="Start Year" size="4" maxlength="4" width="4" value="<?php echo $start_year; ?>" required/> <label>to</label>
+    <td><label class="info_form_label" for="grad_year">Years Taught (Teacher):</label></td>
+    <td align="left"><input type="text" name="start_year" title="Start Year" size="4" maxlength="4" width="4" value="<?php echo $start_year; ?>" required/> <label class="info_form_label">to</label>
       <input type="text" name="end_year" title="End Year" size="4" maxlength="4" width="4" value="<?php echo $end_year; ?>" required/></td>
   </tr>
 <?php
@@ -580,44 +580,44 @@ function do_view_info_form(){
         <td width="200"></td>
       </tr>
 	  <tr>
-		<td><label>Attending Reunion:</label></td>
+		<td><label class="info_form_label">Attending Reunion:</label></td>
 		<td align='left'><input type='text' name='attending'  title='Attending' value='<?php echo $current_user->attending; ?>' readonly/></td>
 	  </tr>
       <tr>
-        <td><label>First Name:</label></td>
+        <td><label class="info_form_label">First Name:</label></td>
         <td align="left"><input type="text" name="first_name"  title="First Name" size="30" maxlength="40" value="<?php echo $current_user->first_name; ?>" readonly/></td>
       </tr>
       <tr>
-        <td><label>Last Name:</label></td>
+        <td><label class="info_form_label">Last Name:</label></td>
         <td align="left"><input type="text" name="last_name" title="Last Name" size="30" maxlength="40" value="<?php echo $current_user->last_name; ?>" readonly/></td>
       </tr>
       <tr>
-        <td><label>Nickname:</label></td>
+        <td><label class="info_form_label">Nickname:</label></td>
         <td align="left"><input type="text" name="nickname" title=" Nickname" size="30" maxlength="40" value="<?php echo$current_user->nickname; ?>" readonly/></td>
       </tr>
 	   <tr>
-       <td><label>Email:</label></td>
+       <td><label class="info_form_label">Email:</label></td>
        <td align="left"><input type="text" name="email" title="Email" size="30" maxlength="40" value="<?php echo$current_user->email; ?>" readonly/></td>
      </tr>
      <tr>
-       <td><label>Phone:</label></td>
+       <td><label class="info_form_label">Phone:</label></td>
        <td align="left"><input type="text" name="phone" title="phone" size="30" maxlength="40" value="<?php echo $current_user->phone; ?>" readonly/></td>
      </tr>
      <tr>
-       <td><label>Street Address:</label></td>
+       <td><label class="info_form_label">Street Address:</label></td>
        <td align="left"><input type="text" name="street" title="Title" size="30" maxlength="40" value="<?php echo $current_user->street; ?>" readonly/></td>
      </tr>
      <tr>
-       <td><label>City:</label></td>
+       <td><label class="info_form_label">City:</label></td>
        <td align="left"><input type="text" name="city" title="City" size="30" maxlength="40" value="<?php echo $current_user->city; ?>" readonly/></td>
      </tr>
      <tr>
-       <td><label>State:</label></td>
+       <td><label class="info_form_label">State:</label></td>
        <td align="left">
          <input type="text" name="state" title="State" value="<?php echo $current_user->state; ?>" readonly></td>
      </tr>
      <tr>
-       <td><label>Zip Code:</label></td>
+       <td><label class="info_form_label">Zip Code:</label></td>
        <td align="left"><input type="text" name="zip" title="Zip" size="5" maxlength="5"
         value="<?php echo !empty($current_user->zip) ? $current_user->zip : "" ?>" readonly/></td>
      </tr>
@@ -627,35 +627,35 @@ function do_view_info_form(){
      ?>
 
      <tr>
-       <td><label>Father's Name:</label></td>
+       <td><label class="info_form_label">Father's Name:</label></td>
        <td align="left"><input type="text" name="father_name" title="Fathers Name" size="30" maxlength="40" value="<?php echo $current_user->father_name; ?>" readonly/></td>
      </tr>
      <tr>
-       <td><label>Mother's Name:</label></td>
+       <td><label class="info_form_label">Mother's Name:</label></td>
        <td align="left"><input type="text" name="mother_name" title="Mothers Name" size="30" maxlength="40" value="<?php echo$current_user->mother_name; ?>" readonly/></td>
      </tr>
      <tr>
      <tr>
-       <td><label>Family Details:</label></td>
+       <td><label class="info_form_label">Family Details:</label></td>
        <td align="left"><input type="text" name="family_details" title="Family Details" size="30" maxlength="40" value="<?php echo $current_user->family_details; ?>" readonly/></td>
      </tr>
      <tr>
-       <td><label>Work Experience:</label></td>
+       <td><label class="info_form_label">Work Experience:</label></td>
        <td align="left"><textarea name="work_experience" title="Work Experience" rows="3" cols="30" maxlength="200" readonly><?php echo $current_user->work_experience; ?></textarea></td>
      </tr>
      <tr>
-       <td><label>Awards:</label></td>
+       <td><label class="info_form_label">Awards:</label></td>
        <td align="left"><textarea name="awards" title="Awards" rows="3" cols="30" maxlength="200" readonly><?php echo $current_user->awards; ?></textarea></td>
      </tr>
      <tr>
-       <td><label>Notes:</label></td>
+       <td><label class="info_form_label">Notes:</label></td>
        <td align="left"><textarea name="notes" title="Notes" rows="3" cols="30" maxlength="200" readonly><?php echo $current_user->notes; ?></textarea></td>
      </tr>
      <?php
      if (isset($_POST['admin_view']) || $admin_self || isset($_POST['admin_search'])) {
        ?>
        <tr>
-         <td><label>Donations ($)</label></td>
+         <td><label class="info_form_label">Donations ($)</label></td>
          <td align="left"><input type="text" name="donations" title="Donations" rows="3" cols="30" maxlength="10" value="<?php echo $current_user->donations; ?>" readonly></td>
        </tr>
        <?php
@@ -674,12 +674,12 @@ function do_view_info_form(){
 
 function view_teacher_year($start_year, $end_year) {
   ?><tr>
-    <td><label for="user_type">Type:</label></td>
+    <td><label class="info_form_label" for="user_type">Type:</label></td>
     <td align="left"><input type="text" name="user_type" title="User Type" size="30" maxlength="40" value="Teacher" readonly /></td>
   </tr>
   <tr>
-    <td><label for="grad_year">Years Taught (Teacher):</label></td>
-    <td align="left"><input type="text" name="start_year" title="Start Year" size="4" maxlength="4" width="4" value="<?php echo $start_year; ?>" readonly/> <label>to</label>
+    <td><label class="info_form_label" for="grad_year">Years Taught (Teacher):</label></td>
+    <td align="left"><input type="text" name="start_year" title="Start Year" size="4" maxlength="4" width="4" value="<?php echo $start_year; ?>" readonly/> <label class="info_form_label">to</label>
       <input type="text" name="end_year" title="End Year" size="4" maxlength="4" width="4" value="<?php echo $end_year; ?>" readonly/></td>
   </tr>
 <?php
@@ -688,11 +688,11 @@ function view_teacher_year($start_year, $end_year) {
 function view_student_year ($grad_year) {
   ?>
     <tr>
-      <td><label for="user_type">Type:</label></td>
+      <td><label class="info_form_label" for="user_type">Type:</label></td>
       <td align="left"><input type="text" name="user_type" title="User Type" size="30" maxlength="40" value="Student" readonly /></td>
     </tr>
   <tr>
-   <td><label for="grad_year">Graduation Year (Student):</label></td>
+   <td><label class="info_form_label" for="grad_year">Graduation Year (Student):</label></td>
    <td align="left">
    <input type="text" name="grad_year" title="Grad Year" value="<?php echo $grad_year; ?>" readonly></td>
  </tr>
@@ -701,7 +701,6 @@ function view_student_year ($grad_year) {
 
 function do_edit_button() {
   ?>
-  <br>
   <form action="edit_user_page.php" method="post">
     <input type="submit" name="user_edit" class="button" value="Edit Your Info">
   </form>

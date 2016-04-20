@@ -67,8 +67,8 @@ $result = $conn->query($sql);
 $i = 2;
 	while ($row_array = $result->fetch_assoc()) {
 			$objPHPExcel->getActiveSheet()->setCellValue('A'.$i , $row_array['user_id']);
-			$objPHPExcel->getActiveSheet()->setCellValue('B'.$i , $row_array['last_name']);
-			$objPHPExcel->getActiveSheet()->setCellValue('C'.$i , $row_array['first_name']);
+			$objPHPExcel->getActiveSheet()->setCellValue('B'.$i , $row_array['first_name']);
+			$objPHPExcel->getActiveSheet()->setCellValue('C'.$i , $row_array['last_name']);
 			$objPHPExcel->getActiveSheet()->setCellValue('D'.$i , $row_array['nickname']);
 			$objPHPExcel->getActiveSheet()->setCellValue('E'.$i , $row_array['grad_year']);
 			$objPHPExcel->getActiveSheet()->setCellValue('F'.$i , $row_array['father_name']);
@@ -125,8 +125,8 @@ $result = $conn->query($sql);
 $i = 2;
 	while ($row_array = $result->fetch_assoc()) {
 			$objPHPExcel->getActiveSheet()->setCellValue('A'.$i , $row_array['user_id']);
-			$objPHPExcel->getActiveSheet()->setCellValue('B'.$i , $row_array['last_name']);
-			$objPHPExcel->getActiveSheet()->setCellValue('C'.$i , $row_array['first_name']);
+			$objPHPExcel->getActiveSheet()->setCellValue('B'.$i , $row_array['first_name']);
+			$objPHPExcel->getActiveSheet()->setCellValue('C'.$i , $row_array['last_name']);
 			$objPHPExcel->getActiveSheet()->setCellValue('D'.$i , $row_array['nickname']);
 			$objPHPExcel->getActiveSheet()->setCellValue('E'.$i , $row_array['start_year']);
 			$objPHPExcel->getActiveSheet()->setCellValue('F'.$i , $row_array['end_year']);
