@@ -64,21 +64,16 @@ function show_event_info() {
 
 function do_html_footer() {
   // print an HTML footer
-?><!--<link rel="stylesheet" href="list.css">-->
-		<div id="mainWrapper">
-			
-			<div id="content"></div>
-			<div id="footer">
-				<ul>
-					<li><a class="a" href="">Questions</a></li>
-					<li><a class="a" href="">Interested in Donating</a></li>
-					<li><a class="a" href="">Contact Administrator</a></li>
-				</ul>
-				&copy; 2016 Aligators ICS 499
-			</div>
-		</div>
-	
-			
+?>
+  <div id="mainWrapper">
+    <div id="content"></div>
+    <div id="footer">
+      <div class="footer_text">Questions? Need to register? Interested in Donating?</div>
+      <a class="footer_link_text" href="">Contact an Administrator Here</a>
+      <br><br>
+      &copy; 2016 Aligators ICS 499
+    </div>
+  </div>
 </body>
 </html>
 	

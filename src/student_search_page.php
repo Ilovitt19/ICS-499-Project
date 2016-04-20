@@ -116,7 +116,6 @@ $admin = unserialize($_SESSION['current_user'])->admin;
   }
 ?>
 
-<?php
 /**
  * @param $conn mysqli - The DB connection
  * @param $view_all - View all users?
