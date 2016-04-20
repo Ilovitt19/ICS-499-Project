@@ -103,10 +103,13 @@ function get_class_count_list() {
 
 function import_db_button () {
     ?>
-    <form action="import_database_action.php" method="post" enctype="multipart/form-data">
-        <button type="button" class="fakebutton"><a>Select a SQL file to import to the Database</a></button>
-        <input class="fakebutton" type="file" name="fileToUpload" id="fileToUpload"><br>
-        <input class="fakebutton" type="submit" value="Submit" class="button" name="submit"><br>
+	<form action='import_database.php' enctype='multipart/form-data' method='post'>
+
+		<input id='excelupload' name='excelupload' type='file' />
+
+		<input name='submit' type='submit' value='Upload' />
+
+	</form>
     <?php
    }
 
