@@ -107,7 +107,7 @@ function get_class_count_list() {
 function do_stats_output() {
     ?>
   <section id="left_side_list">
-		<form class="container_center" method="post" action="">
+		<form method="post" action="">
       <h2>User Statistics</h2>
       <table>
 				<tr>

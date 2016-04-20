@@ -80,7 +80,6 @@ label{
     font-family:Arial;
     padding: .2em 1em;
     color: orange;
-    text-decoration: underline;
 }
 
 #container {
@@ -345,10 +344,11 @@ button .fakebutton a:hover {
 
 .scrollit{
     max-height: 500px;
+    max-width: 525px;
     overflow: scroll;
 }
 .search_result_table {
-    max-width: 1000px;
+    max-width: 600px;
     border: 1px solid #c9c9c9;
 }
 
@@ -414,7 +414,6 @@ button .fakebutton a:hover {
 }
 
 #left_side_list{
-    width: 40%;
     margin-top: 10px;
     margin-left: 20%;
     float: left;

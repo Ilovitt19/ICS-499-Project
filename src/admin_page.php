@@ -10,7 +10,6 @@ if (login_check()) {
 	$current_user = unserialize($_SESSION['current_user']);
 	if ($current_user->admin == 'yes') {
 		do_stats_output();
-
 			} else {
 		echo "<p>You are not authorized to enter the administration area.</p>";
 	}
