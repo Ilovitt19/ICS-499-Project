@@ -2,12 +2,6 @@
 
 require_once('reunion_fns.php');
 
-$db_hostname = 'SP-CFSICS.METROSTATE.EDU';
-$db_username = 'ics499sp160102';
-$db_password = '299436';
-$db_database = 'Alligators';
-
-
 $mysql_connection = new mysqli('localhost', 'root', 'test');
 
 if ($mysql_connection->connect_errno) {
