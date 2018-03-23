@@ -8,7 +8,7 @@ $db_password = '299436';
 $db_database = 'Alligators';
 
 
-$mysql_connection = new mysqli('localhost', 'root', '');
+$mysql_connection = new mysqli('localhost', 'root', 'test');
 
 if ($mysql_connection->connect_errno) {
 	printf("Failed to connect to the MySQL database server: %s<br>", $mysql_connection->connect_error);
