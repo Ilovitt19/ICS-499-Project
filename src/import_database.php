@@ -6,38 +6,34 @@ error_reporting(0);
 set_include_path(get_include_path() . PATH_SEPARATOR . 'Classes/');
 include 'Classes/PHPExcel/IOFactory.php';
 $conn = db_connect();
-if(isset($_POST) && !empty($_FILES['excelupload']['name']))
-{
+if (isset($_POST) && !empty($_FILES['excelupload']['name'])) {
 //print_r($_FILES['excelupload']);
-	$namearr = explode(".",$_FILES['excelupload']['name']);
-	if(end($namearr) != 'xls' && end($namearr) != 'xlsx')
-	{
+	$namearr = explode(".", $_FILES['excelupload']['name']);
+	if (end($namearr) != 'xls' && end($namearr) != 'xlsx') {
 		echo '<p> Invalid File </p>';
 		$invalid = 1;
 	}
-	if($invalid != 1)
-	{
+	if ($invalid != 1) {
 		$target_dir = "uploads/";
 		if (!file_exists($target_dir)) {
 			mkdir($target_dir);
 		}
 		$target_file = $target_dir . basename($_FILES["excelupload"]["name"]);
-		$response = move_uploaded_file($_FILES['excelupload']['tmp_name'],$target_file); // Upload the file to the current folder
-		if($response)
-		{
+		$response = move_uploaded_file($_FILES['excelupload']['tmp_name'], $target_file); // Upload the file to the current folder
+		if ($response) {
 			reset_tables();
 			try {
 				$objPHPExcel = PHPExcel_IOFactory::load($target_file);
-			} catch(Exception $e) {
-				die('Error : Unable to load the file : "'.pathinfo($_FILES['excelupload']['name'],PATHINFO_BASENAME).'": '.$e->getMessage());
+			} catch (Exception $e) {
+				die('Error : Unable to load the file : "' . pathinfo($_FILES['excelupload']['name'], PATHINFO_BASENAME) . '": ' . $e->getMessage());
 			}
 			//choose sheet - user
-			$allDataInSheet = $objPHPExcel->setActiveSheetIndex(0)->toArray(null,true,true,true);
+			$allDataInSheet = $objPHPExcel->setActiveSheetIndex(0)->toArray(null, true, true, true);
 //print_r($allDataInSheet);
 			$arrayCount = count($allDataInSheet); // Total Number of rows in the uploaded EXCEL file
 //echo $arrayCount;
 
-			for($i=2;$i<=$arrayCount;$i++){
+			for ($i = 2; $i <= $arrayCount; $i++) {
 				$string = "INSERT INTO user (username, password, admin, user_type, user_id) VALUES ";
 
 				$username = trim($allDataInSheet[$i]["A"]);
@@ -47,20 +43,20 @@ if(isset($_POST) && !empty($_FILES['excelupload']['name']))
 				$user_id = trim($allDataInSheet[$i]["E"]);
 
 
-				$string .= "('".$username."' , '".$password ."','".$admin ."', '".$user_type ."', '".$user_id ."'),";
-				$string = substr($string,0,-1);
+				$string .= "('" . $username . "' , '" . $password . "','" . $admin . "', '" . $user_type . "', '" . $user_id . "'),";
+				$string = substr($string, 0, -1);
 				$conn->query($string);
 			}
 //echo $string;
 
 
 			//next sheet - students
-			$allDataInSheet = $objPHPExcel->setActiveSheetIndex(1)->toArray(null,true,true,true);
+			$allDataInSheet = $objPHPExcel->setActiveSheetIndex(1)->toArray(null, true, true, true);
 //print_r($allDataInSheet);
 			$arrayCount = count($allDataInSheet); // Total Number of rows in the uploaded EXCEL file
 //echo $arrayCount;
 
-			for($i=2;$i<=$arrayCount;$i++){
+			for ($i = 2; $i <= $arrayCount; $i++) {
 				$string = "INSERT INTO students (user_id, first_name, last_name, nickname, grad_year, father_name,
  				mother_name, email, phone, family_details, work_experience, awards, street, city, state, zip,
  				notes, photo, donations, attending) VALUES ";
@@ -87,25 +83,24 @@ if(isset($_POST) && !empty($_FILES['excelupload']['name']))
 				$donations = trim($allDataInSheet[$i]["S"]);
 				$attending = trim($allDataInSheet[$i]["T"]);
 
-				$string .= "('".$user_id."' , '".$first_name ."','".$last_name ."', '".$nickname ."', '".$grad_year ."',
-				'".$father_name ."', '".$mother_name ."', '".$email ."', '".$phone ."', '".$family_details ."',
-				'".$work_experience ."', '".$awards ."', '".$street ."', '".$city ."', '".$state  ."', '".$zip ."',
-				'".$notes ."', '".$photos ."', '".$donations ."', '".$attending ."'),";
-				$string = substr($string,0,-1);
-				 // Insert all the data into one query
+				$string .= "('" . $user_id . "' , '" . $first_name . "','" . $last_name . "', '" . $nickname . "', '" . $grad_year . "',
+				'" . $father_name . "', '" . $mother_name . "', '" . $email . "', '" . $phone . "', '" . $family_details . "',
+				'" . $work_experience . "', '" . $awards . "', '" . $street . "', '" . $city . "', '" . $state . "', '" . $zip . "',
+				'" . $notes . "', '" . $photos . "', '" . $donations . "', '" . $attending . "'),";
+				$string = substr($string, 0, -1);
+				// Insert all the data into one query
 				$conn->query($string);
 			}
 //echo $string;
 
 
-
 			//next sheet - teachers
-			$allDataInSheet = $objPHPExcel->setActiveSheetIndex(2)->toArray(null,true,true,true);
+			$allDataInSheet = $objPHPExcel->setActiveSheetIndex(2)->toArray(null, true, true, true);
 //print_r($allDataInSheet);
 			$arrayCount = count($allDataInSheet); // Total Number of rows in the uploaded EXCEL file
 //echo $arrayCount;
 
-			for($i=2;$i<=$arrayCount;$i++){
+			for ($i = 2; $i <= $arrayCount; $i++) {
 				$string = "INSERT INTO teachers (user_id, first_name, last_name, nickname, start_year, end_year,
  				father_name, mother_name, email, phone, family_details, work_experience, awards, street,
  				city, state, zip, notes, photo, donations, attending) VALUES ";
@@ -132,11 +127,11 @@ if(isset($_POST) && !empty($_FILES['excelupload']['name']))
 				$donations = trim($allDataInSheet[$i]["T"]);
 				$attending = trim($allDataInSheet[$i]["U"]);
 
-				$string .= "('".$user_id."' , '".$first_name ."', '".$last_name ."', '".$nickname ."', '".$start_year ."',
-				'".$end_year ."', '".$father_name ."', '".$mother_name ."', '".$email ."', '".$phone ."', '".$family_details ."',
-				  '".$work_experience ."', '".$awards ."', '".$street ."', '".$city ."', '".$state  ."', '".$zip ."',
-				   '".$notes ."', '".$photos ."', '".$donations ."', '".$attending ."'),";
-				$string = substr($string,0,-1);
+				$string .= "('" . $user_id . "' , '" . $first_name . "', '" . $last_name . "', '" . $nickname . "', '" . $start_year . "',
+				'" . $end_year . "', '" . $father_name . "', '" . $mother_name . "', '" . $email . "', '" . $phone . "', '" . $family_details . "',
+				  '" . $work_experience . "', '" . $awards . "', '" . $street . "', '" . $city . "', '" . $state . "', '" . $zip . "',
+				   '" . $notes . "', '" . $photos . "', '" . $donations . "', '" . $attending . "'),";
+				$string = substr($string, 0, -1);
 				$conn->query($string);
 			}
 
@@ -158,7 +153,8 @@ if(isset($_POST) && !empty($_FILES['excelupload']['name']))
 	<?php
 }
 
-function reset_tables(){
+function reset_tables()
+{
 	$mysql_connection = db_connect();
 	$drop_table = "DELETE FROM students";
 

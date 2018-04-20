@@ -3,7 +3,7 @@ require_once ('reunion_fns.php');
 include('logged_in_user_class.php');
 $conn = db_connect();
 
-do_html_header("Error"," Error");
+
 if (isset($_POST['username']) && isset($_POST['passwd'])) {
 	// they have just tried logging in
 
@@ -24,9 +24,9 @@ if (isset($_POST['username']) && isset($_POST['passwd'])) {
 
 	} else {
 		// unsuccessful login
-
-		echo "<p>You could not be logged in.<br/>You must be logged in to view this page.</p>";
-		session_destroy();
+        echo "<script language='JavaScript'>alert('Failed to log in');</script>";
+        do_html_header("Login"," ");
+        session_destroy();
 		display_login_form();
 		do_html_footer();
 		exit();
@@ -35,7 +35,10 @@ if (isset($_POST['username']) && isset($_POST['passwd'])) {
 } else {
 	// unsuccessful login
 
-	echo "<p>You could not be logged in.<br/>You must be logged in to view this page.</p>";
+	echo "<script language='JavaScript'>
+alert('Failed to log in');
+</script>";
+	do_html_header("Login"," ");
 	session_destroy();
 	display_login_form();
 	do_html_footer();

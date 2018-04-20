@@ -1,6 +1,6 @@
 <?php
 
-include ('reunion_fns.php');
+include('reunion_fns.php');
 include('logged_in_user_class.php');
 $title = isset($_POST['admin_edit']) ? "Admin: Edit User Profile" : "Edit My Profile";
 do_html_header($title, $title);

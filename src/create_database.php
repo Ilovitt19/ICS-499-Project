@@ -114,11 +114,12 @@ load_students_data();
 load_teachers_data();
 
 echo "<br>";
-    echo "<a href='admin_page.php'>Return to Admin</a>";
+echo "<a href='admin_page.php'>Return to Admin</a>";
 
 $mysql_connection->close();
 
-function reset_database(){
+function reset_database()
+{
 	$mysql_connection = db_connect();
 	$drop_table = "DELETE FROM students";
 
@@ -164,29 +165,34 @@ function reset_database(){
 	}
 }
 
-function load_students_data() {
+function load_students_data()
+{
 	$conn = db_connect();
 	$sqlDump = file_get_contents('sql_files/students.sql');
-	if (mysqli_multi_query($conn,$sqlDump) === TRUE) {
+	if (mysqli_multi_query($conn, $sqlDump) === TRUE) {
 		echo "Student data entered successfully <br>";
 	} else {
 		echo "Student data not entered: " . $conn->error . "<br>";
 	}
 }
-function load_teachers_data() {
+
+function load_teachers_data()
+{
 	$conn = db_connect();
 	$sqlDump = file_get_contents('sql_files/teachers.sql');
-	if (mysqli_multi_query($conn,$sqlDump) === TRUE) {
+	if (mysqli_multi_query($conn, $sqlDump) === TRUE) {
 		echo "Teacher data entered successfully <br>";
 	} else {
 		echo "Teacher data not entered: " . $conn->error . "<br>";
 	}
 }
-function load_user_data() {
+
+function load_user_data()
+{
 	$conn = db_connect();
 	$sqlDump = file_get_contents('sql_files/user.sql');
 
-	if (mysqli_multi_query($conn,$sqlDump) === TRUE) {
+	if (mysqli_multi_query($conn, $sqlDump) === TRUE) {
 		echo "User data entered successfully <br>";
 	} else {
 		echo "User data not entered: " . $conn->error . "<br>";

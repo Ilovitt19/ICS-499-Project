@@ -2,11 +2,11 @@
 /*
  * Welcome.php acts as Home page while user is logged in
  */
-include ('reunion_fns.php');
+include('reunion_fns.php');
 include('logged_in_user_class.php');
 
 
-do_html_header("Village High School Reunion","Welcome");
+do_html_header("Village High School Reunion", "Welcome");
 
 if (login_check()) {
 	show_event_info();

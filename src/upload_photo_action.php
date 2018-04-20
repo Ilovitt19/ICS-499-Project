@@ -1,5 +1,5 @@
 <?php
-require ('reunion_fns.php');
+require('reunion_fns.php');
 include('logged_in_user_class.php');
 
 if (isset($_SERVER['HTTP_REFERER'])) {
@@ -66,19 +66,20 @@ if (isset($_SERVER['HTTP_REFERER'])) {
 				$updated_user = new LoggedInUser($username);
 				$_SESSION['current_user'] = serialize($updated_user);
 				session_commit();
-        header('Location: edit_user_page.php',"Refresh:0");
-        exit();
-      }
-    } else {
-      echo "Sorry, there was an error uploading your file.";
-    }
-  }
+				header('Location: edit_user_page.php', "Refresh:0");
+				exit();
+			}
+		} else {
+			echo "Sorry, there was an error uploading your file.";
+		}
+	}
 } else {
 	echo "This page cannot be accessed";
 }
 
 
-function save_to_database($target_file, $user_type, $user_id) {
+function save_to_database($target_file, $user_type, $user_id)
+{
 	$conn = db_connect();
 	$query = $user_type == "student" ?
 		"UPDATE students SET photo = '$target_file' WHERE user_id = '$user_id'" :
@@ -91,11 +92,13 @@ function save_to_database($target_file, $user_type, $user_id) {
 	$conn->close();
 	return false;
 }
-function create_folder() {
+
+function create_folder()
+{
 	$dir = 'images/Photos';
 
 	if (!file_exists($dir)) {
-		mkdir($dir,0777);
+		mkdir($dir, 0777);
 	}
 }
 
